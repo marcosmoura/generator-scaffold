@@ -23,7 +23,7 @@
 
     util.inherits(ScaffoldGenerator, yeoman.generators.Base);
 
-    ScaffoldGenerator.prototype.askFor = function askFor() {
+    ScaffoldGenerator.prototype.askFor = function askFor () {
         var cb = this.async();
 
         this.log(chalk.cyan('\t \t [ Welcome to Scaffold Generator ] \n \n'));
@@ -49,14 +49,14 @@
         }.bind(this));
     };
 
-    ScaffoldGenerator.prototype.getScaffold = function getScaffold() {
+    ScaffoldGenerator.prototype.getScaffold = function getScaffold () {
         var cb = this.async();
 
         this.log(chalk.green('\n \n Downloading scaffold'));
         this.tarball('https://github.com/marcosmoura/scaffold/archive/v2.zip', '.', cb);
     };
 
-    ScaffoldGenerator.prototype.processPackage = function processPackage() {
+    ScaffoldGenerator.prototype.processPackage = function processPackage () {
         var pkgPath = path.join(this.env.cwd, 'package.json'),
             pkg = JSON.parse(this.readFileAsString(pkgPath));
 
