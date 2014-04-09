@@ -30,15 +30,25 @@
         this.log(chalk.green('I will guide you to generate your best workflow. Come with me... \n \n'));
 
         var prompts = [{
-                name: 'projectName',
-                message: 'What is the name of your project?'
-            }, {
-                name: 'projectDescription',
-                message: 'What is the description?'
-            }, {
-                name: 'projectMember',
-                message: 'Which members involved in the project?'
-            }];
+            name: 'projectName',
+            message: 'What is the name of your project?'
+        }, {
+            name: 'projectDescription',
+            message: 'What is the description?'
+        }, {
+            name: 'projectMember',
+            message: 'Which members involved in the project?'
+        }, {
+            type: 'confirm',
+            name: 'isMobile',
+            message: 'This is a mobile project?',
+            default: 0
+        }, {
+            type: 'confirm',
+            name: 'hasMinify',
+            message: 'Would you like to minify files at build?',
+            default: 0
+        }];
 
         this.prompt(prompts, function (props) {
             for(var item in props) {
