@@ -81,8 +81,43 @@
         this.write(pkgPath, JSON.stringify(pkg, null, 2));
     };
 
-    ScaffoldGenerator.prototype.processGruntFile = function processGruntFile() {
+    ScaffoldGenerator.prototype.processGruntFile = function processGruntFile () {
+        var tasksPath = path.join(this.env.cwd, 'grunt/options'),
+            tasks = {
+                assemble: 'assemble.js',
+                clean: 'clean.js',
+                cmq: 'cmq.js',
+                compress: 'compress.js',
+                concat: 'concat.js',
+                connect: 'connect.js',
+                copy: 'copy.js',
+                cssmin: 'cssmin.js',
+                csso: 'csso.js',
+                hash: 'hash.js',
+                htmlCompressor: 'htmlCompressor.js',
+                htmlhint: 'htmlhint.js',
+                htmlmin: 'htmlmin.js',
+                imageEmbed: 'imageEmbed.js',
+                imagemin: 'imagemin.js',
+                joycss: 'joycss.js',
+                jshint: 'jshint.js',
+                less: 'less.js',
+                modernizr: 'modernizr.js',
+                rename: 'rename.js',
+                replace: 'replace.js',
+                svgmin: 'svgmin.js',
+                uglify: 'uglify.js',
+                usemin: 'usemin.js',
+                useminPrepare: 'useminPrepare.js',
+                watch: 'watch.js'
+            };
 
+        console.log(path.join(tasksPath, tasks['joycss']));
+
+        if (this.isMobile) {
+            fs.unlink(path.join(tasksPath, tasks['joycss']));
+            fs.unlink(path.join(tasksPath, tasks['rename']));
+        }
     };
 
 })();
