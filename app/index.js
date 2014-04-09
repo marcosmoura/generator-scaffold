@@ -29,15 +29,12 @@
         this.log(chalk.green('I will guide you to generate your best workflow. Come with me... \n \n'));
 
         var prompts = [{
-                type: 'input',
                 name: 'projectName',
                 message: 'What is the name of your project?'
             }, {
-                type: 'input',
                 name: 'projectDescription',
                 message: 'What is the description?'
             }, {
-                type: 'input',
                 name: 'projectMember',
                 message: 'Which members involved in the project?'
             }];
