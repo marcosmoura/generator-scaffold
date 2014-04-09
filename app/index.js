@@ -76,6 +76,8 @@
 
         pkg.author = devList;
 
+        fs.unlink(pkgPath);
+
         this.write(pkgPath, JSON.stringify(pkg, null, 2));
     };
 
