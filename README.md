@@ -1,0 +1,4 @@
+generator-scaffold
+==================
+
+generator-scaffold
