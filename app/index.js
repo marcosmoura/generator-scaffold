@@ -49,14 +49,14 @@
         }.bind(this));
     };
 
-    ScaffoldGenerator.prototype.downloadScaffold = function downloadScaffold() {
+    ScaffoldGenerator.prototype.getScaffold = function getScaffold() {
         var cb = this.async();
 
         this.log(chalk.green('\n \n Downloading scaffold'));
         this.tarball('https://github.com/marcosmoura/scaffold/archive/master.zip', '.', cb);
     };
 
-    ScaffoldGenerator.prototype.overwritePackage = function overwritePackage() {
+    ScaffoldGenerator.prototype.processPackage = function processPackage() {
         var pkgPath = path.join(this.env.cwd, 'package.json'),
             pkg = JSON.parse(this.readFileAsString(pkgPath));
 
@@ -79,6 +79,10 @@
         fs.unlink(pkgPath);
 
         this.write(pkgPath, JSON.stringify(pkg, null, 2));
+    };
+
+    ScaffoldGenerator.prototype.processGruntFile = function processGruntFile() {
+
     };
 
 })();
