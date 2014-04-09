@@ -25,9 +25,8 @@
     ScaffoldGenerator.prototype.askFor = function askFor() {
         var cb = this.async();
 
-        this.log(chalk.cyan('\t \t [ Welcome to Scaffold Generator ] \n \n'),
-            chalk.green('I will guide you to generate your best workflow. Come with me...',
-            '\n \n'));
+        this.log(chalk.cyan('\t \t [ Welcome to Scaffold Generator ] \n \n'));
+        this.log(chalk.green('I will guide you to generate your best workflow. Come with me... \n \n'));
 
         var prompts = [{
                 type: 'input',
