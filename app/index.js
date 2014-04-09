@@ -53,7 +53,7 @@
         var cb = this.async();
 
         this.log(chalk.green('\n \n Downloading scaffold'));
-        this.tarball('https://github.com/marcosmoura/scaffold/archive/master.zip', '.', cb);
+        this.tarball('https://github.com/marcosmoura/scaffold/archive/v2.zip', '.', cb);
     };
 
     ScaffoldGenerator.prototype.processPackage = function processPackage() {
