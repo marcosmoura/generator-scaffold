@@ -4,6 +4,7 @@
 
     var util = require('util'),
         path = require('path'),
+        slug = require('slug'),
         fs = require('fs'),
         yeoman = require('yeoman-generator'),
         chalk = require('chalk');
@@ -48,17 +49,34 @@
         }.bind(this));
     };
 
-    ScaffoldGenerator.prototype.projectfiles = function projectfiles() {
-        this.copy('_editorconfig', '.editorconfig');
-        this.copy('_jshintrc', '.jshintrc');
-        this.copy('_bowerrc', '.bowerrc');
-    };
-
-    ScaffoldGenerator.prototype.copyScaffold = function copyScaffold() {
+    ScaffoldGenerator.prototype.downloadScaffold = function downloadScaffold() {
         var cb = this.async();
 
-        this.log.writeln('Downloading version ' + this.version + ' of Ghost');
+        this.log(chalk.green('\n \n Downloading scaffold'));
         this.tarball('https://github.com/marcosmoura/scaffold/archive/master.zip', '.', cb);
+    };
+
+    ScaffoldGenerator.prototype.overwritePackage = function overwritePackage() {
+        var pkgPath = path.join(this.env.cwd, 'package.json'),
+            pkg = JSON.parse(this.readFileAsString(pkgPath));
+
+        pkg.projectName = this.projectName;
+        pkg.name = slug(this.projectName).toLowerCase();
+        pkg.description = this.projectDescription;
+        pkg.developers = this.projectMember;
+
+        var dev = this.projectMember.split(','),
+            devList = [];
+
+        for(var member in dev) {
+            devList.push({
+                'name': dev[member].trim()
+            });
+        }
+
+        pkg.author = devList;
+
+        this.write(pkgPath, JSON.stringify(pkg, null, 2));
     };
 
 })();
