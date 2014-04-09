@@ -1,0 +1,21 @@
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "a",
+  "authors": [
+    "Marcos Moura <marcosvmmoura@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower",
+    "test",
+    "tests",
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+  }
+}

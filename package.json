@@ -1,0 +1,35 @@
+{
+  "name": "generator-scaffold",
+  "version": "0.0.4",
+  "description": "Scaffold generator for Yeoman",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "marcosmoura/generator-scaffold",
+  "author": {
+    "name": "Marcos Moura",
+    "email": "marcosvmmoura@gmail.com",
+    "url": "https://github.com/marcosmoura"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "chalk": "~0.4.0",
+    "yeoman-generator": "~0.16.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0"
+  }
+}
