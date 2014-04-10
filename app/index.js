@@ -36,13 +36,46 @@
         var cb = this.async(),
             prompts = [{
                 name: 'projectName',
-                message: 'What is the name of your project?'
+                message: 'What is the name of your project?',
+                validate: function(input) {
+                    var done = this.async();
+
+                    if (input.trim() === '') {
+                        done('You need to provide a name for your project');
+
+                        return;
+                    }
+
+                    done(true);
+                }
             }, {
                 name: 'projectDescription',
-                message: 'What is the description?'
+                message: 'What is the description?',
+                validate: function(input) {
+                    var done = this.async();
+
+                    if (input.trim() === '') {
+                        done('You need to provide a description');
+
+                        return;
+                    }
+
+                    done(true);
+                }
             }, {
                 name: 'projectMember',
-                message: 'Which members involved in the project?'
+                message: 'Which members involved in the project?',
+                validate: function(input) {
+                    var done = this.async();
+
+                    if (input.trim() === '') {
+                        done('You need to provide which members');
+
+                        return;
+                    }
+
+                    done(true);
+                }
             }, {
                 type: 'list',
                 name: 'projectType',
