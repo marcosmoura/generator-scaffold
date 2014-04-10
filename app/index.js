@@ -80,13 +80,12 @@
                 type: 'list',
                 name: 'projectType',
                 message: 'What kind of project?',
-                choices: ['Only Web', 'Only Mobile', 'Responsive', 'Wordpress'],
+                choices: ['Web Only', 'Mobile Only', 'Responsive', 'Wordpress'],
                 default: 0
             }, {
                 type: 'confirm',
                 name: 'hasMinify',
-                message: 'Would you like to minify files at build?',
-                default: 0
+                message: 'Would you like to minify files at build?'
             }];
 
         this.prompt(prompts, function (props) {
@@ -163,10 +162,10 @@
                 watch: 'watch.js'
             };
 
-        if (this.projectType == 'Only Mobile') {
+        if (this.projectType == 'Mobile Only') {
             this.log(chalk.green('\n \n Downloading mobile version'));
             this.tarball('https://github.com/marcosmoura/scaffold-mobile/archive/master.zip', 'dev/', cb);
-        } else if (this.projectType == 'Only Web') {
+        } else if (this.projectType == 'Web Only') {
             this.log(chalk.green('\n \n Downloading web version'));
             this.tarball('https://github.com/marcosmoura/scaffold-web/archive/master.zip', 'dev/', cb);
         } else if (this.projectType == 'Responsive') {
