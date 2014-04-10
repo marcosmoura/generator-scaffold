@@ -14,10 +14,8 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": [
-      "mocha",
-      "grunt --verbose"
-    ]
+    "test": "mocha",
+    "start": "grunt --verbose"
   },
   "files": [
     "app"

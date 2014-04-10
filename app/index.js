@@ -113,7 +113,7 @@
             pkg = JSON.parse(this.readFileAsString(pkgPath));
 
         pkg.projectName = this.projectName;
-        pkg.name = slug(this.projectName).toLowerCase();
+        pkg.name = slug(this.projectName.toLowerCase());
         pkg.description = this.projectDescription;
         pkg.developers = this.projectMember;
 
