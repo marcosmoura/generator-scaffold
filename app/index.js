@@ -125,8 +125,11 @@
             };
 
         if (this.isMobile) {
-            fs.unlink(path.join(tasksPath, tasks['joycss']));
-            fs.unlink(path.join(tasksPath, tasks['rename']));
+            this.log(chalk.green('\n \n Downloading mobile version'));
+            this.tarball('https://github.com/marcosmoura/scaffold-mobile/archive/master.zip', 'dev/', cb);
+        } else {
+            this.log(chalk.green('\n \n Downloading web version'));
+            this.tarball('https://github.com/marcosmoura/scaffold-web/archive/master.zip', 'dev/', cb);
         }
     };
 
