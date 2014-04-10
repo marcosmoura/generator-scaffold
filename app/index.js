@@ -136,8 +136,8 @@
     };
 
     ScaffoldGenerator.prototype.processGruntFile = function processGruntFile () {
-        var cb = this.async(),
-            tasksPath = path.join(this.env.cwd, 'grunt/options');
+        var cb = this.async();
+        //var tasksPath = path.join(this.env.cwd, 'grunt/options');
 
         if (this.projectType === 'Mobile Only') {
             this.log(chalk.green('\n \n Downloading mobile version'));
@@ -157,6 +157,8 @@
 
         fs.unlink(path.join(devPath, 'LICENSE'));
         fs.unlink(path.join(devPath, 'README.md'));
+
+        cb();
     };
 
 })();
