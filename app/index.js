@@ -59,10 +59,10 @@
         }.bind(this));
     };
 
-    ScaffoldGenerator.prototype.getScaffold = function getScaffold () {
+    ScaffoldGenerator.prototype.getScaffoldCore = function getScaffoldCore () {
         var cb = this.async();
 
-        this.log(chalk.green('\n \n Downloading scaffold'));
+        this.log(chalk.green('\n \n Downloading core of scaffold'));
         this.tarball('https://github.com/marcosmoura/scaffold/archive/v2.zip', '.', cb);
     };
 
