@@ -67,7 +67,8 @@
     };
 
     ScaffoldGenerator.prototype.processPackage = function processPackage () {
-        var pkgPath = path.join(this.env.cwd, 'package.json'),
+        var cb = this.async(),
+            pkgPath = path.join(this.env.cwd, 'package.json'),
             pkg = JSON.parse(this.readFileAsString(pkgPath));
 
         pkg.projectName = this.projectName;
@@ -89,10 +90,13 @@
         fs.unlink(pkgPath);
 
         this.write(pkgPath, JSON.stringify(pkg, null, 2));
+
+        cb();
     };
 
     ScaffoldGenerator.prototype.processGruntFile = function processGruntFile () {
-        var tasksPath = path.join(this.env.cwd, 'grunt/options'),
+        var cb = this.async(),
+            tasksPath = path.join(this.env.cwd, 'grunt/options'),
             tasks = {
                 assemble: 'assemble.js',
                 clean: 'clean.js',
