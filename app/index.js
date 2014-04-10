@@ -89,10 +89,6 @@
                 message: 'What kind of project?',
                 choices: ['Web Only', 'Mobile Only', 'Responsive', 'Wordpress'],
                 default: 0
-            }, {
-                type: 'confirm',
-                name: 'hasMinify',
-                message: 'Would you like to minify files at build?'
             }];
 
         this.prompt(prompts, function (props) {
@@ -141,33 +137,7 @@
 
     ScaffoldGenerator.prototype.processGruntFile = function processGruntFile () {
         var cb = this.async(),
-            tasksPath = path.join(this.env.cwd, 'grunt/options'),
-            tasks = {
-                assemble: 'assemble.js',
-                clean: 'clean.js',
-                cmq: 'cmq.js',
-                compress: 'compress.js',
-                concat: 'concat.js',
-                connect: 'connect.js',
-                copy: 'copy.js',
-                cssmin: 'cssmin.js',
-                csso: 'csso.js',
-                hash: 'hash.js',
-                htmlCompressor: 'htmlCompressor.js',
-                htmlhint: 'htmlhint.js',
-                htmlmin: 'htmlmin.js',
-                imageEmbed: 'imageEmbed.js',
-                imagemin: 'imagemin.js',
-                jshint: 'jshint.js',
-                less: 'less.js',
-                modernizr: 'modernizr.js',
-                replace: 'replace.js',
-                svgmin: 'svgmin.js',
-                uglify: 'uglify.js',
-                usemin: 'usemin.js',
-                useminPrepare: 'useminPrepare.js',
-                watch: 'watch.js'
-            };
+            tasksPath = path.join(this.env.cwd, 'grunt/options');
 
         if (this.projectType == 'Mobile Only') {
             this.log(chalk.green('\n \n Downloading mobile version'));
