@@ -23,32 +23,38 @@
 
     util.inherits(ScaffoldGenerator, yeoman.generators.Base);
 
-    ScaffoldGenerator.prototype.askFor = function askFor () {
+    ScaffoldGenerator.prototype.init = function init () {
         var cb = this.async();
 
         this.log(chalk.cyan('\t \t [ Welcome to Scaffold Generator ] \n \n'));
         this.log(chalk.green('I will guide you to generate your best workflow. Come with me... \n \n'));
 
-        var prompts = [{
-            name: 'projectName',
-            message: 'What is the name of your project?'
-        }, {
-            name: 'projectDescription',
-            message: 'What is the description?'
-        }, {
-            name: 'projectMember',
-            message: 'Which members involved in the project?'
-        }, {
-            type: 'confirm',
-            name: 'isMobile',
-            message: 'This is a mobile project?',
-            default: 0
-        }, {
-            type: 'confirm',
-            name: 'hasMinify',
-            message: 'Would you like to minify files at build?',
-            default: 0
-        }];
+        cb();
+    };
+
+    ScaffoldGenerator.prototype.askFor = function askFor () {
+        var cb = this.async(),
+            prompts = [{
+                name: 'projectName',
+                message: 'What is the name of your project?'
+            }, {
+                name: 'projectDescription',
+                message: 'What is the description?'
+            }, {
+                name: 'projectMember',
+                message: 'Which members involved in the project?'
+            }, {
+                type: 'list',
+                name: 'projectType',
+                message: 'What kind of project?',
+                choices: ['Only Web', 'Only Mobile', 'Responsive', 'Wordpress'],
+                default: 0
+            }, {
+                type: 'confirm',
+                name: 'hasMinify',
+                message: 'Would you like to minify files at build?',
+                default: 0
+            }];
 
         this.prompt(prompts, function (props) {
             for(var item in props) {
@@ -124,12 +130,15 @@
                 watch: 'watch.js'
             };
 
-        if (this.isMobile) {
+        if (this.projectType == 'Only Mobile') {
             this.log(chalk.green('\n \n Downloading mobile version'));
             this.tarball('https://github.com/marcosmoura/scaffold-mobile/archive/master.zip', 'dev/', cb);
-        } else {
+        } else if (this.projectType == 'Only Web') {
             this.log(chalk.green('\n \n Downloading web version'));
             this.tarball('https://github.com/marcosmoura/scaffold-web/archive/master.zip', 'dev/', cb);
+        } else if (this.projectType == 'Responsive') {
+            this.log(chalk.green('\n \n Downloading responsive version'));
+            this.tarball('https://github.com/marcosmoura/scaffold-mobile/archive/master.zip', 'dev/', cb);
         }
     };
 
