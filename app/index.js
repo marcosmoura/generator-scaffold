@@ -9,7 +9,7 @@
         yeoman = require('yeoman-generator'),
         chalk = require('chalk');
 
-    var ScaffoldGenerator = module.exports = function ScaffoldGenerator(args, options, config) {
+    var ScaffoldGenerator = module.exports = function ScaffoldGenerator(args, options) {
         yeoman.generators.Base.apply(this, arguments);
 
         this.on('end', function () {
