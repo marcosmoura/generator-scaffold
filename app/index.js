@@ -139,13 +139,13 @@
         var cb = this.async(),
             tasksPath = path.join(this.env.cwd, 'grunt/options');
 
-        if (this.projectType == 'Mobile Only') {
+        if (this.projectType === 'Mobile Only') {
             this.log(chalk.green('\n \n Downloading mobile version'));
             this.tarball('https://github.com/marcosmoura/scaffold-mobile/archive/master.zip', 'dev/', cb);
-        } else if (this.projectType == 'Web Only') {
+        } else if (this.projectType === 'Web Only') {
             this.log(chalk.green('\n \n Downloading web version'));
             this.tarball('https://github.com/marcosmoura/scaffold-web/archive/master.zip', 'dev/', cb);
-        } else if (this.projectType == 'Responsive') {
+        } else if (this.projectType === 'Responsive') {
             this.log(chalk.green('\n \n Downloading responsive version'));
             this.tarball('https://github.com/marcosmoura/scaffold-mobile/archive/master.zip', 'dev/', cb);
         }
