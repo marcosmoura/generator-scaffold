@@ -122,8 +122,6 @@
                 watch: 'watch.js'
             };
 
-        console.log(path.join(tasksPath, tasks['joycss']));
-
         if (this.isMobile) {
             fs.unlink(path.join(tasksPath, tasks['joycss']));
             fs.unlink(path.join(tasksPath, tasks['rename']));
