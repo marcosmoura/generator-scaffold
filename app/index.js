@@ -26,6 +26,12 @@
     ScaffoldGenerator.prototype.init = function init () {
         var cb = this.async();
 
+        this.log(chalk.cyan('\t \t  ___           __  __     _    _ '));
+        this.log(chalk.cyan('\t \t / __| __ __ _ / _|/ _|___| |__| |'));
+        this.log(chalk.cyan('\t \t \\__ \\/ _/ _` |  _|  _/ _ \\ / _` |'));
+        this.log(chalk.cyan('\t \t |___/\\__\\__,_|_| |_| \\___/_\\__,_|'));
+        this.log(chalk.cyan('\n'));
+
         this.log(chalk.cyan('\t \t [ Welcome to Scaffold Generator ] \n \n'));
         this.log(chalk.green('I will guide you to generate your best workflow. Come with me... \n \n'));
 
