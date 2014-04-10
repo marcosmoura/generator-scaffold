@@ -130,4 +130,12 @@
         }
     };
 
+    ScaffoldGenerator.prototype.garbageRemoval = function garbageRemoval () {
+        var cb = this.async(),
+            devPath = path.join(this.env.cwd, 'dev');
+
+        fs.unlink(path.join(devPath, 'LICENSE'));
+        fs.unlink(path.join(devPath, 'README.md'));
+    };
+
 })();
