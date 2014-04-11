@@ -4,4 +4,3 @@ node_js:
 before_install:
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-scaffold' ]; then cd .. && eval "mv $currentfolder generator-scaffold" && cd generator-scaffold; fi
-

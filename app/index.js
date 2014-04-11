@@ -40,61 +40,84 @@
     };
 
     ScaffoldGenerator.prototype.askFor = function askFor () {
-        var cb = this.async(),
-            prompts = [{
-                name: 'projectName',
-                message: 'What is the name of your project?',
-                validate: function(input) {
-                    var done = this.async();
+        var cb = this.async();
 
-                    if (input.trim() === '') {
-                        done('You need to provide a name for your project');
+        var projectNamePrompt = [{
+            name: 'projectName',
+            message: 'What is the name of your project?',
+            validate: function(input) {
+                var done = this.async();
 
-                        return;
-                    }
+                if (input.trim() === '') {
+                    done('You need to provide a name for your project');
 
-                    done(true);
+                    return;
                 }
-            }, {
-                name: 'projectDescription',
-                message: 'What is the description?',
-                validate: function(input) {
-                    var done = this.async();
 
-                    if (input.trim() === '') {
-                        done('You need to provide a description');
-
-                        return;
-                    }
-
-                    done(true);
-                }
-            }, {
-                name: 'projectMember',
-                message: 'Which members involved in the project?',
-                validate: function(input) {
-                    var done = this.async();
-
-                    if (input.trim() === '') {
-                        done('You need to provide which members');
-
-                        return;
-                    }
-
-                    done(true);
-                }
-            }, {
-                type: 'list',
-                name: 'projectType',
-                message: 'What kind of project?',
-                choices: ['Web Only', 'Mobile Only', 'Responsive', 'Wordpress'],
-                default: 0
-            }];
-
-        this.prompt(prompts, function (props) {
-            for(var item in props) {
-                this[item] = props[item];
+                done(true);
             }
+        }];
+
+        this.prompt(projectNamePrompt, function (props) {
+            this.projectName = props.projectName;
+
+            cb();
+        }.bind(this));
+
+        var projectDescriptionPrompt = [{
+            name: 'projectDescription',
+            message: 'What is the description?',
+            validate: function(input) {
+                var done = this.async();
+
+                if (input.trim() === '') {
+                    done('You need to provide a description');
+
+                    return;
+                }
+
+                done(true);
+            }
+        }];
+
+        this.prompt(projectDescriptionPrompt, function (props) {
+            this.projectDescription = props.projectDescription;
+
+            cb();
+        }.bind(this));
+
+        var projectMemberPrompt = [{
+            name: 'projectMember',
+            message: 'Which members involved in the project?',
+            validate: function(input) {
+                var done = this.async();
+
+                if (input.trim() === '') {
+                    done('You need to provide which members');
+
+                    return;
+                }
+
+                done(true);
+            }
+        }];
+
+        this.prompt(projectMemberPrompt, function (props) {
+            this.projectMember = props.projectMember;
+
+            cb();
+        }.bind(this));
+
+        var projectTypePrompt = [{
+            type: 'list',
+            name: 'projectType',
+            message: 'What kind of project?',
+            choices: ['Web Only', 'Mobile Only', 'Responsive', 'Wordpress'],
+            default: 0
+        }];
+
+        this.prompt(projectTypePrompt, function (props) {
+            this.projectType = props.projectType;
 
             cb();
         }.bind(this));
