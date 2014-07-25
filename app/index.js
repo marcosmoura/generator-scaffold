@@ -170,14 +170,16 @@
     };
 
     ScaffoldGenerator.prototype.install = function install() {
-        var cb = this.async();
+        var cb = this.async(),
+            _this = this;
 
         this.installDependencies({
-            //skipInstall: options['skip-install'],
-            bower: false
+            skipInstall: false,
+            bower: false,
+            callback: function () {
+                _this.spawnCommand('grunt', ['bower']);
+            }
         });
-
-        this.spawnCommand('grunt', ['bower']);
 
         cb();
     };
