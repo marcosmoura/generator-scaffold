@@ -151,6 +151,14 @@
         }
     };
 
+    ScaffoldGenerator.prototype.copyBower = function copyBower () {
+        var cb = this.async();
+
+        this.dest.copy('dev/bower.json', 'bower.json');
+
+        this.spawnCommand('grunt', ['bower']);
+    };
+
     ScaffoldGenerator.prototype.garbageRemoval = function garbageRemoval () {
         var cb = this.async(),
             devPath = path.join(this.env.cwd, 'dev');
