@@ -175,6 +175,7 @@
 
         this.installDependencies({
             skipInstall: false,
+            npm: true,
             bower: false,
             callback: function () {
                 _this.spawnCommand('grunt', ['bower']);
