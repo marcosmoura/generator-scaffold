@@ -13,6 +13,7 @@
         yeoman.generators.Base.apply(this, arguments);
 
         this.on('end', function() {
+            this.log(chalk.cyan(options));
             return false;
         });
 
@@ -172,7 +173,7 @@
         var cb = this.async();
 
         this.installDependencies({
-            skipInstall: options['skip-install'],
+            //skipInstall: options['skip-install'],
             bower: false
         });
 
