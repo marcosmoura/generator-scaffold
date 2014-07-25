@@ -137,7 +137,6 @@
 
     ScaffoldGenerator.prototype.processGruntFile = function processGruntFile() {
         var cb = this.async();
-        //var tasksPath = path.join(this.env.cwd, 'grunt/options');
 
         if(this.projectType === 'Mobile Only') {
             this.log(chalk.green('\n \n Downloading mobile version'));
@@ -149,15 +148,6 @@
             this.log(chalk.green('\n \n Downloading responsive version'));
             this.tarball('https://github.com/marcosmoura/scaffold-mobile/archive/master.zip', 'dev/', cb);
         }
-    };
-
-    ScaffoldGenerator.prototype.copyBower = function copyBower() {
-        var cb = this.async();
-
-        this.dest.copy('bower.json', 'bower.json');
-        this.dest.copy('.bowerrc', '.bowerrc');
-
-        cb();
     };
 
     ScaffoldGenerator.prototype.garbageRemoval = function garbageRemoval() {
