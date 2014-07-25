@@ -13,12 +13,7 @@
         yeoman.generators.Base.apply(this, arguments);
 
         this.on('end', function() {
-            this.installDependencies({
-                skipInstall: options['skip-install'],
-                bower: false
-            });
-
-            this.spawnCommand('grunt', ['bower']);
+            return false;
         });
 
         this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
@@ -169,6 +164,19 @@
             base = path.join(this.env.cwd, '');
 
         this.dest.copy(path.join(base, 'dev/bower.json'), path.join(base, 'bower.json'));
+
+        cb();
+    };
+
+    ScaffoldGenerator.prototype.install = function install() {
+        var cb = this.async();
+
+        this.installDependencies({
+            skipInstall: options['skip-install'],
+            bower: false
+        });
+
+        this.spawnCommand('grunt', ['bower']);
 
         cb();
     };
