@@ -1,0 +1,8 @@
+{
+  "name": "bower",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "latest",
+    "normalize-css": "latest"
+  }
+}

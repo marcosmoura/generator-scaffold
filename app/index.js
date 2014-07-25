@@ -13,8 +13,9 @@
         yeoman.generators.Base.apply(this, arguments);
 
         this.on('end', function() {
-            this.log(chalk.cyan(options));
-            return false;
+            this.installDependencies({
+                skipInstall: options['skipInstall']
+            });
         });
 
         this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
@@ -150,37 +151,21 @@
         }
     };
 
+    ScaffoldGenerator.prototype.copyBower = function copyBower() {
+        var cb = this.async();
+
+        this.dest.copy('bower.json', 'bower.json');
+        this.dest.copy('.bowerrc', '.bowerrc');
+
+        cb();
+    };
+
     ScaffoldGenerator.prototype.garbageRemoval = function garbageRemoval() {
         var cb = this.async(),
             devPath = path.join(this.env.cwd, 'dev');
 
         fs.unlink(path.join(devPath, 'LICENSE'));
         fs.unlink(path.join(devPath, 'README.md'));
-
-        cb();
-    };
-
-    ScaffoldGenerator.prototype.copyBower = function copyBower() {
-        var cb = this.async(),
-            base = path.join(this.env.cwd, '');
-
-        this.dest.copy(path.join(base, 'dev/bower.json'), path.join(base, 'bower.json'));
-
-        cb();
-    };
-
-    ScaffoldGenerator.prototype.install = function install() {
-        var cb = this.async(),
-            _this = this;
-
-        this.installDependencies({
-            skipInstall: false,
-            npm: true,
-            bower: false,
-            callback: function () {
-                _this.spawnCommand('grunt', ['bower']);
-            }
-        });
 
         cb();
     };
