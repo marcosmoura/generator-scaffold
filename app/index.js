@@ -14,8 +14,11 @@
 
         this.on('end', function() {
             this.installDependencies({
-                skipInstall: options['skip-install']
+                skipInstall: options['skip-install'],
+                bower: false
             });
+
+            this.spawnCommand('grunt', ['bower']);
         });
 
         this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
@@ -162,9 +165,10 @@
     };
 
     ScaffoldGenerator.prototype.copyBower = function copyBower() {
-        var cb = this.async();
+        var cb = this.async(),
+            base = path.join(this.env.cwd, '');
 
-        this.dest.copy('dev/bower.json', 'bower.json');
+        this.dest.copy(path.join(base, 'dev/bower.json'), path.join(base, 'bower.json'));
 
         cb();
     };
