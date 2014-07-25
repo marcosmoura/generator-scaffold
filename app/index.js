@@ -155,8 +155,6 @@
         var cb = this.async();
 
         this.dest.copy('dev/bower.json', 'bower.json');
-
-        this.spawnCommand('grunt', ['bower']);
     };
 
     ScaffoldGenerator.prototype.garbageRemoval = function garbageRemoval () {
