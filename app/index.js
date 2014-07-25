@@ -1,4 +1,4 @@
-(function () {
+(function() {
 
     'use strict';
 
@@ -12,7 +12,7 @@
     var ScaffoldGenerator = module.exports = function ScaffoldGenerator(args, options) {
         yeoman.generators.Base.apply(this, arguments);
 
-        this.on('end', function () {
+        this.on('end', function() {
             this.installDependencies({
                 skipInstall: options['skip-install']
             });
@@ -23,7 +23,7 @@
 
     util.inherits(ScaffoldGenerator, yeoman.generators.Base);
 
-    ScaffoldGenerator.prototype.init = function init () {
+    ScaffoldGenerator.prototype.init = function init() {
         var cb = this.async();
 
         this.log(chalk.cyan('\t \t  ___           __  __     _    _ '));
@@ -39,7 +39,7 @@
         cb();
     };
 
-    ScaffoldGenerator.prototype.askFor = function askFor () {
+    ScaffoldGenerator.prototype.askFor = function askFor() {
         var cb = this.async(),
             prompts = [{
                 name: 'projectName',
@@ -47,7 +47,7 @@
                 validate: function(input) {
                     var done = this.async();
 
-                    if (input.trim() === '') {
+                    if(input.trim() === '') {
                         done('You need to provide a name for your project');
 
                         return;
@@ -61,7 +61,7 @@
                 validate: function(input) {
                     var done = this.async();
 
-                    if (input.trim() === '') {
+                    if(input.trim() === '') {
                         done('You need to provide a description');
 
                         return;
@@ -75,7 +75,7 @@
                 validate: function(input) {
                     var done = this.async();
 
-                    if (input.trim() === '') {
+                    if(input.trim() === '') {
                         done('You need to provide which members');
 
                         return;
@@ -91,7 +91,7 @@
                 default: 0
             }];
 
-        this.prompt(prompts, function (props) {
+        this.prompt(prompts, function(props) {
             for(var item in props) {
                 this[item] = props[item];
             }
@@ -100,14 +100,14 @@
         }.bind(this));
     };
 
-    ScaffoldGenerator.prototype.getScaffoldCore = function getScaffoldCore () {
+    ScaffoldGenerator.prototype.getScaffoldCore = function getScaffoldCore() {
         var cb = this.async();
 
         this.log(chalk.green('\n \n Downloading core of scaffold'));
         this.tarball('https://github.com/marcosmoura/scaffold/archive/v2.zip', '.', cb);
     };
 
-    ScaffoldGenerator.prototype.processPackage = function processPackage () {
+    ScaffoldGenerator.prototype.processPackage = function processPackage() {
         var cb = this.async(),
             pkgPath = path.join(this.env.cwd, 'package.json'),
             pkg = JSON.parse(this.readFileAsString(pkgPath));
@@ -135,34 +135,36 @@
         cb();
     };
 
-    ScaffoldGenerator.prototype.processGruntFile = function processGruntFile () {
+    ScaffoldGenerator.prototype.processGruntFile = function processGruntFile() {
         var cb = this.async();
         //var tasksPath = path.join(this.env.cwd, 'grunt/options');
 
-        if (this.projectType === 'Mobile Only') {
+        if(this.projectType === 'Mobile Only') {
             this.log(chalk.green('\n \n Downloading mobile version'));
             this.tarball('https://github.com/marcosmoura/scaffold-mobile/archive/master.zip', 'dev/', cb);
-        } else if (this.projectType === 'Web Only') {
+        } else if(this.projectType === 'Web Only') {
             this.log(chalk.green('\n \n Downloading web version'));
             this.tarball('https://github.com/marcosmoura/scaffold-web/archive/master.zip', 'dev/', cb);
-        } else if (this.projectType === 'Responsive') {
+        } else if(this.projectType === 'Responsive') {
             this.log(chalk.green('\n \n Downloading responsive version'));
             this.tarball('https://github.com/marcosmoura/scaffold-mobile/archive/master.zip', 'dev/', cb);
         }
     };
 
-    ScaffoldGenerator.prototype.copyBower = function copyBower () {
-        var cb = this.async();
-
-        this.dest.copy('dev/bower.json', 'bower.json');
-    };
-
-    ScaffoldGenerator.prototype.garbageRemoval = function garbageRemoval () {
+    ScaffoldGenerator.prototype.garbageRemoval = function garbageRemoval() {
         var cb = this.async(),
             devPath = path.join(this.env.cwd, 'dev');
 
         fs.unlink(path.join(devPath, 'LICENSE'));
         fs.unlink(path.join(devPath, 'README.md'));
+
+        cb();
+    };
+
+    ScaffoldGenerator.prototype.copyBower = function copyBower() {
+        var cb = this.async();
+
+        this.dest.copy('dev/bower.json', 'bower.json');
 
         cb();
     };
