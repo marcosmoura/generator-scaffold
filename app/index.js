@@ -151,7 +151,7 @@
             this.tarball('https://github.com/marcosmoura/scaffold-web/archive/master.zip', 'dev/', cb);
         } else if(this.projectType === 'Responsive') {
             this.log(chalk.green('\n \n Downloading responsive version'));
-            this.tarball('https://github.com/marcosmoura/scaffold-mobile/archive/master.zip', 'dev/', cb);
+            this.tarball('https://github.com/marcosmoura/scaffold-responsive/archive/master.zip', 'dev/', cb);
         }
     };
 
