@@ -10,11 +10,16 @@
         chalk = require('chalk');
 
     var ScaffoldGenerator = module.exports = function ScaffoldGenerator(args, options) {
+        var _this = this;
+
         yeoman.generators.Base.apply(this, arguments);
 
         this.on('end', function() {
             this.installDependencies({
-                skipInstall: options['skipInstall']
+                skipInstall: options['skipInstall'],
+                callback: function() {
+                    _this.spawnCommand('npm', ['install', 'glob']);
+                }
             });
         });
 
