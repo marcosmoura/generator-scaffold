@@ -92,7 +92,7 @@
                 type: 'list',
                 name: 'projectType',
                 message: 'What kind of project?',
-                choices: ['Web Only', 'Mobile Only', 'Responsive', 'Wordpress'],
+                choices: ['Web Only', 'Mobile Only', 'Responsive'/*, 'Wordpress'*/],
                 default: 0
             }];
 
