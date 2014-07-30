@@ -153,7 +153,7 @@
                 this[item] = props[item];
             }
 
-            this.log(chalk.red(' \n \n Good! Now I will download everything you need. Time to take a coffee! \n \n'));
+            this.log(chalk.yellow(' \n \n Good! Now I will download everything you need. Time to take a coffee! \n \n'));
 
             cb();
         }.bind(this));
@@ -233,7 +233,7 @@
         var cb = this.async(),
             devPath = path.join(this.env.cwd, 'dev');
 
-        this.log(chalk.red('\n \n Removing garbage and temporary files'));
+        this.log(chalk.yellow('\n \n Removing garbage and temporary files'));
 
         fs.unlink(path.join(devPath, 'LICENSE'));
         fs.unlink(path.join(devPath, 'README.md'));
