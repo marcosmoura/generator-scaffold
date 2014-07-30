@@ -22,6 +22,8 @@
 
                     command.on('exit', function() {
                         _this.log(chalk.cyan(' \n \n All done and no errors! Enjoy! \n \n'));
+
+                        _this.spawnCommand('grunt');
                     });
                 }
             });
