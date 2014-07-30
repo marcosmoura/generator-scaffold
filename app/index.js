@@ -18,7 +18,11 @@
             this.installDependencies({
                 skipInstall: options['skipInstall'],
                 callback: function() {
-                    _this.spawnCommand('npm', ['install', 'glob']);
+                    var command = _this.spawnCommand('npm', ['install', 'glob']);
+
+                    command.on('exit', function() {
+                        _this.log(chalk.cyan(' \n \n All done and no errors! Enjoy! \n \n'));
+                    });
                 }
             });
         });
@@ -46,14 +50,37 @@
 
     ScaffoldGenerator.prototype.askFor = function askFor() {
         var cb = this.async(),
+            _this = this,
+            attempts = {
+                name: 0,
+                description: 0,
+                members: 0
+            },
             prompts = [{
                 name: 'projectName',
                 message: 'What is the name of your project?',
                 validate: function(input) {
                     var done = this.async();
 
-                    if(input.trim() === '') {
-                        done('You need to provide a name for your project');
+                    if (input.trim() === '') {
+                        if (attempts.name === 0) {
+                            attempts.name = 1;
+                            done('Hey dude! You forgot to enter the project name!');
+                        } else if (attempts.name === 1) {
+                            attempts.name = 2;
+
+                            done('Come on. Just write the name of the project.');
+                        } else if (attempts.name === 2) {
+                            attempts.name = 3;
+
+                            done('Alright. No problem. I\'ll wait here.');
+                        } else if (attempts.name === 3) {
+                            attempts.name = 4;
+
+                            done('Come on buddy! Write that name. NOW!');
+                        } else {
+                            done('Ok! :(');
+                        }
 
                         return;
                     }
@@ -66,8 +93,18 @@
                 validate: function(input) {
                     var done = this.async();
 
-                    if(input.trim() === '') {
-                        done('You need to provide a description');
+                    if (input.trim() === '') {
+                        if (attempts.name > 0) {
+                            done('You also forgot the description.');
+                        } else {
+                            if (attempts.description === 0) {
+                                attempts.description = 1;
+
+                                done('You forgot the description. Write here.');
+                            } else if (attempts.description === 1) {
+                                done('You forgot the description again! Just write.');
+                            }
+                        }
 
                         return;
                     }
@@ -76,12 +113,22 @@
                 }
             }, {
                 name: 'projectMember',
-                message: 'Which members involved in the project?',
+                message: 'What are people going to work on this project? (Separated by commas)',
                 validate: function(input) {
                     var done = this.async();
 
-                    if(input.trim() === '') {
-                        done('You need to provide which members');
+                    if (input.trim() === '') {
+                        if (attempts.name > 0 && attempts.description > 0) {
+                            done('Forgot again? :/ Who will work with you on this? Write separating the names with commas.');
+                        } else {
+                            if (attempts.members === 0) {
+                                attempts.members = 1;
+
+                                done('Hey man. Who will work with you on this? Write separating the names with commas.');
+                            } else if (attempts.members === 1) {
+                                done('Type the name of who will work with you, separated by commas.');
+                            }
+                        }
 
                         return;
                     }
@@ -100,6 +147,8 @@
             for(var item in props) {
                 this[item] = props[item];
             }
+
+            this.log(chalk.red(' \n \n Good! Now I will download everything you need. Time to take a coffee! \n \n'));
 
             cb();
         }.bind(this));
@@ -159,8 +208,12 @@
         var cb = this.async(),
             devPath = path.join(this.env.cwd, 'dev');
 
+        this.log(chalk.red('\n \n Removing garbage and temporary files'));
+
         fs.unlink(path.join(devPath, 'LICENSE'));
         fs.unlink(path.join(devPath, 'README.md'));
+
+        this.log(chalk.green('\n \n Now I will install the dependencies. This may take a while. Time to go to the bathroom! \n \n '));
 
         cb();
     };
