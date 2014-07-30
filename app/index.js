@@ -139,7 +139,12 @@
                 type: 'list',
                 name: 'projectType',
                 message: 'What kind of project?',
-                choices: ['Web Only', 'Mobile Only', 'Responsive'/*, 'Wordpress'*/],
+                choices: ['Mobile Only', 'Web Only', 'Responsive'],
+                default: 0
+            }, {
+                type: 'confirm',
+                name: 'jquery',
+                message: 'Want to include jQuery?',
                 default: 0
             }];
 
