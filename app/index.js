@@ -194,7 +194,27 @@
         cb();
     };
 
-    ScaffoldGenerator.prototype.processGruntFile = function processGruntFile() {
+    ScaffoldGenerator.prototype.processBower = function processBower() {
+        var cb = this.async(),
+            bowerJson = path.join(this.env.cwd, 'bower.json'),
+            bower = JSON.parse(this.readFileAsString(bowerJson));
+
+        if (this.projectType === 'Web Only') {
+            delete bower.dependencies.fastclick;
+        }
+
+        if (!this.jquery) {
+            delete bower.dependencies.jquery;
+        }
+
+        fs.unlink(bowerJson);
+
+        this.write(bowerJson, JSON.stringify(bower, null, 2));
+
+        cb();
+    };
+
+    ScaffoldGenerator.prototype.getScaffoldVersion = function getScaffoldVersion() {
         var cb = this.async();
 
         if(this.projectType === 'Mobile Only') {
