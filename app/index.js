@@ -266,13 +266,13 @@
         var cb = this.async();
 
         if (this.projectType === 'Mobile Only') {
-            this.log(chalk.green('\n \n Downloading mobile version'));
+            this.log(chalk.green('\n \n Downloading Mobile version'));
             this.tarball('https://github.com/marcosmoura/scaffold-mobile/archive/master.zip', 'dev/', cb);
         } else if (this.projectType === 'Web Only') {
-            this.log(chalk.green('\n \n Downloading web version'));
+            this.log(chalk.green('\n \n Downloading Web version'));
             this.tarball('https://github.com/marcosmoura/scaffold-web/archive/master.zip', 'dev/', cb);
         } else if (this.projectType === 'Responsive') {
-            this.log(chalk.green('\n \n Downloading responsive version'));
+            this.log(chalk.green('\n \n Downloading Responsive version'));
             this.tarball('https://github.com/marcosmoura/scaffold-responsive/archive/master.zip', 'dev/', cb);
         } else if (this.projectType === 'Single Page') {
             this.log(chalk.green('\n \n Downloading Single Page version'));
