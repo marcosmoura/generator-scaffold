@@ -5,6 +5,17 @@
     var util = require('util'),
         path = require('path'),
         slug = require('slug'),
+        esformatter = require('esformatter'),
+        esOptions = {
+            indent: {
+                value: '    '
+            },
+            lineBreak: {
+                after: {
+                    "ArrayExpressionComma" : 1
+                }
+            }
+        },
         fs = require('fs'),
         yeoman = require('yeoman-generator'),
         chalk = require('chalk');
@@ -141,7 +152,7 @@
                 type: 'list',
                 name: 'projectType',
                 message: 'What kind of project?',
-                choices: ['Mobile Only', 'Web Only', 'Responsive'],
+                choices: ['Mobile Only', 'Web Only', 'Responsive', 'Single Page'],
                 default: 0
             }, {
                 type: 'confirm',
@@ -216,6 +227,41 @@
         cb();
     };
 
+    ScaffoldGenerator.prototype.processGruntOptions = function processGruntOptions() {
+        var cb = this.async(),
+            gruntPath = path.join(this.env.cwd, 'grunt');
+
+        if (this.projectType !== 'Single Page') {
+            var copyOption = path.join(gruntPath, 'options/copy.js'),
+                copy = require(copyOption);
+
+            delete copy.stagingHtml;
+            delete copy.buildHtml;
+
+            fs.unlink(copyOption);
+            this.write(copyOption, JSON.stringify(copy, null, 4));
+
+        } else if (this.projectType === 'Single Page') {
+            var buildTask = path.join(gruntPath, 'tasks/build.js'),
+                build = this.readFileAsString(buildTask),
+                stagingTask = path.join(gruntPath, 'tasks/default.js'),
+                staging = this.readFileAsString(stagingTask);
+
+            build = build.replace("'assemble:build',", '');
+            build = build.replace("'clean:build',", "'clean:build', 'copy:buildHtml',");
+            fs.unlink(buildTask);
+            this.write(buildTask, esformatter.format(build, esOptions));
+
+            staging = staging.replace("'assemble:staging',", "'newer:copy:stagingHtml',");
+            fs.unlink(stagingTask);
+            this.write(stagingTask, esformatter.format(staging, esOptions));
+
+            fs.unlink(path.join(gruntPath, 'options/assemble.js'));
+        }
+
+        cb();
+    };
+
     ScaffoldGenerator.prototype.getScaffoldVersion = function getScaffoldVersion() {
         var cb = this.async();
 
@@ -228,6 +274,9 @@
         } else if (this.projectType === 'Responsive') {
             this.log(chalk.green('\n \n Downloading responsive version'));
             this.tarball('https://github.com/marcosmoura/scaffold-responsive/archive/master.zip', 'dev/', cb);
+        } else if (this.projectType === 'Single Page') {
+            this.log(chalk.green('\n \n Downloading Single Page version'));
+            this.tarball('https://github.com/marcosmoura/scaffold-singlepage/archive/master.zip', 'dev/', cb);
         }
     };
 
