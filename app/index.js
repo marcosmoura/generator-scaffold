@@ -238,8 +238,10 @@
             delete copy.stagingHtml;
             delete copy.buildHtml;
 
+            copy = 'module.exports = ' + JSON.stringify(copy, null, 4);
+
             fs.unlink(copyOption);
-            this.write(copyOption, JSON.stringify(copy, null, 4));
+            this.write(copyOption, copy);
 
         } else if (this.projectType === 'Single Page') {
             var buildTask = path.join(gruntPath, 'tasks/build.js'),
