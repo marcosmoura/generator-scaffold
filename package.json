@@ -16,9 +16,6 @@
   "scripts": {
     "test": "grunt test --verbose"
   },
-  "files": [
-    "app"
-  ],
   "keywords": [
     "yeoman-generator"
   ],
