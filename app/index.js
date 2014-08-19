@@ -238,7 +238,7 @@
             delete copy.stagingHtml;
             delete copy.buildHtml;
 
-            copy = 'module.exports = ' + JSON.stringify(copy, null, 4);
+            copy = 'module.exports = ' + JSON.stringify(copy, null, 4).replace('"', '\'');
 
             fs.unlink(copyOption);
             this.write(copyOption, copy);
