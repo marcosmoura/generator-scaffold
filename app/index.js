@@ -12,7 +12,7 @@
             },
             lineBreak: {
                 after: {
-                    "ArrayExpressionComma" : 1
+                    'ArrayExpressionComma' : 1
                 }
             }
         },
@@ -240,17 +240,17 @@
                 watchOption = path.join(gruntPath, 'options/watch.js'),
                 watch = this.readFileAsString(watchOption);
 
-            build = build.replace("'assemble:build',", '');
-            build = build.replace("'clean:build',", "'clean:build', 'copy:buildHtml',");
+            build = build.replace('\'assemble:build\',', '');
+            build = build.replace('\'clean:build\',', '\'clean:build\', \'copy:buildHtml\',');
             fs.unlink(buildTask);
             this.write(buildTask, esformatter.format(build, esOptions));
 
-            staging = staging.replace("'assemble:staging',", "'newer:copy:stagingHtml',");
+            staging = staging.replace('\'assemble:staging\',', '\'newer:copy:stagingHtml\',');
             fs.unlink(stagingTask);
             this.write(stagingTask, esformatter.format(staging, esOptions));
             this.write(buildTask, esformatter.format(build, esOptions));
 
-            watch = watch.replace("'assemble:staging',", "'newer:copy:stagingHtml',");
+            watch = watch.replace('\'assemble:staging\',', '\'newer:copy:stagingHtml\',');
             fs.unlink(watch);
             this.write(watch, esformatter.format(watch, esOptions));
 
