@@ -199,7 +199,7 @@
 
         pkg.author = devList;
 
-        fs.unlink(pkgPath);
+        fs.unlinkSync(pkgPath);
 
         this.write(pkgPath, JSON.stringify(pkg, null, 2));
 
@@ -219,7 +219,7 @@
             delete bower.dependencies.jquery;
         }
 
-        fs.unlink(bowerJson);
+        fs.unlinkSync(bowerJson);
 
         this.write(bowerJson, JSON.stringify(bower, null, 2));
 
@@ -240,19 +240,19 @@
 
             build = build.replace('\'assemble:build\',', '');
             build = build.replace('\'clean:build\',', '\'clean:build\', \'copy:buildHtml\',');
-            fs.unlink(buildTask);
+            fs.unlinkSync(buildTask);
             this.write(buildTask, esformatter.format(build, esOptions));
 
             staging = staging.replace('\'assemble:staging\',', '\'newer:copy:stagingHtml\',');
-            fs.unlink(stagingTask);
+            fs.unlinkSync(stagingTask);
             this.write(stagingTask, esformatter.format(staging, esOptions));
             this.write(buildTask, esformatter.format(build, esOptions));
 
             watch = watch.replace('\'assemble:staging\',', '\'newer:copy:stagingHtml\',');
-            fs.unlink(watch);
             this.write(watch, esformatter.format(watch, esOptions));
+            fs.unlinkSync(watchOption);
 
-            fs.unlink(path.join(gruntPath, 'options/assemble.js'));
+            fs.unlinkSync(path.join(gruntPath, 'options/assemble.js'));
         }
 
         cb();
@@ -282,8 +282,8 @@
 
         this.log(chalk.yellow('\n \n Removing garbage and temporary files'));
 
-        fs.unlink(path.join(devPath, 'LICENSE'));
-        fs.unlink(path.join(devPath, 'README.md'));
+        fs.unlinkSync(path.join(devPath, 'LICENSE'));
+        fs.unlinkSync(path.join(devPath, 'README.md'));
 
         this.log(chalk.green('\n \n Now I will install the dependencies. This may take a while. Time to go to the bathroom! \n \n '));
 
