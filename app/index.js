@@ -235,7 +235,6 @@
                 build = this.readFileAsString(buildTask),
                 stagingTask = path.join(gruntPath, 'tasks/default.js'),
                 staging = this.readFileAsString(stagingTask),
-                build = this.readFileAsString(buildTask),
                 watchOption = path.join(gruntPath, 'options/watch.js'),
                 watch = this.readFileAsString(watchOption);
 
