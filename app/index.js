@@ -231,23 +231,11 @@
         var cb = this.async(),
             gruntPath = path.join(this.env.cwd, 'grunt');
 
-        if (this.projectType !== 'Single Page') {
-            var copyOption = path.join(gruntPath, 'options/copy.js'),
-                copy = require(copyOption);
-
-            delete copy.stagingHtml;
-            delete copy.buildHtml;
-
-            copy = 'module.exports = ' + JSON.stringify(copy, null, 4).replace('"', '\'');
-
-            fs.unlink(copyOption);
-            this.write(copyOption, copy);
-
-        } else if (this.projectType === 'Single Page') {
+        if (this.projectType === 'Single Page') {
             var buildTask = path.join(gruntPath, 'tasks/build.js'),
                 build = this.readFileAsString(buildTask),
                 stagingTask = path.join(gruntPath, 'tasks/default.js'),
-                staging = this.readFileAsString(stagingTask);
+                staging = this.readFileAsString(stagingTask),
                 build = this.readFileAsString(buildTask),
                 watchOption = path.join(gruntPath, 'options/watch.js'),
                 watch = this.readFileAsString(watchOption);
