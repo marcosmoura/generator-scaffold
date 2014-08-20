@@ -246,7 +246,6 @@
             staging = staging.replace('\'assemble:staging\',', '\'newer:copy:stagingHtml\',');
             fs.unlinkSync(stagingTask);
             this.write(stagingTask, esformatter.format(staging, esOptions));
-            this.write(buildTask, esformatter.format(build, esOptions));
 
             watch = watch.replace('\'assemble:staging\',', '\'newer:copy:stagingHtml\',');
             this.write(watch, esformatter.format(watch, esOptions));
