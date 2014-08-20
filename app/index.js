@@ -247,9 +247,9 @@
             fs.unlinkSync(stagingTask);
             this.write(stagingTask, esformatter.format(staging, esOptions));
 
-            this.write(watch, esformatter.format(watch, esOptions));
             watch = watch.replace('\'newer:assemble:staging\',', '\'newer:copy:stagingHtml\',');
             fs.unlinkSync(watchOption);
+            this.write(watchOption, esformatter.format(watch, esOptions));
 
             fs.unlinkSync(path.join(gruntPath, 'options/assemble.js'));
         }
