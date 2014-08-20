@@ -27,7 +27,7 @@
 
         this.on('end', function() {
             this.installDependencies({
-                skipInstall: options['skipInstall'],
+                skipInstall: options.skipInstall,
                 callback: function() {
                     var command = _this.spawnCommand('npm', ['install', 'glob']);
 
