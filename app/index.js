@@ -63,7 +63,6 @@
 
     ScaffoldGenerator.prototype.askFor = function askFor() {
         var cb = this.async(),
-            _this = this,
             attempts = {
                 name: 0,
                 description: 0,
