@@ -151,7 +151,7 @@
                 type: 'list',
                 name: 'projectType',
                 message: 'What kind of project?',
-                choices: ['Mobile Only', 'Web Only', 'Responsive', 'Single Page'],
+                choices: ['Mobile Only', 'Web Only', 'Responsive', 'Single Page', 'Single Page Mobile'],
                 default: 0
             }, {
                 type: 'confirm',
@@ -230,7 +230,7 @@
         var cb = this.async(),
             gruntPath = path.join(this.env.cwd, 'grunt');
 
-        if (this.projectType === 'Single Page') {
+        if (this.projectType === 'Single Page' || this.projectType === 'Single Page Mobile') {
             var buildTask = path.join(gruntPath, 'tasks/build.js'),
                 build = this.readFileAsString(buildTask),
                 stagingTask = path.join(gruntPath, 'tasks/default.js'),
@@ -272,6 +272,9 @@
         } else if (this.projectType === 'Single Page') {
             this.log(chalk.green('\n \n Downloading Single Page version'));
             this.tarball('https://github.com/marcosmoura/scaffold-singlepage/archive/master.zip', 'dev/', cb);
+        } else if (this.projectType === 'Single Page Mobile') {
+            this.log(chalk.green('\n \n Downloading Single Page mobile version'));
+            this.tarball('https://github.com/marcosmoura/scaffold-singlepage-mobile/archive/master.zip', 'dev/', cb);
         }
     };
 
