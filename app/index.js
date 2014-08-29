@@ -211,7 +211,7 @@
             bowerJson = path.join(this.env.cwd, 'bower.json'),
             bower = JSON.parse(this.readFileAsString(bowerJson));
 
-        if (this.projectType === 'Web Only') {
+        if (this.projectType === 'Web Only' || this.projectType === 'Single Page') {
             delete bower.dependencies.fastclick;
         }
 
