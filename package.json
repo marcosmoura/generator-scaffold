@@ -1,6 +1,6 @@
 {
   "name": "generator-scaffold",
-  "version": "1.2.24",
+  "version": "1.2.3",
   "description": "Scaffold generator for Yeoman",
   "license": "MIT",
   "main": "app/index.js",
