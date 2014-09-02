@@ -263,6 +263,7 @@
             pkg = JSON.parse(this.readFileAsString(pkgPath));
 
         pkg.projectName = this.projectName;
+        pkg.version = '0.0.0';
         pkg.name = slug(this.projectName.toLowerCase());
         pkg.description = this.projectDescription;
         pkg.developers = this.projectMember;
