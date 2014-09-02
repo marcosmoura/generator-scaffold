@@ -65,6 +65,8 @@
         var cb = this.async(),
             attempts = {
                 name: 0,
+                url: 0,
+                username: 0,
                 description: 0,
                 members: 0
             },
@@ -148,6 +150,68 @@
                     done(true);
                 }
             }, {
+                name: 'gitUrl',
+                message: 'What is the git repository of the project? (Paste repository URL)',
+                validate: function(input) {
+                    var done = this.async();
+
+                    if (input.trim() === '') {
+                        if (attempts.url === 0) {
+                            attempts.url = 1;
+                            done('Hey dude! You forgot to enter the git url!');
+                        } else if (attempts.url === 1) {
+                            attempts.url = 2;
+
+                            done('Come on. Just write the url of the project.');
+                        } else if (attempts.url === 2) {
+                            attempts.url = 3;
+
+                            done('Alright. No problem. I\'ll wait here.');
+                        } else if (attempts.url === 3) {
+                            attempts.url = 4;
+
+                            done('Come on buddy! Write that url. NOW!');
+                        } else {
+                            done('Ok! :(');
+                        }
+
+                        return;
+                    }
+
+                    done(true);
+                }
+            }, {
+                name: 'gitUser',
+                message: 'What is your git username?',
+                validate: function(input) {
+                    var done = this.async();
+
+                    if (input.trim() === '') {
+                        if (attempts.username === 0) {
+                            attempts.username = 1;
+                            done('Hey dude! You forgot to enter the git username!');
+                        } else if (attempts.username === 1) {
+                            attempts.username = 2;
+
+                            done('Come on. Just write the username of the project.');
+                        } else if (attempts.username === 2) {
+                            attempts.username = 3;
+
+                            done('Alright. No problem. I\'ll wait here.');
+                        } else if (attempts.username === 3) {
+                            attempts.username = 4;
+
+                            done('Come on buddy! Write that username. NOW!');
+                        } else {
+                            done('Ok! :(');
+                        }
+
+                        return;
+                    }
+
+                    done(true);
+                }
+            }, {
                 type: 'list',
                 name: 'projectType',
                 message: 'What kind of project?',
@@ -171,6 +235,21 @@
         }.bind(this));
     };
 
+    ScaffoldGenerator.prototype.gitInit = function gitInit() {
+        var cb = this.async(),
+            _this = this;
+
+        _this.log(chalk.green('\n \n Init GIT config'));
+        _this.log(_this.gitUrl);
+
+        _this.spawnCommand('git', ['init']).on('exit', function (code) {
+            _this.spawnCommand('git', ['remote', 'add', 'origin', _this.gitUrl]);
+            _this.spawnCommand('git', ['config', 'credential.helper', 'store']);
+
+            cb();
+        });
+    };
+
     ScaffoldGenerator.prototype.getScaffoldCore = function getScaffoldCore() {
         var cb = this.async();
 
@@ -187,6 +266,7 @@
         pkg.name = slug(this.projectName.toLowerCase());
         pkg.description = this.projectDescription;
         pkg.developers = this.projectMember;
+        pkg.repository.url = this.gitUrl;
 
         var dev = this.projectMember.split(','),
             devList = [];
