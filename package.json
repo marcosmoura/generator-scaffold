@@ -20,7 +20,12 @@
     "yeoman-generator",
     "yo",
     "scaffold",
-    "node"
+    "node",
+    "front-end",
+    "h5bp",
+    "modernizr",
+    "jquery",
+    "grunt"
   ],
   "dependencies": {
     "chalk": "^0.5.1",
