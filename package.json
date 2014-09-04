@@ -3,7 +3,6 @@
   "version": "1.4.2",
   "description": "Scaffold generator for Yeoman",
   "license": "MIT",
-  "main": "app/index.js",
   "repository": "marcosmoura/generator-scaffold",
   "author": {
     "name": "Marcos Moura",
