@@ -143,11 +143,11 @@
             var done = this.async();
 
             this.log(chalk.yellow('\n \n Downloading core of scaffold'));
-            this.remote('marcosmoura', 'scaffold', function(err, remote) {
+            this.remote('marcosmoura', 'scaffold', 'master', function(err, remote) {
                 remote.directory('.', '.');
 
                 done();
-            });
+            }, true);
         },
         scaffoldVersionTask: function() {
             var done = this.async(),
@@ -172,7 +172,7 @@
             }
 
             this.log(chalk.yellow(message));
-            this.remote('marcosmoura', repository, function(err, remote) {
+            this.remote('marcosmoura', repository, 'master', function(err, remote) {
                 remote.directory('.', 'dev/');
 
                 done();
@@ -268,7 +268,8 @@
         },
         setupGitTask: function() {
             if (this.configGit) {
-                var repository;
+                var repository,
+                    done = this.async();
 
                 this.log(chalk.yellow('\n \nConfiguring the git repository and commiting Scaffold'));
 
@@ -292,6 +293,7 @@
 
                                 repository.remote_push('origin', 'master', function() {
                                     this.log(chalk.green('  Push commits'));
+                                    done();
                                 }.bind(this));
                             }.bind(this));
                         }.bind(this));
