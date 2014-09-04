@@ -17,7 +17,8 @@
             this.log(chalk.cyan('\t \t \\__ \\/ _/ _` |  _|  _/ _ \\ / _` |'));
             this.log(chalk.cyan('\t \t |___/\\__\\__,_|_| |_| \\___/_\\__,_| \n'));
             this.log(chalk.cyan('\t \t [        Generating Build       ] \n \n'));
-            this.log(chalk.green('Wait until build finish. After all I will create a zip file with all contents of your project. \n \n'));
+            this.log(chalk.green('Wait until build finish. I will create a zip file with all contents of your project.\n'));
+            this.log(chalk.green('At the end of the process choose which type of version you are generating. \n \n'));
         },
 
         buildTask: function() {
