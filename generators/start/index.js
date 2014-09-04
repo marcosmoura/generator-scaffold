@@ -11,7 +11,7 @@
             yeoman.generators.Base.apply(this, arguments);
         },
 
-        initTask: function() {
+        initializing: function() {
             this.log(chalk.cyan('\t \t  ___           __  __     _    _ '));
             this.log(chalk.cyan('\t \t / __| __ __ _ / _|/ _|___| |__| |'));
             this.log(chalk.cyan('\t \t \\__ \\/ _/ _` |  _|  _/ _ \\ / _` |'));
@@ -20,8 +20,14 @@
             this.log(chalk.green('Starting development mode. I will start a server with BrowserSync support. :) \n \n'));
         },
 
-        startTask: function() {
-            this.spawnCommand('grunt');
+        install: function() {
+            var done = this.async();
+
+            this.spawnCommand('grunt', ['default']).on('exit', done);
+        },
+
+        end: function() {
+            this.log(chalk.yellow('\n \n All done! Everything looks fine. Good job! \n \n'));
         }
 
     });
