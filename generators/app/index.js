@@ -20,11 +20,13 @@
         gift = require('gift');
 
     var AppGenerator = module.exports = yeoman.generators.Base.extend({
+
         constructor: function () {
             yeoman.generators.Base.apply(this, arguments);
 
             this.baseDestPath = this.dest._base;
         },
+
         initTask: function() {
             this.log(chalk.cyan('\t \t  ___           __  __     _    _ '));
             this.log(chalk.cyan('\t \t / __| __ __ _ / _|/ _|___| |__| |'));
@@ -33,6 +35,7 @@
             this.log(chalk.cyan('\t \t [ Welcome to Scaffold Generator ] \n \n'));
             this.log(chalk.green('I will guide you to generate your best workflow. Come with me... \n \n'));
         },
+
         promptTask: function() {
             var cb = this.async(),
                 prompts = [{
@@ -139,6 +142,7 @@
                 cb();
             }.bind(this));
         },
+
         scaffoldCoreTask: function() {
             var done = this.async();
 
@@ -149,6 +153,7 @@
                 done();
             }, true);
         },
+
         scaffoldVersionTask: function() {
             var done = this.async(),
                 repository = '',
@@ -178,6 +183,7 @@
                 done();
             });
         },
+
         processPackageTask: function() {
             var pkgPath = path.join(this.env.cwd, 'package.json'),
                 pkg = JSON.parse(this.readFileAsString(pkgPath));
@@ -206,6 +212,7 @@
 
             this.write(pkgPath, JSON.stringify(pkg, null, 2));
         },
+
         processBowerTask: function() {
             var bower = {
                 projectName: this.projectName,
@@ -231,6 +238,7 @@
 
             this.dest.write('bower.json', JSON.stringify(bower, null, 2));
         },
+
         processGruntTask: function() {
             var gruntPath = path.join(this.env.cwd, 'grunt');
 
@@ -258,6 +266,7 @@
                 fs.unlinkSync(path.join(gruntPath, 'options/assemble.js'));
             }
         },
+
         removeGarbageTask: function() {
             var devPath = path.join(this.env.cwd, 'dev');
 
@@ -266,6 +275,7 @@
             fs.unlinkSync(path.join(devPath, 'LICENSE'));
             fs.unlinkSync(path.join(devPath, 'README.md'));
         },
+
         setupGitTask: function() {
             if (this.configGit) {
                 var repository,
@@ -301,6 +311,7 @@
                 }.bind(this));
             }
         },
+
         installTask: function() {
             var _this = this;
 
@@ -319,6 +330,7 @@
                 });
             });
         }
+
     });
 
 })();
