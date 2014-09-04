@@ -1,12 +1,12 @@
-'use strict';
-
 module.exports = function (grunt) {
+
+    'use strict';
 
     grunt.initConfig({
         jshint: {
             files: [
                 'Gruntfile.js',
-                'app/index.js'
+                'generators/**/*.js'
             ],
             options: {
                 jshintrc: '.jshintrc'
@@ -15,7 +15,8 @@ module.exports = function (grunt) {
         watch: {
             scripts: {
                 files: [
-                    'app/*.js'
+                    'generators/**/*.js',
+                    'Gruntfile.js'
                 ],
                 tasks: ['jshint']
             }
