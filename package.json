@@ -1,6 +1,6 @@
 {
   "name": "generator-scaffold",
-  "version": "1.4.1",
+  "version": "1.4.11",
   "description": "Scaffold generator for Yeoman",
   "license": "MIT",
   "main": "app/index.js",
@@ -27,7 +27,7 @@
     "esformatter": "^0.4.1",
     "gift": "^0.4.3-1",
     "slug": "^0.4.2",
-    "yeoman-generator": "^0.17.2"
+    "yeoman-generator": "^0.16.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
