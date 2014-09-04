@@ -13,6 +13,9 @@ module.exports = function (grunt) {
             }
         },
         watch: {
+            options: {
+                spawn: false
+            },
             scripts: {
                 files: [
                     'generators/**/*.js',
