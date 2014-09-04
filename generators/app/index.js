@@ -93,14 +93,14 @@
                     default: 0
                 }, {
                     type: 'confirm',
-                    name: 'configGit',
+                    name: 'hasGit',
                     message: 'Do you like to configure and init a git repository?',
                     default: 0
                 }, {
                     name: 'gitUrl',
                     message: 'What is the git repository of the project? (Paste repository URL)',
                     when: function (answers) {
-                        return answers.configGit;
+                        return answers.hasGit;
                     },
                     validate: function(input) {
                         var done = this.async();
@@ -117,7 +117,7 @@
                     name: 'gitUser',
                     message: 'What is your git username?',
                     when: function (answers) {
-                        return answers.configGit;
+                        return answers.hasGit;
                     },
                     validate: function(input) {
                         var done = this.async();
@@ -181,7 +181,7 @@
                 remote.directory('.', 'dev/');
 
                 done();
-            });
+            }, true);
         },
 
         processPackageTask: function() {
@@ -277,7 +277,7 @@
         },
 
         setupGitTask: function() {
-            if (this.configGit) {
+            if (this.hasGit) {
                 var repository,
                     done = this.async();
 
