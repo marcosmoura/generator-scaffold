@@ -10,7 +10,8 @@
     "url": "https://github.com/marcosmoura"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.10.0",
+    "npm": ">=1.2.10"
   },
   "scripts": {
     "test": "grunt test --verbose"
