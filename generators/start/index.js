@@ -5,7 +5,7 @@
     var yeoman = require('yeoman-generator'),
         chalk = require('chalk');
 
-    var StartGenerator = module.exports = yeoman.generators.Base.extend({
+    module.exports = yeoman.generators.Base.extend({
 
         constructor: function () {
             yeoman.generators.Base.apply(this, arguments);
