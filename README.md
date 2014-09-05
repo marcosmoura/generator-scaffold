@@ -13,7 +13,7 @@
 ## Introduction
 
 Scaffold is a generator to automate the most common tasks in day-to-day of a Front End project. He uses some tools like [Yeoman](http://yeoman.io/), [Grunt](http://gruntjs.com/) e [Bower](http://bower.io/).
-This generator is all-in-one and has five versions: Mobile, Web, Responsive, Single Page and Single Page Mobile. So you don't need to download each version to scaffolding your project. Just select which version is perfect for you and let the generator do all the stuff.
+This generator is all-in-one and have five versions: Mobile, Web, Responsive, Single Page and Single Page Mobile. So you don't need to download each version to scaffolding your project. Just select which version is perfect for you and let the generator do all the stuff.
 
 
 ## Features
