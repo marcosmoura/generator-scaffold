@@ -1,4 +1,5 @@
 # generator-scaffold [![Build Status](https://secure.travis-ci.org/marcosmoura/generator-scaffold.png?branch=master)](https://travis-ci.org/marcosmoura/generator-scaffold)
+# generator-scaffold [![Node.js dependencies](https://david-dm.org/marcosmoura/generator-scaffold.png)](https://david-dm.org/marcosmoura/generator-scaffold)
 
 > [Yeoman](http://yeoman.io) generator
 
