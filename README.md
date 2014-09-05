@@ -7,13 +7,13 @@
 
 # Scaffold
 
-
-![Yeoman + Grunt + Bower] (http://marcosmoura.com/yeoman-grunt-bower.png)
+![Yeoman + Grunt + Bower](http://marcosmoura.com/yeoman-grunt-bower.png)
 
 
 ## Introduction
 
 Scaffold is a generator to automate the most common tasks in day-to-day of a Front End project. He uses some tools like [Yeoman](http://yeoman.io/), [Grunt](http://gruntjs.com/) e [Bower](http://bower.io/).
+This generator is all-in-one and has five versions: Mobile, Web, Responsive, Single Page and Single Page Mobile. So you don't need to download each version to scaffolding your project. Just select which version is perfect for you and let the generator do all the stuff.
 
 
 ## Features
@@ -41,7 +41,35 @@ Scaffold is a generator to automate the most common tasks in day-to-day of a Fro
 * To start the server and develop your app: `yo scaffold:start`
 * To generate a build: `yo scaffold:build`
 
-![Scaffold] (http://marcosmoura.com/scaffold.png)
+![Scaffold](http://marcosmoura.com/scaffold.png)
+
+
+## Grunt tasks
+
+This generator make use of various tools to improve your web development workflow when using Grunt:
+* [assemble](https://github.com/assemble/assemble) for HTML templating
+* [grunt-autoprefixer](https://github.com/nDmitry/grunt-autoprefixer) for autoprefixing CSS
+* [grunt-browser-sync](https://github.com/shakyShane/browser-sync) for awesome cross device browser synchronization
+* [grunt-bump](https://github.com/vojtajina/grunt-bump) for increase version of your project (package.json and bower.json)
+* [grunt-combine-media-queries](https://github.com/buildingblocks/grunt-combine-media-queries) for combine all possible duplicated media queries on build
+* [grunt-contrib-htmlmin](https://github.com/gruntjs/grunt-contrib-htmlmin) for minify HTML
+* [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint) for lint your scripts
+* [grunt-contrib-less](https://github.com/gruntjs/grunt-contrib-less) for compile your LESS into CSS
+* [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify) for minify your scripts
+* [grunt-csso](https://github.com/t32k/grunt-csso) for a better minify of CSS
+* [grunt-htmlhint](https://github.com/yaniswang/grunt-htmlhint) for lint your HTML
+* [grunt-image-embed](https://github.com/ehynds/grunt-image-embed) for convert your CSS background images into BASE64 (Only if this image is under 20kb)
+* [grunt-imageoptim](https://github.com/JamieMason/grunt-imageoptim) for image optimizing
+* [grunt-modernizr](https://github.com/Modernizr/grunt-modernizr) for leaner Modernizr build
+* [grunt-newer](https://github.com/tschaub/grunt-newer) for faster copy all the files
+* [grunt-notify](https://github.com/dylang/grunt-notify) for notify on your desktop for errors on your code
+* [grunt-prettify](https://github.com/jonschlinkert/grunt-prettify) for prettify the stage code
+* [grunt-recess](https://github.com/sindresorhus/grunt-recess) for lint your css
+* [grunt-rev](https://github.com/cbas/grunt-rev) for file rev (cache busting)
+* [grunt-svgmin](https://github.com/sindresorhus/grunt-svgmin) for optimize your SVG files
+* [grunt-usemin](https://github.com/yeoman/grunt-usemin) for concat, minify and replace CSS and JS referencies on HTML
+* [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep) for inject Bower packages into your HTML
+* and some others tasks to make scaffold a great generator.
 
 
 ## License
