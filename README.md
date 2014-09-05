@@ -4,46 +4,44 @@
 [![Dependency Status](http://img.shields.io/david/marcosmoura/generator-scaffold.svg?style=flat)](https://david-dm.org/marcosmoura/generator-scaffold)
 [![Build Status](http://img.shields.io/travis/marcosmoura/generator-scaffold/master.svg?style=flat)](https://travis-ci.org/marcosmoura/generator-scaffold)
 
-> [Yeoman](http://yeoman.io) generator
+
+# Scaffold
+
+
+![Yeoman + Grunt + Bower] (http://marcosmoura.com/yeoman-grunt-bower.png)
+
+
+## Introduction
+
+Scaffold is a generator to automate the most common tasks in day-to-day of a Front End project. He uses some tools like [Yeoman](http://yeoman.io/), [Grunt](http://gruntjs.com/) e [Bower](http://bower.io/).
+
+
+## Features
+
+* Built-in preview server with cross device Browser Sync
+* HTML Templating
+* CSS Autoprefixing
+* Automatically compile LESS
+* Automatically lint javascript
+* Automatically wire up your Bower components
+* Image Optimization
+* Leaner Modernizr builds
+* Minify HTML, XML, CSS and JS
+* Configure a new git repository (optional)
+* Increase the project version (optional)
+* And more...
 
 
 ## Getting Started
 
-### What is Yeoman?
+*If you are new to Yeoman, you will find a lot of answers to your questions in their [getting started guide](http://yeoman.io/learning/).
 
-Trick question. It's not a thing. It's this guy:
+* Install: `npm install -g generator-scaffold`
+* To init your project: `yo scaffold` and follow all the steps on the screen.
+* To start the server and develop your app: `yo scaffold:start`
+* To generate a build: `yo scaffold:build`
 
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
-
-```
-$ npm install -g yo
-```
-
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-scaffold from npm, run:
-
-```
-$ npm install -g generator-scaffold
-```
-
-Finally, initiate the generator:
-
-```
-$ yo scaffold
-```
-
-### Getting To Know Yeoman
-
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
-
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+![Scaffold] (http://marcosmoura.com/scaffold.png)
 
 
 ## License
