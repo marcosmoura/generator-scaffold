@@ -113,23 +113,6 @@
 
                         done(true);
                     }
-                }, {
-                    name: 'gitUser',
-                    message: 'What is your git username?',
-                    when: function (answers) {
-                        return answers.hasGit;
-                    },
-                    validate: function(input) {
-                        var done = this.async();
-
-                        if (input.trim() === '') {
-                            done('What is your username?');
-
-                            return;
-                        }
-
-                        done(true);
-                    }
                 }];
 
             this.prompt(prompts, function(props) {
