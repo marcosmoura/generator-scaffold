@@ -1,6 +1,6 @@
 {
   "name": "generator-scaffold",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Scaffold generator for Yeoman",
   "license": "MIT",
   "repository": "marcosmoura/generator-scaffold",
