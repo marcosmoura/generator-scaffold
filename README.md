@@ -77,6 +77,20 @@ This generator make use of various tools to improve your web development workflo
 * and some others tasks to make scaffold a great generator.
 
 
+## Folder structure
+
+The Scaffold uses some default folders to work. These folders follow a pattern and cannot be renamed.
+
+![Folder Structure](http://f.cl.ly/items/25333P1p030q1807010e/Screen%20Shot%202014-09-18%20at%2018.52.04.png)
+
+* **dev**: All development files without any compression, including HTML templates, images, LESS files and JS.
+
+* **staging**: All stage files. Everytime that you start the server, the Scaffold generator will generate all needed files for view in browser. That is the version of your project without any optimization. The code you see on the browser is exactly the same inside this folder. Is important that you do not delete this because bower put all dependencies inside this folder.
+
+* **build**: Every build that you do the generator put all files on this folder. These files were highly optimized using several Grunt tasks and are ready to be published on your web server.
+
+* **grunt**: The core of Scaffold. All tasks and options used for Grunt. Is highly recommended that you do not modify this files. 
+
 ## License
 
 MIT
