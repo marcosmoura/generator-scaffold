@@ -44,6 +44,11 @@ This generator is all-in-one and have five versions: Mobile, Web, Responsive, Si
 ![Scaffold](http://marcosmoura.com/scaffold.png)
 
 
+## Install dependencies from a existent project
+
+If a project was built using Scaffold you need to install all dependencies locally to run and start. For this you just need to execute `yo scaffold:install` and the generator will install all NPM packages and all Bower dependencies.
+
+
 ## Grunt tasks
 
 This generator make use of various tools to improve your web development workflow when using Grunt:
