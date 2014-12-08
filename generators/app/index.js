@@ -173,6 +173,16 @@
             this.directory('grunt', 'grunt');
         },
 
+        coreFiles: function() {
+            this.copy('bowerrc', '.bowerrc');
+            this.copy('editorconfig', '.editorconfig');
+            this.copy('gitattributes', '.gitattributes');
+            this.copy('gitignore', '.gitignore');
+            this.copy('htmlhintrc', '.htmlhintrc');
+            this.copy('jsbeautifyrc', '.jsbeautifyrc');
+            this.copy('jshintrc', '.jshintrc');
+            this.copy('GruntFile.js', 'GruntFile.js');
+            this.template('_package.json', 'package.json');
         },
 
         bower: function() {
