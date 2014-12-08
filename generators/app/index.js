@@ -76,10 +76,18 @@
                     message: 'What kind of project?',
                     default: 0
                 }, {
-                    type: 'confirm',
-                    name: 'jquery',
-                    message: 'Want to include jQuery?',
-                    default: 0
+                    type: 'checkbox',
+                    name: 'components',
+                    message: 'What components do you like to include?',
+                    choices: [{
+                        name: 'Modernizr',
+                        value: 'addModernizr',
+                        checked: true
+                    }, {
+                        name: 'jQuery',
+                        value: 'addjQuery',
+                        checked: false
+                    }]
                 }, {
                     type: 'confirm',
                     name: 'hasGit',
