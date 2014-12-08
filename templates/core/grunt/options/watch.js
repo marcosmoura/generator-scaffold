@@ -44,9 +44,8 @@ module.exports = {
             '!<%%= scaffold.dev.path %>/{templates,partials}/**/*.html'
         ],
         tasks: [<% if (!isSinglePage) {%>
-            'assemble:staging',<% } %> <% if (isSinglePage) { %>
+            'newer:assemble:staging',<% } %> <% if (isSinglePage) { %>
             'newer:copy:stagingHtml',<% } %>
-            'newer:assemble:staging',
             'newer:htmlhint',
             'wiredep:staging',
             'newer:prettify'
