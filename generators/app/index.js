@@ -11,8 +11,6 @@
 
         constructor: function () {
             yeoman.generators.Base.apply(this, arguments);
-
-            this.baseDestPath = this.dest._base;
         },
 
         initTask: function() {
