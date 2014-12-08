@@ -39,7 +39,7 @@
     "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
-    "mocha": "^1.21.3"
+    "mocha": "^1.21.5"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
