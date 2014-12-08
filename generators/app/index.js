@@ -247,6 +247,14 @@
         less: function() {
             this.directory('../less', 'dev/assets/less/lib');
         },
+
+        html: function() {
+            if (this.hasAssemble) {
+                this.template('templates/default.html', 'dev/templates/default.html');
+                this.template('index.html', 'dev/index.html');
+            } else {
+                this.template('index.html', 'dev/index.html');
+            }
         },
 
         setupGitTask: function() {
