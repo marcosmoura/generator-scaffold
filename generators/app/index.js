@@ -161,6 +161,10 @@
 
                 this.projectSlug = this._.slugify(this.projectName.toLowerCase());
 
+                this.config.set({
+                    'hasAssemble': this.hasAssemble
+                });
+
                 this.log(chalk.yellow(' \nGood! Now I will create and install everything you need. Time to take a coffee! \n \n'));
 
                 cb();
