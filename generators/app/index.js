@@ -217,11 +217,17 @@
             }
         },
 
+        grunt: function() {
+            var gruntPath = path.join(this.env.cwd, 'grunt');
 
             fs.unlinkSync(path.join(gruntPath, 'tasks/build.js'));
             fs.unlinkSync(path.join(gruntPath, 'tasks/default.js'));
             fs.unlinkSync(path.join(gruntPath, 'options/watch.js'));
 
+            this.template('grunt/tasks/build.js', 'grunt/tasks/build.js');
+            this.template('grunt/tasks/default.js', 'grunt/tasks/default.js');
+            this.template('grunt/options/watch.js', 'grunt/options/watch.js');
+        },
 
         },
 
