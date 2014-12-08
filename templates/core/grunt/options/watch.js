@@ -43,9 +43,9 @@ module.exports = {
             '<%%= scaffold.dev.path %>/**/*.html',
             '!<%%= scaffold.dev.path %>/{templates,partials}/**/*.html'
         ],
-        tasks: [
-            <% if (!isSinglePage) { %>'assemble:staging'<% } %>,
-            <% if (isSinglePage) { %>'newer:copy:stagingHtml'<% } %>,
+        tasks: [<% if (!isSinglePage) {%>
+            'assemble:staging',<% } %> <% if (isSinglePage) { %>
+            'newer:copy:stagingHtml',<% } %>
             'newer:assemble:staging',
             'newer:htmlhint',
             'wiredep:staging',
@@ -54,9 +54,9 @@ module.exports = {
     },
     htmlTemplate: {
         files: ['<%%= scaffold.dev.path %>/{templates,partials}/**/*.html'],
-        tasks: [
-            <% if (!isSinglePage) { %>'assemble:staging'<% } %>,
-            <% if (isSinglePage) { %>'copy:stagingHtml'<% } %>
+        tasks: [<% if (!isSinglePage) {%>
+            'assemble:staging',<% } %> <% if (isSinglePage) { %>
+            'copy:stagingHtml',<% } %>
             'wiredep:staging',
             'htmlhint',
             'prettify'
