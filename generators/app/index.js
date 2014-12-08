@@ -165,77 +165,12 @@
             }.bind(this));
         },
 
-        scaffoldCoreTask: function() {
-            var done = this.async();
-
-            this.log(chalk.yellow('\n \n Downloading core of scaffold'));
-            this.remote('marcosmoura', 'scaffold', 'master', function(err, remote) {
-                remote.directory('.', '.');
-
-                done();
-            }, true);
         },
 
-        scaffoldVersionTask: function() {
-            var done = this.async(),
-                repository = '',
-                message = '';
-
-            if (this.projectType === 'Mobile Only') {
-                message = '\n \n Downloading Mobile version';
-                repository = 'scaffold-mobile';
-            } else if (this.projectType === 'Web Only') {
-                message = '\n \n Downloading Web version';
-                repository = 'scaffold-web';
-            } else if (this.projectType === 'Responsive') {
-                message = '\n \n Downloading Responsive version';
-                repository = 'scaffold-responsive';
-            } else if (this.projectType === 'Single Page') {
-                message = '\n \n Downloading Single Page version';
-                repository = 'scaffold-singlepage';
-            } else if (this.projectType === 'Single Page Mobile') {
-                message = '\n \n Downloading Single Page mobile version';
-                repository = 'scaffold-singlepage-mobile';
-            }
-
-            this.log(chalk.yellow(message));
-            this.remote('marcosmoura', repository, 'master', function(err, remote) {
-                remote.directory('.', 'dev/');
-
-                done();
-            }, true);
         },
 
-        processPackageTask: function() {
-            var pkgPath = path.join(this.env.cwd, 'package.json'),
-                pkg = JSON.parse(this.readFileAsString(pkgPath));
-
-            this.log(chalk.yellow('\n \n Creating the necessary files'));
-
-            pkg.projectName = this.projectName;
-            pkg.version = '0.0.0';
-            pkg.name = this._.slugify(this.projectName.toLowerCase());
-            pkg.description = this.projectDescription;
-            pkg.developers = this.projectMember;
-            pkg.repository.url = this.gitUrl;
-
-            var dev = this.projectMember.split(','),
-                devList = [];
-
-            for(var member in dev) {
-                devList.push({
-                    'name': dev[member].trim()
-                });
-            }
-
-            pkg.author = devList;
-
-            fs.unlinkSync(pkgPath);
-
-            this.write(pkgPath, JSON.stringify(pkg, null, 2));
         },
 
-        processBowerTask: function() {
             var bower = {
                 projectName: this.projectName,
                 version: '0.0.0',
@@ -261,41 +196,18 @@
             this.dest.write('bower.json', JSON.stringify(bower, null, 2));
         },
 
-        processGruntTask: function() {
-            var gruntPath = path.join(this.env.cwd, 'grunt');
 
-            if (this.projectType === 'Single Page' || this.projectType === 'Single Page Mobile') {
-                var buildTask = path.join(gruntPath, 'tasks/build.js'),
-                    build = this.readFileAsString(buildTask),
-                    stagingTask = path.join(gruntPath, 'tasks/default.js'),
-                    staging = this.readFileAsString(stagingTask),
-                    watchOption = path.join(gruntPath, 'options/watch.js'),
-                    watch = this.readFileAsString(watchOption);
 
-                build = build.replace('\'assemble:build\',', '');
-                build = build.replace('\'clean:build\',', '\'clean:build\', \'copy:buildHtml\',');
-                fs.unlinkSync(buildTask);
-                this.write(buildTask, esformatter.format(build, esOptions));
 
-                staging = staging.replace('\'assemble:staging\',', '\'newer:copy:stagingHtml\',');
-                fs.unlinkSync(stagingTask);
-                this.write(stagingTask, esformatter.format(staging, esOptions));
+            fs.unlinkSync(path.join(gruntPath, 'tasks/build.js'));
+            fs.unlinkSync(path.join(gruntPath, 'tasks/default.js'));
+            fs.unlinkSync(path.join(gruntPath, 'options/watch.js'));
 
-                watch = watch.replace('\'newer:assemble:staging\',', '\'newer:copy:stagingHtml\',');
-                fs.unlinkSync(watchOption);
-                this.write(watchOption, esformatter.format(watch, esOptions));
 
-                fs.unlinkSync(path.join(gruntPath, 'options/assemble.js'));
-            }
         },
 
-        removeGarbageTask: function() {
-            var devPath = path.join(this.env.cwd, 'dev');
 
-            this.log(chalk.yellow('\n \n Removing garbage and temporary files'));
 
-            fs.unlinkSync(path.join(devPath, 'LICENSE'));
-            fs.unlinkSync(path.join(devPath, 'README.md'));
         },
 
         setupGitTask: function() {
