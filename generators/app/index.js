@@ -5,7 +5,6 @@
     var yeoman = require('yeoman-generator'),
         chalk = require('chalk'),
         path = require('path'),
-        fs = require('fs'),
         gift = require('gift');
 
     module.exports = yeoman.generators.Base.extend({
