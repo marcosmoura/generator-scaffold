@@ -306,18 +306,18 @@
 
         assets: function() {
             this.fs.copy(
-                this.templatePath('assets/**/*'),
+                this.templatePath('../assets/**/*'),
                 this.destinationPath('dev/assets')
             );
             this.mkdir('dev/assets/img');
-            this.mkdir('dev/assets/less/components');
         },
 
         less: function() {
             this.fs.copy(
-                this.templatePath('../less/**/*'),
-                this.destinationPath('dev/assets/less/lib')
+                this.templatePath('assets/less/**/*'),
+                this.destinationPath('dev/assets/less')
             );
+            this.mkdir('dev/assets/less/components');
         },
 
         html: function() {
