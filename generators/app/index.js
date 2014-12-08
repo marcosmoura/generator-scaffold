@@ -165,8 +165,12 @@
             }.bind(this));
         },
 
+        corePath: function () {
+            this.sourceRoot(path.join(__dirname, '../../templates/core/'));
         },
 
+        core: function() {
+            this.directory('grunt', 'grunt');
         },
 
         },
