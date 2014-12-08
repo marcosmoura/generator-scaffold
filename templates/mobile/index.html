@@ -1,6 +1,8 @@
 ---
 title: <%= projectName %>
-description: <%= projectDescription %>
+description: <%= projectDescription %> <% if (createJs) { %>
+scripts:
+    - pages/<%= pageSlug %>.js <% } %>
 ---
 
 <main class="main-content">
