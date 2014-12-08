@@ -164,7 +164,7 @@
 
                 this.projectSlug = this._.slugify(this.projectName.toLowerCase());
 
-                this.log(chalk.yellow(' \nGood! Now I will download everything you need. Time to take a coffee! \n \n'));
+                this.log(chalk.yellow(' \nGood! Now I will create and install everything you need. Time to take a coffee! \n \n'));
 
                 cb();
             }.bind(this));
@@ -175,6 +175,8 @@
         },
 
         core: function() {
+            this.log(chalk.yellow(' \nConfiguring Grunt tasks and Bower packages \n \n'));
+
             this.directory('grunt', 'grunt');
         },
 
@@ -234,8 +236,12 @@
             this.template('grunt/options/watch.js', 'grunt/options/watch.js');
         },
 
+
+            this.log(chalk.yellow(' \nConfiguring grunt tasks \n \n'));
         devPath: function () {
             this.sourceRoot(path.join(__dirname, '../../templates/', this.projectType));
+
+            this.log(chalk.yellow(' \nCreating project files \n \n'));
         },
 
         dev: function() {
