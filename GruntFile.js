@@ -12,6 +12,14 @@ module.exports = function (grunt) {
                 jshintrc: '.jshintrc'
             }
         },
+        bump: {
+            options: {
+                files: ['package.json'],
+                commit: false,
+                createTag: false,
+                push: false
+            }
+        },
         watch: {
             options: {
                 spawn: false
@@ -28,6 +36,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-bump');
 
     grunt.registerTask('test', ['jshint']);
 
