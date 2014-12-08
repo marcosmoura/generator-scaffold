@@ -126,16 +126,19 @@
 
                 this.hasAssemble = true;
                 this.isSinglePage = false;
+                this.needFastclick = false;
 
                 switch (this.projectType) {
                     case choices[0]:
                         this.projectType = 'mobile';
+                        this.needFastclick = true;
                         break;
                     case choices[1]:
                         this.projectType = 'web';
                         break;
                     case choices[2]:
                         this.projectType = 'responsive';
+                        this.needFastclick = true;
                         break;
                     case choices[3]:
                         this.projectType = 'singlepage';
@@ -144,11 +147,13 @@
                         break;
                     case choices[4]:
                         this.projectType = 'singlepage-mobile';
+                        this.needFastclick = true;
                         this.isSinglePage = true;
                         this.hasAssemble = false;
                         break;
                     case choices[5]:
                         this.projectType = 'singlepage-responsive';
+                        this.needFastclick = true;
                         this.isSinglePage = true;
                         this.hasAssemble = false;
                         break;
@@ -198,7 +203,7 @@
                 }
             };
 
-            if (this.projectType === 'Web Only' || this.projectType === 'Single Page') {
+            if (!this.needFastclick) {
                 delete bower.dependencies.fastclick;
             }
 
