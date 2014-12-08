@@ -209,7 +209,13 @@
             this.dest.write('bower.json', JSON.stringify(bower, null, 2));
         },
 
+        assemble: function() {
+            var gruntPath = path.join(this.env.cwd, 'grunt/options');
 
+            if (this.isSinglePage) {
+                fs.unlinkSync(path.join(gruntPath, 'assemble.js'));
+            }
+        },
 
 
             fs.unlinkSync(path.join(gruntPath, 'tasks/build.js'));
