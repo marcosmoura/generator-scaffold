@@ -2,12 +2,14 @@ module.exports = function (grunt) {
 
     'use strict';
 
+    var jsFiles = [
+        'Gruntfile.js',
+        'generators/**/*.js'
+    ];
+
     grunt.initConfig({
         jshint: {
-            files: [
-                'Gruntfile.js',
-                'generators/**/*.js'
-            ],
+            files: jsFiles,
             options: {
                 jshintrc: '.jshintrc'
             }
@@ -25,10 +27,7 @@ module.exports = function (grunt) {
                 spawn: false
             },
             scripts: {
-                files: [
-                    'generators/**/*.js',
-                    'Gruntfile.js'
-                ],
+                files: jsFiles,
                 tasks: ['jshint']
             }
         }
