@@ -74,6 +74,7 @@
                     type: 'list',
                     name: 'projectType',
                     message: 'What kind of project?',
+                    choices: choices,
                     default: 0
                 }, {
                     type: 'checkbox',
@@ -112,10 +113,51 @@
                     }
                 }];
 
-            this.prompt(prompts, function(props) {
-                for(var item in props) {
-                    this[item] = props[item];
+            this.prompt(prompts, function(answers) {
+                var components = answers.components;
+
+                function hasComponent(component) {
+                    return components && components.indexOf(component) !== -1;
                 }
+
+                for(var answer in answers) {
+                    this[answer] = answers[answer];
+                }
+
+                this.hasAssemble = true;
+                this.isSinglePage = false;
+
+                switch (this.projectType) {
+                    case choices[0]:
+                        this.projectType = 'mobile';
+                        break;
+                    case choices[1]:
+                        this.projectType = 'web';
+                        break;
+                    case choices[2]:
+                        this.projectType = 'responsive';
+                        break;
+                    case choices[3]:
+                        this.projectType = 'singlepage';
+                        this.isSinglePage = true;
+                        this.hasAssemble = false;
+                        break;
+                    case choices[4]:
+                        this.projectType = 'singlepage-mobile';
+                        this.isSinglePage = true;
+                        this.hasAssemble = false;
+                        break;
+                    case choices[5]:
+                        this.projectType = 'singlepage-responsive';
+                        this.isSinglePage = true;
+                        this.hasAssemble = false;
+                        break;
+                }
+
+                this.addModernizr = hasComponent('addModernizr');
+                this.addjQuery = hasComponent('addjQuery');
+
+                this.projectSlug = this._.slugify(this.projectName.toLowerCase());
 
                 this.log(chalk.yellow(' \nGood! Now I will download everything you need. Time to take a coffee! \n \n'));
 
