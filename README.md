@@ -49,6 +49,11 @@ This generator is all-in-one and have five versions: Mobile, Web, Responsive, Si
 If a previous project was built using Scaffold you will need to install all dependencies locally to run. For this you just need to execute `yo scaffold:install` and the generator will install all NPM packages and all Bower dependencies.
 
 
+## Automate the creation of pages
+
+The Scaffold has a sub generator to help you to create files more quickly. Just execute `yo scaffold:create` and follow the steps to generate a new blank page, with a new .less and .js (optional). Only works with non single page projects.
+
+
 ## Grunt tasks
 
 This generator make use of various tools to improve your web development workflow when using Grunt:
