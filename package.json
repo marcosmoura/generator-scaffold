@@ -29,7 +29,6 @@
   ],
   "dependencies": {
     "chalk": "^0.5.1",
-    "esformatter": "^0.4.1",
     "gift": "^0.4.3-1",
     "slug": "^0.4.2",
     "yeoman-generator": "^0.16.0"
