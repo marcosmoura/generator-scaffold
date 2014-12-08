@@ -216,14 +216,6 @@
             this.dest.write('bower.json', JSON.stringify(bower, null, 2));
         },
 
-        assemble: function() {
-            var gruntPath = path.join(this.env.cwd, 'grunt/options');
-
-            if (this.isSinglePage) {
-                fs.unlinkSync(path.join(gruntPath, 'assemble.js'));
-            }
-        },
-
         grunt: function() {
             var gruntPath = path.join(this.env.cwd, 'grunt');
 
@@ -236,8 +228,16 @@
             this.template('grunt/options/watch.js', 'grunt/options/watch.js');
         },
 
+        assemble: function() {
+            var gruntPath = path.join(this.env.cwd, 'grunt/options');
+
+            if (this.isSinglePage) {
+                fs.unlinkSync(path.join(gruntPath, 'assemble.js'));
+            }
 
             this.log(chalk.yellow(' \nConfiguring grunt tasks \n \n'));
+        },
+
         devPath: function () {
             this.sourceRoot(path.join(__dirname, '../../templates/', this.projectType));
 
