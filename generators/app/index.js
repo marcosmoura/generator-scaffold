@@ -6,17 +6,6 @@
         chalk = require('chalk'),
         path = require('path'),
         fs = require('fs'),
-        esformatter = require('esformatter'),
-        esOptions = {
-            indent: {
-                value: '    '
-            },
-            lineBreak: {
-                after: {
-                    'ArrayExpressionComma' : 1
-                }
-            }
-        },
         gift = require('gift');
 
     module.exports = yeoman.generators.Base.extend({
