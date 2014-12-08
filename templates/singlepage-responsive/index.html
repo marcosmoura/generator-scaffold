@@ -1,0 +1,54 @@
+<!doctype html>
+
+<!--[if IE 9 ]><html class="no-js ie ie9" lang="pt-BR"> <![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="pt-BR"><!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="<%= projectName %>">
+        <meta name="application-name" content="<%= projectName %>">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta http-equiv="cleartype" content="on">
+        <meta name="description" content="<%= projectDescription %>">
+
+        <title><%= projectName %></title>
+
+        <!-- build:css(.tmp) assets/css/main.css -->
+        <!-- bower:css --><!-- endbower -->
+
+        <link rel="stylesheet" href="assets/css/main.css">
+        <!-- endbuild --><% if (addModernizr) { %>
+
+        <!-- build:js(.tmp) assets/js/modernizr.js -->
+        <script src="assets/bower/modernizr/modernizr.js"></script>
+        <!-- endbuild --><% } %>
+    </head>
+
+    <body>
+        <div class="container">
+            <header class="main-header">
+
+            </header>
+
+            <main class="main-content">
+                <h1>Howdy!</h1>
+            </main>
+
+            <footer class="main-footer">
+
+            </footer>
+        </div>
+
+        <!-- Site Scripts -->
+        <!-- build:js assets/js/main.js -->
+        <!-- bower:js --><!-- endbower -->
+
+        <script src="assets/js/main.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>

@@ -5,18 +5,6 @@
     var yeoman = require('yeoman-generator'),
         chalk = require('chalk'),
         path = require('path'),
-        fs = require('fs'),
-        esformatter = require('esformatter'),
-        esOptions = {
-            indent: {
-                value: '    '
-            },
-            lineBreak: {
-                after: {
-                    'ArrayExpressionComma' : 1
-                }
-            }
-        },
         gift = require('gift');
 
     module.exports = yeoman.generators.Base.extend({
@@ -38,6 +26,7 @@
 
         promptTask: function() {
             var cb = this.async(),
+                choices = ['Mobile Only', 'Web Only', 'Responsive', 'Single Page', 'Single Page Mobile', 'Single Page Responsive'],
                 prompts = [{
                     name: 'projectName',
                     message: 'What is the name of your project?',
@@ -84,13 +73,21 @@
                     type: 'list',
                     name: 'projectType',
                     message: 'What kind of project?',
-                    choices: ['Mobile Only', 'Web Only', 'Responsive', 'Single Page', 'Single Page Mobile'],
+                    choices: choices,
                     default: 0
                 }, {
-                    type: 'confirm',
-                    name: 'jquery',
-                    message: 'Want to include jQuery?',
-                    default: 0
+                    type: 'checkbox',
+                    name: 'components',
+                    message: 'What components do you like to include?',
+                    choices: [{
+                        name: 'Modernizr',
+                        value: 'addModernizr',
+                        checked: true
+                    }, {
+                        name: 'jQuery',
+                        value: 'addjQuery',
+                        checked: false
+                    }]
                 }, {
                     type: 'confirm',
                     name: 'hasGit',
@@ -115,148 +112,228 @@
                     }
                 }];
 
-            this.prompt(prompts, function(props) {
-                for(var item in props) {
-                    this[item] = props[item];
+            this.prompt(prompts, function(answers) {
+                var components = answers.components;
+
+                function hasComponent(component) {
+                    return components && components.indexOf(component) !== -1;
                 }
 
-                this.log(chalk.yellow(' \nGood! Now I will download everything you need. Time to take a coffee! \n \n'));
+                for(var answer in answers) {
+                    this[answer] = answers[answer];
+                }
+
+                this.hasAssemble = true;
+                this.isSinglePage = false;
+                this.needFastclick = false;
+
+                switch (this.projectType) {
+                    case choices[0]:
+                        this.projectType = 'mobile';
+                        this.needFastclick = true;
+                        break;
+                    case choices[1]:
+                        this.projectType = 'web';
+                        break;
+                    case choices[2]:
+                        this.projectType = 'responsive';
+                        this.needFastclick = true;
+                        break;
+                    case choices[3]:
+                        this.projectType = 'singlepage';
+                        this.isSinglePage = true;
+                        this.hasAssemble = false;
+                        break;
+                    case choices[4]:
+                        this.projectType = 'singlepage-mobile';
+                        this.needFastclick = true;
+                        this.isSinglePage = true;
+                        this.hasAssemble = false;
+                        break;
+                    case choices[5]:
+                        this.projectType = 'singlepage-responsive';
+                        this.needFastclick = true;
+                        this.isSinglePage = true;
+                        this.hasAssemble = false;
+                        break;
+                }
+
+                this.addModernizr = hasComponent('addModernizr');
+                this.addjQuery = hasComponent('addjQuery');
+
+                this.projectSlug = this._.slugify(this.projectName.toLowerCase());
+
+                this.log(chalk.yellow(' \nGood! Now I will create and install everything you need. Time to take a coffee! \n \n'));
 
                 cb();
             }.bind(this));
         },
 
-        scaffoldCoreTask: function() {
-            var done = this.async();
-
-            this.log(chalk.yellow('\n \n Downloading core of scaffold'));
-            this.remote('marcosmoura', 'scaffold', 'master', function(err, remote) {
-                remote.directory('.', '.');
-
-                done();
-            }, true);
+        corePath: function () {
+            this.sourceRoot(path.join(__dirname, '../../templates/core/'));
         },
 
-        scaffoldVersionTask: function() {
-            var done = this.async(),
-                repository = '',
-                message = '';
+        core: function() {
+            this.log(chalk.yellow(' \nConfiguring Grunt tasks and Bower packages \n \n'));
 
-            if (this.projectType === 'Mobile Only') {
-                message = '\n \n Downloading Mobile version';
-                repository = 'scaffold-mobile';
-            } else if (this.projectType === 'Web Only') {
-                message = '\n \n Downloading Web version';
-                repository = 'scaffold-web';
-            } else if (this.projectType === 'Responsive') {
-                message = '\n \n Downloading Responsive version';
-                repository = 'scaffold-responsive';
-            } else if (this.projectType === 'Single Page') {
-                message = '\n \n Downloading Single Page version';
-                repository = 'scaffold-singlepage';
-            } else if (this.projectType === 'Single Page Mobile') {
-                message = '\n \n Downloading Single Page mobile version';
-                repository = 'scaffold-singlepage-mobile';
-            }
-
-            this.log(chalk.yellow(message));
-            this.remote('marcosmoura', repository, 'master', function(err, remote) {
-                remote.directory('.', 'dev/');
-
-                done();
-            }, true);
+            this.fs.copy(
+                this.templatePath('grunt/**/*'),
+                this.destinationPath('grunt')
+            );
         },
 
-        processPackageTask: function() {
-            var pkgPath = path.join(this.env.cwd, 'package.json'),
-                pkg = JSON.parse(this.readFileAsString(pkgPath));
-
-            this.log(chalk.yellow('\n \n Creating the necessary files'));
-
-            pkg.projectName = this.projectName;
-            pkg.version = '0.0.0';
-            pkg.name = this._.slugify(this.projectName.toLowerCase());
-            pkg.description = this.projectDescription;
-            pkg.developers = this.projectMember;
-            pkg.repository.url = this.gitUrl;
-
-            var dev = this.projectMember.split(','),
-                devList = [];
-
-            for(var member in dev) {
-                devList.push({
-                    'name': dev[member].trim()
-                });
-            }
-
-            pkg.author = devList;
-
-            fs.unlinkSync(pkgPath);
-
-            this.write(pkgPath, JSON.stringify(pkg, null, 2));
+        coreFiles: function() {
+            this.fs.copy(
+                this.templatePath('bowerrc'),
+                this.destinationPath('.bowerrc')
+            );
+            this.fs.copy(
+                this.templatePath('editorconfig'),
+                this.destinationPath('.editorconfig')
+            );
+            this.fs.copy(
+                this.templatePath('gitattributes'),
+                this.destinationPath('.gitattributes')
+            );
+            this.fs.copy(
+                this.templatePath('gitignore'),
+                this.destinationPath('.gitignore')
+            );
+            this.fs.copy(
+                this.templatePath('htmlhintrc'),
+                this.destinationPath('.htmlhintrc')
+            );
+            this.fs.copy(
+                this.templatePath('jsbeautifyrc'),
+                this.destinationPath('.jsbeautifyrc')
+            );
+            this.fs.copy(
+                this.templatePath('jshintrc'),
+                this.destinationPath('.jshintrc')
+            );
+            this.fs.copy(
+                this.templatePath('GruntFile.js'),
+                this.destinationPath('GruntFile.js')
+            );
+            this.fs.copyTpl(
+                this.templatePath('_package.json'),
+                this.destinationPath('package.json'),
+                this
+            );
         },
 
-        processBowerTask: function() {
+        bower: function() {
             var bower = {
                 projectName: this.projectName,
                 version: '0.0.0',
                 name: this._.slugify(this.projectName.toLowerCase()),
                 dependencies: {
                     'jquery': '~2.1.1',
-                    'fastclick': '~1.0.2',
+                    'fastclick': '~1.0.3',
                     'modernizr': '~2.8.3',
-                    'normalize-css': '~3.0.1'
+                    'normalize-css': '~3.0.2'
                 }
             };
 
-            if (this.projectType === 'Web Only' || this.projectType === 'Single Page') {
+            if (!this.needFastclick) {
                 delete bower.dependencies.fastclick;
             }
 
-            if (!this.jquery) {
+            if (!this.addjQuery) {
                 delete bower.dependencies.jquery;
             }
 
-            fs.unlinkSync(path.join(this.baseDestPath, 'bower.json'));
-
-            this.dest.write('bower.json', JSON.stringify(bower, null, 2));
+            this.fs.write(
+                this.destinationPath('bower.json'),
+                JSON.stringify(bower, null, 2)
+            );
         },
 
-        processGruntTask: function() {
-            var gruntPath = path.join(this.env.cwd, 'grunt');
+        grunt: function() {
+            this.fs.delete(
+                this.destinationPath('tasks/build.js')
+            );
+            this.fs.delete(
+                this.destinationPath('tasks/default.js')
+            );
+            this.fs.delete(
+                this.destinationPath('options/watch.js')
+            );
 
-            if (this.projectType === 'Single Page' || this.projectType === 'Single Page Mobile') {
-                var buildTask = path.join(gruntPath, 'tasks/build.js'),
-                    build = this.readFileAsString(buildTask),
-                    stagingTask = path.join(gruntPath, 'tasks/default.js'),
-                    staging = this.readFileAsString(stagingTask),
-                    watchOption = path.join(gruntPath, 'options/watch.js'),
-                    watch = this.readFileAsString(watchOption);
+            this.fs.copyTpl(
+                this.templatePath('grunt/tasks/build.js'),
+                this.destinationPath('grunt/tasks/build.js'),
+                this
+            );
 
-                build = build.replace('\'assemble:build\',', '');
-                build = build.replace('\'clean:build\',', '\'clean:build\', \'copy:buildHtml\',');
-                fs.unlinkSync(buildTask);
-                this.write(buildTask, esformatter.format(build, esOptions));
+            this.fs.copyTpl(
+                this.templatePath('grunt/tasks/default.js'),
+                this.destinationPath('grunt/tasks/default.js'),
+                this
+            );
 
-                staging = staging.replace('\'assemble:staging\',', '\'newer:copy:stagingHtml\',');
-                fs.unlinkSync(stagingTask);
-                this.write(stagingTask, esformatter.format(staging, esOptions));
+            this.fs.copyTpl(
+                this.templatePath('grunt/options/watch.js'),
+                this.destinationPath('grunt/options/watch.js'),
+                this,
+                {
+                    evaluate: /<#([\s\S]+?)#>/g,
+                    interpolate: /<#=([\s\S]+?)#>/g
+                }
+            );
+        },
 
-                watch = watch.replace('\'newer:assemble:staging\',', '\'newer:copy:stagingHtml\',');
-                fs.unlinkSync(watchOption);
-                this.write(watchOption, esformatter.format(watch, esOptions));
-
-                fs.unlinkSync(path.join(gruntPath, 'options/assemble.js'));
+        assemble: function() {
+            if (this.isSinglePage) {
+                this.fs.delete(
+                    this.destinationPath('assemble.js')
+                );
             }
+
+            this.log(chalk.yellow(' \nConfiguring grunt tasks \n \n'));
         },
 
-        removeGarbageTask: function() {
-            var devPath = path.join(this.env.cwd, 'dev');
+        devPath: function () {
+            this.sourceRoot(path.join(__dirname, '../../templates/', this.projectType));
 
-            this.log(chalk.yellow('\n \n Removing garbage and temporary files'));
+            this.log(chalk.yellow(' \nCreating project files \n \n'));
+        },
 
-            fs.unlinkSync(path.join(devPath, 'LICENSE'));
-            fs.unlinkSync(path.join(devPath, 'README.md'));
+        dev: function() {
+            this.mkdir('dev');
+            this.mkdir('dev/partials');
+        },
+
+        assets: function() {
+            this.fs.copy(
+                this.templatePath('assets/**/*'),
+                this.destinationPath('dev/assets')
+            );
+            this.mkdir('dev/assets/img');
+            this.mkdir('dev/assets/less/components');
+        },
+
+        less: function() {
+            this.fs.copy(
+                this.templatePath('../less/**/*'),
+                this.destinationPath('dev/assets/less/lib')
+            );
+        },
+
+        html: function() {
+            if (this.hasAssemble) {
+                this.fs.copyTpl(
+                    this.templatePath('templates/default.html'),
+                    this.destinationPath('dev/templates/default.html'),
+                    this
+                );
+            }
+
+            this.fs.copyTpl(
+                this.templatePath('index.html'),
+                this.destinationPath('dev/index.html'),
+                this
+            );
         },
 
         setupGitTask: function() {
@@ -295,22 +372,18 @@
             }
         },
 
-        installTask: function() {
-            var _this = this;
+        install: function() {
+            this.installDependencies({ skipInstall: this.options.skipInstall });
+        },
 
-            this.on('end', function() {
-                this.installDependencies({
-                    skipInstall: _this.options.skipInstall,
-                    callback: function() {
-                        var command = _this.spawnCommand('npm', ['install', 'glob']);
+        end: function() {
+            var _this = this,
+                glob = this.spawnCommand('npm', ['install', 'glob']);
 
-                        command.on('exit', function() {
-                            _this.log(chalk.cyan(' \n \n All done and no errors! Enjoy! \n \n'));
+            glob.on('exit', function() {
+                _this.log(chalk.cyan(' \n \n All done and no errors! Enjoy! \n \n'));
 
-                            _this.spawnCommand('grunt', ['default']);
-                        });
-                    }
-                });
+                _this.spawnCommand('grunt', ['default']);
             });
         }
 

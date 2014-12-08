@@ -2,14 +2,24 @@ module.exports = function (grunt) {
 
     'use strict';
 
+    var jsFiles = [
+        'Gruntfile.js',
+        'generators/**/*.js'
+    ];
+
     grunt.initConfig({
         jshint: {
-            files: [
-                'Gruntfile.js',
-                'generators/**/*.js'
-            ],
+            files: jsFiles,
             options: {
                 jshintrc: '.jshintrc'
+            }
+        },
+        bump: {
+            options: {
+                files: ['package.json'],
+                commit: false,
+                createTag: false,
+                push: false
             }
         },
         watch: {
@@ -17,10 +27,7 @@ module.exports = function (grunt) {
                 spawn: false
             },
             scripts: {
-                files: [
-                    'generators/**/*.js',
-                    'Gruntfile.js'
-                ],
+                files: jsFiles,
                 tasks: ['jshint']
             }
         }
@@ -28,6 +35,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-bump');
 
     grunt.registerTask('test', ['jshint']);
 
