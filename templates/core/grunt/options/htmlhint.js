@@ -5,8 +5,8 @@ module.exports = {
             force: true
         },
         src: [
-            '<%= scaffold.staging.path %>/**/*.html',
-            '!<%= scaffold.staging.assets %>/bower/**/*.html'
+            '<%%= scaffold.staging.path %>/**/*.html',
+            '!<%%= scaffold.staging.assets %>/bower/**/*.html'
         ]
     }
 };

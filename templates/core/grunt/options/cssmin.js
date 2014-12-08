@@ -1,6 +1,6 @@
 module.exports = {
     options: {
-        banner: '<%= banner %>',
+        banner: '<%%= banner %>',
         keepSpecialComments: 0,
         report: 'min'
     }

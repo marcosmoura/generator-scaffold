@@ -3,9 +3,9 @@ module.exports = {
         exclude: ['modernizr']
     },
     staging: {
-        src: ['<%= scaffold.staging.path %>/**/*.html']
+        src: ['<%%= scaffold.staging.path %>/**/*.html']
     },
     build: {
-        src: ['<%= scaffold.build.path %>/**/*.html']
+        src: ['<%%= scaffold.build.path %>/**/*.html']
     }
 };

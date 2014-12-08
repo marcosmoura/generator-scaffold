@@ -6,8 +6,8 @@ module.exports = {
     },
     build: {
         expand: true,
-        cwd: '<%= scaffold.build.path %>',
+        cwd: '<%%= scaffold.build.path %>',
         src: '**/*.{png,jpg,jpeg}',
-        dest: '<%= scaffold.build.path %>'
+        dest: '<%%= scaffold.build.path %>'
     }
 };

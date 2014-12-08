@@ -6,17 +6,17 @@ module.exports = {
     staging: {
         files: [{
             expand: true,
-            cwd: '<%= scaffold.staging.assets %>/css',
+            cwd: '<%%= scaffold.staging.assets %>/css',
             src: '**/*.css',
-            dest: '<%= scaffold.staging.assets %>/css'
+            dest: '<%%= scaffold.staging.assets %>/css'
         }]
     },
     build: {
         files: [{
             expand: true,
-            cwd: '<%= scaffold.tmp.assets %>/css',
+            cwd: '<%%= scaffold.tmp.assets %>/css',
             src: '**/*.css',
-            dest: '<%= scaffold.tmp.assets %>/css'
+            dest: '<%%= scaffold.tmp.assets %>/css'
         }]
     }
 };

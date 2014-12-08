@@ -1,8 +1,8 @@
 module.exports = {
     bsFiles: {
         src: [
-            '<%= scaffold.staging.assets %>/**/*.{css,js,jpg,jpeg,png,gif,json}',
-            '<%= scaffold.staging.path %>/**/*.{html,json,xml,json,png,gif}'
+            '<%%= scaffold.staging.assets %>/**/*.{css,js,jpg,jpeg,png,gif,json}',
+            '<%%= scaffold.staging.path %>/**/*.{html,json,xml,json,png,gif}'
         ]
     },
     options: {
@@ -10,7 +10,7 @@ module.exports = {
         notify: false,
         logLevel: 'silent',
         server: {
-            baseDir: '<%= scaffold.staging.path %>'
+            baseDir: '<%%= scaffold.staging.path %>'
         },
         ghostMode: {
             clicks: true,

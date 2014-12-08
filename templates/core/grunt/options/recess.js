@@ -1,6 +1,6 @@
 module.exports = {
     staging: {
-        src: ['<%= scaffold.staging.assets %>/css/**/*.css']
+        src: ['<%%= scaffold.staging.assets %>/css/**/*.css']
     },
     options: {
         noIDs: true,

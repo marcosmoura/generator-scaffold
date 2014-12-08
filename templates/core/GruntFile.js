@@ -33,8 +33,8 @@
         config = {
             pkg: grunt.file.readJSON('package.json'),
             scaffold: scaffold,
-            timestamp: '<%= new Date().getTime() %>',
-            banner: '/*! <%= pkg.projectName %> - v<%= pkg.version %> - by <%= pkg.developers %> - <%= grunt.template.today("dd/mm/yyyy") %> */\n',
+            timestamp: '<%%= new Date().getTime() %>',
+            banner: '/*! <%%= pkg.projectName %> - v<%%= pkg.version %> - by <%%= pkg.developers %> - <%%= grunt.template.today("dd/mm/yyyy") %> */\n',
         };
 
         grunt.util._.extend(config, loadConfig(path.join(__dirname, 'grunt/options/')));

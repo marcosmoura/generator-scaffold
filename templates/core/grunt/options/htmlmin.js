@@ -15,8 +15,8 @@ module.exports = {
             useShortDoctype: true
         },
         expand: true,
-        cwd: '<%= scaffold.build.path %>',
+        cwd: '<%%= scaffold.build.path %>',
         src: ['**/*.html'],
-        dest: '<%= scaffold.build.path %>'
+        dest: '<%%= scaffold.build.path %>'
     }
 };
