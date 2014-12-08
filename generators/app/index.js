@@ -372,22 +372,18 @@
             }
         },
 
-        installTask: function() {
-            var _this = this;
+        install: function() {
+            this.installDependencies({ skipInstall: this.options.skipInstall });
+        },
 
-            this.on('end', function() {
-                this.installDependencies({
-                    skipInstall: _this.options.skipInstall,
-                    callback: function() {
-                        var command = _this.spawnCommand('npm', ['install', 'glob']);
+        end: function() {
+            var _this = this,
+                glob = this.spawnCommand('npm', ['install', 'glob']);
 
-                        command.on('exit', function() {
-                            _this.log(chalk.cyan(' \n \n All done and no errors! Enjoy! \n \n'));
+            glob.on('exit', function() {
+                _this.log(chalk.cyan(' \n \n All done and no errors! Enjoy! \n \n'));
 
-                            _this.spawnCommand('grunt', ['default']);
-                        });
-                    }
-                });
+                _this.spawnCommand('grunt', ['default']);
             });
         }
 
