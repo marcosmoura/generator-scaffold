@@ -171,6 +171,7 @@
 
         },
 
+        bower: function() {
             var bower = {
                 projectName: this.projectName,
                 version: '0.0.0',
@@ -187,11 +188,9 @@
                 delete bower.dependencies.fastclick;
             }
 
-            if (!this.jquery) {
+            if (!this.addjQuery) {
                 delete bower.dependencies.jquery;
             }
-
-            fs.unlinkSync(path.join(this.baseDestPath, 'bower.json'));
 
             this.dest.write('bower.json', JSON.stringify(bower, null, 2));
         },
