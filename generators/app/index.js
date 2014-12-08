@@ -229,10 +229,24 @@
             this.template('grunt/options/watch.js', 'grunt/options/watch.js');
         },
 
+        devPath: function () {
+            this.sourceRoot(path.join(__dirname, '../../templates/', this.projectType));
         },
 
+        dev: function() {
+            this.mkdir('dev');
+            this.mkdir('dev/partials');
+        },
 
+        assets: function() {
+            this.directory('assets', 'dev/assets');
+            this.mkdir('dev/assets/img');
+            this.mkdir('dev/assets/less/components');
+        },
 
+        less: function() {
+            this.directory('../less', 'dev/assets/less/lib');
+        },
         },
 
         setupGitTask: function() {
