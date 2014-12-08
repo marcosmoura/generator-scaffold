@@ -38,6 +38,7 @@
 
         promptTask: function() {
             var cb = this.async(),
+                choices = ['Mobile Only', 'Web Only', 'Responsive', 'Single Page', 'Single Page Mobile', 'Single Page Responsive'],
                 prompts = [{
                     name: 'projectName',
                     message: 'What is the name of your project?',
@@ -84,7 +85,6 @@
                     type: 'list',
                     name: 'projectType',
                     message: 'What kind of project?',
-                    choices: ['Mobile Only', 'Web Only', 'Responsive', 'Single Page', 'Single Page Mobile'],
                     default: 0
                 }, {
                     type: 'confirm',
