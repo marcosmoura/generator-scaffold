@@ -81,7 +81,7 @@ This generator make use of various tools to improve your web development workflo
 
 The Scaffold uses some default folders to work. These folders follow a pattern and cannot be renamed.
 
-![Folder Structure](http://f.cl.ly/items/25333P1p030q1807010e/Screen%20Shot%202014-09-18%20at%2018.52.04.png)
+![Folder Structure](https://s3.amazonaws.com/f.cl.ly/items/1N3T2s1D0Q3h3C1E002m/Screen%20Shot%202014-12-08%20at%2020.19.37.png)
 
 * **dev**: All development files without any compression, including HTML templates, images, LESS files and JS.
 
