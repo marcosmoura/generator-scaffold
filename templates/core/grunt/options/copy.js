@@ -3,8 +3,8 @@ module.exports = {
         files: [{
             expand: true,
             dot: true,
-            cwd: '<%%= scaffold.dev.path %>',
-            dest: '<%%= scaffold.staging.path %>',
+            cwd: '<%= scaffold.dev.path %>',
+            dest: '<%= scaffold.staging.path %>',
             src: [
                 '*.{ico,png,gif}',
                 '**/*.{txt,json,xml,hbs}',
@@ -19,8 +19,8 @@ module.exports = {
         files: [{
             expand: true,
             dot: true,
-            cwd: '<%%= scaffold.dev.path %>',
-            dest: '<%%= scaffold.staging.path %>',
+            cwd: '<%= scaffold.dev.path %>',
+            dest: '<%= scaffold.staging.path %>',
             src: ['**/*.html']
         }]
     },
@@ -28,8 +28,8 @@ module.exports = {
         files: [{
             expand: true,
             dot: true,
-            cwd: '<%%= scaffold.dev.assets %>/less',
-            dest: '<%%= scaffold.staging.assets %>/less',
+            cwd: '<%= scaffold.dev.assets %>/less',
+            dest: '<%= scaffold.staging.assets %>/less',
             src: ['**/*.less']
         }]
     },
@@ -37,8 +37,8 @@ module.exports = {
         files: [{
             expand: true,
             dot: true,
-            cwd: '<%%= scaffold.dev.path %>',
-            dest: '<%%= scaffold.build.path %>',
+            cwd: '<%= scaffold.dev.path %>',
+            dest: '<%= scaffold.build.path %>',
             src: [
                 '*.{ico,png,gif}',
                 '**/*.{txt,json,xml}',
@@ -51,8 +51,8 @@ module.exports = {
         }, {
             expand: true,
             dot: true,
-            cwd: '<%%= scaffold.tmp.path %>/concat',
-            dest: '<%%= scaffold.build.path %>',
+            cwd: '<%= scaffold.tmp.path %>/concat',
+            dest: '<%= scaffold.build.path %>',
             src: [
                 '**/*.{png,jpg,jpeg,gif,webp,ico}'
             ]
@@ -62,8 +62,8 @@ module.exports = {
         files: [{
             expand: true,
             dot: true,
-            cwd: '<%%= scaffold.dev.path %>',
-            dest: '<%%= scaffold.build.path %>',
+            cwd: '<%= scaffold.dev.path %>',
+            dest: '<%= scaffold.build.path %>',
             src: ['**/*.html']
         }]
     }

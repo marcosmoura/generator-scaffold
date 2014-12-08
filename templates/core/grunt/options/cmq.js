@@ -4,7 +4,7 @@ module.exports = {
             log: 'true'
         },
         files: {
-            '<%%= scaffold.tmp.assets %>/css/': ['<%%= scaffold.tmp.assets %>/css/**/*.css']
+            '<%= scaffold.tmp.assets %>/css/': ['<%= scaffold.tmp.assets %>/css/**/*.css']
         }
     }
 };

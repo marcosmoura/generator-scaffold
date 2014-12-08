@@ -1,6 +1,6 @@
 module.exports = {
     options: {
-        banner: '<%%= banner %>',
+        banner: '<%= banner %>',
         mangle: {
             except: ['jQuery', 'Backbone']
         }

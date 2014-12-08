@@ -1,7 +1,7 @@
 module.exports = {
     options: {
-        dest: '<%%= scaffold.build.path %>',
-        root: '<%%= scaffold.dev.path %>',
+        dest: '<%= scaffold.build.path %>',
+        root: '<%= scaffold.dev.path %>',
         flow: {
             steps: {
                 'js': ['concat', 'uglifyjs'],
@@ -10,5 +10,5 @@ module.exports = {
             post: []
         }
     },
-    html: '<%%= scaffold.build.path %>/**/*.html'
+    html: '<%= scaffold.build.path %>/**/*.html'
 };

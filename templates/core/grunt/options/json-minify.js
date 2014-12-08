@@ -1,5 +1,5 @@
 module.exports = {
     build: {
-        files: '<%%= scaffold.build.path %>/**/*.json'
+        files: '<%= scaffold.build.path %>/**/*.json'
     }
 };
