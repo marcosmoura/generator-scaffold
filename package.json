@@ -29,9 +29,9 @@
   ],
   "dependencies": {
     "chalk": "^0.5.1",
-    "gift": "^0.4.3-1",
-    "slug": "^0.4.2",
-    "yeoman-generator": "^0.16.0"
+    "gift": "^0.5.0",
+    "slug": "^0.8.0",
+    "yeoman-generator": "^0.18.3"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -39,7 +39,7 @@
     "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
-    "mocha": "^1.21.5"
+    "mocha": "^2.0.1"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
