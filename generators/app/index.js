@@ -176,19 +176,50 @@
         core: function() {
             this.log(chalk.yellow(' \nConfiguring Grunt tasks and Bower packages \n \n'));
 
-            this.directory('grunt', 'grunt');
+            this.fs.copy(
+                this.templatePath('grunt/**/*'),
+                this.destinationPath('grunt')
+            );
         },
 
         coreFiles: function() {
-            this.copy('bowerrc', '.bowerrc');
-            this.copy('editorconfig', '.editorconfig');
-            this.copy('gitattributes', '.gitattributes');
-            this.copy('gitignore', '.gitignore');
-            this.copy('htmlhintrc', '.htmlhintrc');
-            this.copy('jsbeautifyrc', '.jsbeautifyrc');
-            this.copy('jshintrc', '.jshintrc');
-            this.copy('GruntFile.js', 'GruntFile.js');
-            this.template('_package.json', 'package.json');
+            this.fs.copy(
+                this.templatePath('bowerrc'),
+                this.destinationPath('.bowerrc')
+            );
+            this.fs.copy(
+                this.templatePath('editorconfig'),
+                this.destinationPath('.editorconfig')
+            );
+            this.fs.copy(
+                this.templatePath('gitattributes'),
+                this.destinationPath('.gitattributes')
+            );
+            this.fs.copy(
+                this.templatePath('gitignore'),
+                this.destinationPath('.gitignore')
+            );
+            this.fs.copy(
+                this.templatePath('htmlhintrc'),
+                this.destinationPath('.htmlhintrc')
+            );
+            this.fs.copy(
+                this.templatePath('jsbeautifyrc'),
+                this.destinationPath('.jsbeautifyrc')
+            );
+            this.fs.copy(
+                this.templatePath('jshintrc'),
+                this.destinationPath('.jshintrc')
+            );
+            this.fs.copy(
+                this.templatePath('GruntFile.js'),
+                this.destinationPath('GruntFile.js')
+            );
+            this.fs.copyTpl(
+                this.templatePath('_package.json'),
+                this.destinationPath('package.json'),
+                this
+            );
         },
 
         bower: function() {
@@ -212,26 +243,51 @@
                 delete bower.dependencies.jquery;
             }
 
-            this.dest.write('bower.json', JSON.stringify(bower, null, 2));
+            this.fs.write(
+                this.destinationPath('bower.json'),
+                JSON.stringify(bower, null, 2)
+            );
         },
 
         grunt: function() {
-            var gruntPath = path.join(this.env.cwd, 'grunt');
+            this.fs.delete(
+                this.destinationPath('tasks/build.js')
+            );
+            this.fs.delete(
+                this.destinationPath('tasks/default.js')
+            );
+            this.fs.delete(
+                this.destinationPath('options/watch.js')
+            );
 
-            fs.unlinkSync(path.join(gruntPath, 'tasks/build.js'));
-            fs.unlinkSync(path.join(gruntPath, 'tasks/default.js'));
-            fs.unlinkSync(path.join(gruntPath, 'options/watch.js'));
+            this.fs.copyTpl(
+                this.templatePath('grunt/tasks/build.js'),
+                this.destinationPath('grunt/tasks/build.js'),
+                this
+            );
 
-            this.template('grunt/tasks/build.js', 'grunt/tasks/build.js');
-            this.template('grunt/tasks/default.js', 'grunt/tasks/default.js');
-            this.template('grunt/options/watch.js', 'grunt/options/watch.js');
+            this.fs.copyTpl(
+                this.templatePath('grunt/tasks/default.js'),
+                this.destinationPath('grunt/tasks/default.js'),
+                this
+            );
+
+            this.fs.copyTpl(
+                this.templatePath('grunt/options/watch.js'),
+                this.destinationPath('grunt/options/watch.js'),
+                this,
+                {
+                    evaluate: /<#([\s\S]+?)#>/g,
+                    interpolate: /<#=([\s\S]+?)#>/g
+                }
+            );
         },
 
         assemble: function() {
-            var gruntPath = path.join(this.env.cwd, 'grunt/options');
-
             if (this.isSinglePage) {
-                fs.unlinkSync(path.join(gruntPath, 'assemble.js'));
+                this.fs.delete(
+                    this.destinationPath('assemble.js')
+                );
             }
 
             this.log(chalk.yellow(' \nConfiguring grunt tasks \n \n'));
@@ -249,22 +305,35 @@
         },
 
         assets: function() {
-            this.directory('assets', 'dev/assets');
+            this.fs.copy(
+                this.templatePath('assets/**/*'),
+                this.destinationPath('dev/assets')
+            );
             this.mkdir('dev/assets/img');
             this.mkdir('dev/assets/less/components');
         },
 
         less: function() {
-            this.directory('../less', 'dev/assets/less/lib');
+            this.fs.copy(
+                this.templatePath('../less/**/*'),
+                this.destinationPath('dev/assets/less/lib')
+            );
         },
 
         html: function() {
             if (this.hasAssemble) {
-                this.template('templates/default.html', 'dev/templates/default.html');
-                this.template('index.html', 'dev/index.html');
-            } else {
-                this.template('index.html', 'dev/index.html');
+                this.fs.copyTpl(
+                    this.templatePath('templates/default.html'),
+                    this.destinationPath('dev/templates/default.html'),
+                    this
+                );
             }
+
+            this.fs.copyTpl(
+                this.templatePath('index.html'),
+                this.destinationPath('dev/index.html'),
+                this
+            );
         },
 
         setupGitTask: function() {
