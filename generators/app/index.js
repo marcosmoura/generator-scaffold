@@ -124,6 +124,7 @@
                 this.hasAssemble = true;
                 this.isSinglePage = false;
                 this.needFastclick = false;
+                this.createJs = false;
 
                 switch (this.projectType) {
                     case choices[0]:
