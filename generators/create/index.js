@@ -101,6 +101,13 @@
                     this.templatePath('index.less'),
                     this.destinationPath('dev/assets/less/pages/'+ this.pageSlug +'.less')
                 );
+
+                var mainPath = this.destinationPath('dev/assets/less/main.less'),
+                    main = this.fs.read(mainPath);
+
+                main += '@import \'pages/' + this.pageSlug +'.less\'\n';
+
+                this.fs.write(mainPath, main);
             }
         },
 
