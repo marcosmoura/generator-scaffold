@@ -4,7 +4,10 @@
 
     var yeoman = require('yeoman-generator'),
         chalk = require('chalk'),
-        path = require('path');
+        fs = require('fs'),
+        path = require('path'),
+        mainPath = '',
+        main = '';
 
     module.exports = yeoman.generators.Base.extend({
 
@@ -102,8 +105,15 @@
                     this.destinationPath('dev/assets/less/pages/'+ this.pageSlug +'.less')
                 );
 
-                var mainPath = this.destinationPath('dev/assets/less/main.less'),
-                    main = this.fs.read(mainPath);
+                mainPath = this.destinationPath('dev/assets/less/main.less');
+
+                main = this.fs.read(mainPath);
+            }
+        },
+
+        main: function() {
+            if (this.config.get('hasAssemble')) {
+                fs.unlinkSync(mainPath);
 
                 main += '@import \'pages/' + this.pageSlug +'.less\'\n';
 
