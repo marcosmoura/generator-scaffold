@@ -115,7 +115,7 @@
             if (this.config.get('hasAssemble')) {
                 fs.unlinkSync(mainPath);
 
-                main += '@import \'pages/' + this.pageSlug +'.less\'\n';
+                main += '@import \'pages/' + this.pageSlug +'\'\n';
 
                 this.fs.write(mainPath, main);
             }
