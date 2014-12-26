@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:build',<% if (isSinglePage) { %>
-        'buildHtml:build',<% } %>
+        'copy:buildHtml',<% } %>
         'less:build',
         'cmq',
         'autoprefixer:build',
