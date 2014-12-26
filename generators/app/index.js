@@ -378,7 +378,7 @@
                 glob = this.spawnCommand('npm', ['install', 'glob']);
 
             glob.on('exit', function() {
-                _this.log(chalk.cyan(' \n \n All done and no errors! Enjoy! \n \n'));
+                _this.log(chalk.cyan(' \n \n \n All done and no errors! Enjoy! \n \n \n'));
 
                 _this.spawnCommand('grunt', ['default']);
             });
