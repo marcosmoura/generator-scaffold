@@ -7,6 +7,7 @@
         config = {};
 
     module.exports = function (grunt) {
+
         config = {
             pkg: grunt.file.readJSON('package.json'),
             scaffold:  {
@@ -44,6 +45,7 @@
         grunt.loadNpmTasks('assemble');
 
         grunt.loadTasks('grunt/tasks/');
+
     };
 
 })();
