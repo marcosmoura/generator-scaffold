@@ -40,7 +40,7 @@
         grunt.initConfig(config);
 
         require('load-grunt-tasks')(grunt);
-        require('time-grunt')(grunt);<# if (isSinglePage) { #>
+        require('time-grunt')(grunt);<# if (!isSinglePage) { #>
 
         grunt.loadNpmTasks('assemble');<# } #>
 
