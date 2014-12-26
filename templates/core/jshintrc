@@ -21,7 +21,6 @@
   "globals": {
     "Modernizr": true,
     "jQuery": true,
-    "console": true,
-    "FB": true
+    "console": true
   }
 }
