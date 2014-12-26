@@ -212,9 +212,10 @@
                 this.templatePath('jsbeautifyrc'),
                 this.destinationPath('.jsbeautifyrc')
             );
-            this.fs.copy(
+            this.fs.copyTpl(
                 this.templatePath('jshintrc'),
-                this.destinationPath('.jshintrc')
+                this.destinationPath('.jshintrc'),
+                this
             );
             this.fs.copyTpl(
                 this.templatePath('GruntFile.js'),
@@ -291,6 +292,11 @@
             if (this.isSinglePage) {
                 this.fs.delete(
                     this.destinationPath('assemble.js')
+
+        modernizr: function() {
+            if (!this.addModernizr) {
+                this.fs.delete(
+                    this.destinationPath('grunt/options/modernizr.js')
                 );
             }
         },

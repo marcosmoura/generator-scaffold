@@ -31,8 +31,8 @@
     "grunt-image-embed": "^0.3.3",
     "grunt-imageoptim": "^1.4.1",
     "grunt-json-minify": "^0.4.0",
-    "grunt-jsonlint": "^1.0.4",
-    "grunt-modernizr": "^0.6.0",
+    "grunt-jsonlint": "^1.0.4",<% if (addModernizr) { %>
+    "grunt-modernizr": "^0.6.0",<% } %>
     "grunt-newer": "^0.8.0",
     "grunt-notify": "^0.4.1",
     "grunt-prettify": "^0.4.0",

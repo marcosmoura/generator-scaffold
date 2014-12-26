@@ -7,8 +7,8 @@ module.exports = function (grunt) {
         'autoprefixer:build',
         'svgmin',
         'json-minify',<% if (!isSinglePage) { %>
-        'assemble:build',<% } %>
-        'modernizr',
+        'assemble:build',<% } %><% if (addModernizr) { %>
+        'modernizr',<% } %>
         'wiredep:build',
         'useminPrepare',
         'concat',
