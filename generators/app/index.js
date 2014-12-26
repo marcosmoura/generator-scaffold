@@ -177,8 +177,6 @@
         },
 
         core: function() {
-            this.log(chalk.yellow(' \nConfiguring Grunt tasks and Bower packages \n \n'));
-
             this.fs.copy(
                 this.templatePath('grunt/**/*'),
                 this.destinationPath('grunt')
@@ -292,14 +290,10 @@
                     this.destinationPath('assemble.js')
                 );
             }
-
-            this.log(chalk.yellow(' \nConfiguring grunt tasks \n \n'));
         },
 
         devPath: function () {
             this.sourceRoot(path.join(__dirname, '../../templates/', this.projectType));
-
-            this.log(chalk.yellow(' \nCreating project files \n \n'));
         },
 
         dev: function() {
