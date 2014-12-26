@@ -40,7 +40,7 @@ module.exports = {
     },
     html: {
         files: [
-            '<%= scaffold.dev.path %>/**/*.html',
+            '<%= scaffold.dev.path %>/**/*.{html,hbs}',
             '!<%= scaffold.dev.path %>/{templates,partials}/**/*.html'
         ],
         tasks: [<# if (!isSinglePage) { #>
@@ -65,7 +65,7 @@ module.exports = {
         files: [
             '<%= scaffold.dev.path %>/**/*',
             '!<%= scaffold.dev.assets %>/less/**/*',
-            '!<%= scaffold.dev.path %>/**/*.html'
+            '!<%= scaffold.dev.path %>/**/*.{html,hbs}'
         ],
         tasks: ['newer:copy:staging']
     }

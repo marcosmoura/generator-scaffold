@@ -16,7 +16,7 @@ module.exports = {
         },
         expand: true,
         cwd: '<%= scaffold.build.path %>',
-        src: ['**/*.html'],
+        src: ['**/*.{html,hbs}'],
         dest: '<%= scaffold.build.path %>'
     }
 };
