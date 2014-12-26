@@ -212,9 +212,14 @@
                 this.templatePath('jshintrc'),
                 this.destinationPath('.jshintrc')
             );
-            this.fs.copy(
+            this.fs.copyTpl(
                 this.templatePath('GruntFile.js'),
-                this.destinationPath('GruntFile.js')
+                this.destinationPath('GruntFile.js'),
+                this,
+                {
+                    evaluate: /<#([\s\S]+?)#>/g,
+                    interpolate: /<#=([\s\S]+?)#>/g
+                }
             );
             this.fs.copyTpl(
                 this.templatePath('_package.json'),

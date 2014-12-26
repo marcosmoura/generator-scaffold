@@ -13,9 +13,9 @@
             scaffold:  {
                 dev: {
                     path: 'dev',
-                    assets: 'dev/assets',
+                    assets: 'dev/assets'<# if (isSinglePage) { #>,
                     partials: 'dev/partials',
-                    templates: 'dev/templates'
+                    templates: 'dev/templates'<# } #>
                 },
                 staging: {
                     path: 'staging',
@@ -40,9 +40,9 @@
         grunt.initConfig(config);
 
         require('load-grunt-tasks')(grunt);
-        require('time-grunt')(grunt);
+        require('time-grunt')(grunt);<# if (isSinglePage) { #>
 
-        grunt.loadNpmTasks('assemble');
+        grunt.loadNpmTasks('assemble');<# } #>
 
         grunt.loadTasks('grunt/tasks/');
 
