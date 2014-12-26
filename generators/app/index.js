@@ -291,7 +291,10 @@
         assemble: function() {
             if (this.isSinglePage) {
                 this.fs.delete(
-                    this.destinationPath('assemble.js')
+                    this.destinationPath('grunt/options/assemble.js')
+                );
+            }
+        },
 
         modernizr: function() {
             if (!this.addModernizr) {
