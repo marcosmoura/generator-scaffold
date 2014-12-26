@@ -23,7 +23,7 @@
         },
 
         promptTask: function() {
-            var cb = this.async(),
+            var done = this.async(),
                 choices = ['Mobile Only', 'Web Only', 'Responsive', 'Single Page', 'Single Page Mobile', 'Single Page Responsive'],
                 prompts = [{
                     name: 'projectName',
@@ -168,7 +168,7 @@
 
                 this.log(chalk.yellow(' \nGood! Now I will create and install everything you need. Time to take a coffee! \n \n'));
 
-                cb();
+                done();
             }.bind(this));
         },
 
