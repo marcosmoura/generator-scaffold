@@ -5,7 +5,11 @@
     var yeoman = require('yeoman-generator'),
         chalk = require('chalk'),
         path = require('path'),
-        gift = require('gift');
+        gift = require('gift'),
+        lodashOptions = {
+            evaluate: /<#([\s\S]+?)#>/g,
+            interpolate: /<#=([\s\S]+?)#>/g
+        };
 
     module.exports = yeoman.generators.Base.extend({
 
@@ -216,10 +220,7 @@
                 this.templatePath('GruntFile.js'),
                 this.destinationPath('GruntFile.js'),
                 this,
-                {
-                    evaluate: /<#([\s\S]+?)#>/g,
-                    interpolate: /<#=([\s\S]+?)#>/g
-                }
+                lodashOptions
             );
             this.fs.copyTpl(
                 this.templatePath('_package.json'),
@@ -282,10 +283,7 @@
                 this.templatePath('grunt/options/watch.js'),
                 this.destinationPath('grunt/options/watch.js'),
                 this,
-                {
-                    evaluate: /<#([\s\S]+?)#>/g,
-                    interpolate: /<#=([\s\S]+?)#>/g
-                }
+                lodashOptions
             );
         },
 
