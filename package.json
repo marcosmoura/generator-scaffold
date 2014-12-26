@@ -19,10 +19,13 @@
   "keywords": [
     "yeoman-generator",
     "yo",
+    "build",
+    "automator",
     "scaffold",
     "node",
     "front-end",
     "h5bp",
+    "bower",
     "modernizr",
     "jquery",
     "grunt"
