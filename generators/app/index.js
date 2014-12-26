@@ -310,7 +310,10 @@
 
         dev: function() {
             this.mkdir('dev');
-            this.mkdir('dev/partials');
+
+            if (this.hasAssemble) {
+                this.mkdir('dev/partials');
+            }
         },
 
         assets: function() {
