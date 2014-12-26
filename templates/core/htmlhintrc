@@ -5,7 +5,6 @@
   "attr-no-duplication": true,
   "attr-unsafe-chars": true,
   "doctype-first": true,
-  "href-abs-or-rel": true,
   "id-class-value": "dash",
   "id-unique": true,
   "img-alt-require": true,
