@@ -19,7 +19,7 @@
   "smarttabs": true,
   "jquery": true,
   "globals": {<% if (addModernizr) { %>
-    "Modernizr": true,<% } %><% if (addjQuery) { %>
+    "Modernizr": true<% } %><% if (addjQuery) { %><% if (addModernizr) { %>,<% } %>
     "jQuery": true<% } %>
   }
 }
