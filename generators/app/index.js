@@ -354,7 +354,7 @@
                     var repository,
                         done = this.async();
 
-                    this.log(chalk.yellow('\n \nConfiguring the git repository and commiting Scaffold'));
+                    this.log(chalk.yellow('\n \nConfiguring git repository and commiting Scaffold'));
 
                     gift.init('.', function(err, _repo) {
                         this.log(chalk.green('  Init GIT repository'));
