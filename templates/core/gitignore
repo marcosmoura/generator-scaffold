@@ -12,6 +12,7 @@ ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 *.sublime-workspace
+*.idea
 .svn/
 .tmp
 build/*
