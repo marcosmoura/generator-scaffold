@@ -348,44 +348,46 @@
             );
         },
 
-        setupGitTask: function() {
-            if (this.hasGit) {
-                var repository,
-                    done = this.async();
+        install: {
+            setupGit: function() {
+                if (this.hasGit) {
+                    var repository,
+                        done = this.async();
 
-                this.log(chalk.yellow('\n \nConfiguring the git repository and commiting Scaffold'));
+                    this.log(chalk.yellow('\n \nConfiguring the git repository and commiting Scaffold'));
 
-                gift.init('.', function(err, _repo) {
-                    this.log(chalk.green('  Init GIT repository'));
+                    gift.init('.', function(err, _repo) {
+                        this.log(chalk.green('  Init GIT repository'));
 
-                    repository = _repo;
+                        repository = _repo;
 
-                    repository.add('--all', function() {
-                        this.log(chalk.green('  Adding all files'));
+                        repository.add('--all', function() {
+                            this.log(chalk.green('  Adding all files'));
 
-                        repository.commit('Add Scaffold', function() {
-                            this.log(chalk.green('  Commiting'));
+                            repository.commit('Add Scaffold', function() {
+                                this.log(chalk.green('  Commiting'));
 
-                            this.spawnCommand('git', ['remote', 'add', 'origin', this.gitUrl]).on('exit', function () {
-                                this.log(chalk.green('  Add origin remote'));
-                            }.bind(this));
+                                this.spawnCommand('git', ['remote', 'add', 'origin', this.gitUrl]).on('exit', function () {
+                                    this.log(chalk.green('  Add origin remote'));
+                                }.bind(this));
 
-                            this.spawnCommand('git', ['config', 'credential.helper', 'store']).on('exit', function () {
-                                this.log(chalk.green('  Configuring credentials'));
+                                this.spawnCommand('git', ['config', 'credential.helper', 'store']).on('exit', function () {
+                                    this.log(chalk.green('  Configuring credentials'));
 
-                                repository.remote_push('origin', 'master', function() {
-                                    this.log(chalk.green('  Push commits'));
-                                    done();
+                                    repository.remote_push('origin', 'master', function() {
+                                        this.log(chalk.green('  Push commits'));
+                                        done();
+                                    }.bind(this));
                                 }.bind(this));
                             }.bind(this));
                         }.bind(this));
                     }.bind(this));
-                }.bind(this));
-            }
-        },
+                }
+            },
 
-        install: function() {
-            this.installDependencies({ skipInstall: this.options.skipInstall });
+            install: function() {
+                this.installDependencies({ skipInstall: this.options.skipInstall });
+            }
         },
 
         end: function() {
