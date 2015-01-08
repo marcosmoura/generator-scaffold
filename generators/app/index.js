@@ -356,10 +356,10 @@
 
                     this.log(chalk.yellow('\n \nConfiguring git repository and commiting Scaffold'));
 
-                    gift.init('.', function(err, _repo) {
+                    gift.init('.', function(err, repo) {
                         this.log(chalk.green('  Init GIT repository'));
 
-                        repository = _repo;
+                        repository = repo;
 
                         repository.add('--all', function() {
                             this.log(chalk.green('  Adding all files'));
