@@ -1,6 +1,6 @@
 {
   "name": "generator-scaffold",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Generator to automate the most common tasks in day-to-day of a Front End project",
   "license": "MIT",
   "repository": "marcosmoura/generator-scaffold",
