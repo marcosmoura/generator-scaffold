@@ -9,6 +9,9 @@
         lodashOptions = {
             evaluate: /<#([\s\S]+?)#>/g,
             interpolate: /<#=([\s\S]+?)#>/g
+        },
+        hasComponent = function(component, components) {
+            return components && components.indexOf(component) !== -1;
         };
 
     module.exports = yeoman.generators.Base.extend({
@@ -89,6 +92,46 @@
                         name: 'jQuery',
                         value: 'addjQuery',
                         checked: false
+                    }, {
+                        name: 'Angular',
+                        value: 'addAngular',
+                        checked: false
+                    }]
+                }, {
+                    type: 'checkbox',
+                    name: 'angularPackages',
+                    message: 'What additional modules of Angular you want to include?',
+                    when: function (answers) {
+                        return hasComponent('addAngular', answers.components);
+                    },
+                    choices: [{
+                        name: 'angular-animate',
+                        value: 'angularAnimate',
+                        checked: false
+                    }, {
+                        name: 'angular-cookies',
+                        value: 'angularCookies',
+                        checked: false
+                    }, {
+                        name: 'angular-loader',
+                        value: 'angularLoader',
+                        checked: false
+                    }, {
+                        name: 'angular-resource',
+                        value: 'angularResource',
+                        checked: false
+                    }, {
+                        name: 'angular-sanitize',
+                        value: 'angularSanitize',
+                        checked: false
+                    }, {
+                        name: 'angular-touch',
+                        value: 'angularTouch',
+                        checked: false
+                    }, {
+                        name: 'ui.router',
+                        value: 'uiRouter',
+                        checked: false
                     }]
                 }, {
                     type: 'confirm',
@@ -116,10 +159,6 @@
 
             this.prompt(prompts, function(answers) {
                 var components = answers.components;
-
-                function hasComponent(component) {
-                    return components && components.indexOf(component) !== -1;
-                }
 
                 for(var answer in answers) {
                     this[answer] = answers[answer];
@@ -161,8 +200,17 @@
                         break;
                 }
 
-                this.addModernizr = hasComponent('addModernizr');
-                this.addjQuery = hasComponent('addjQuery');
+                this.addModernizr = hasComponent('addModernizr', components);
+                this.addjQuery = hasComponent('addjQuery', components);
+                this.addAngular = hasComponent('addAngular', components);
+
+                var globals = {
+                    Modernizr: this.addModernizr,
+                    jQuery: this.addjQuery || this.addAngular,
+                    angular: this.addAngular
+                };
+
+                this.globals = JSON.stringify(globals, null, 4);
 
                 this.projectSlug = this._.slugify(this.projectName.toLowerCase());
 
@@ -243,11 +291,45 @@
                 }
             };
 
+            if (this.addAngular) {
+                var components = this.angularPackages;
+
+                bower.dependencies.angular = '~1.3.11';
+
+                if (hasComponent('angularAnimate', components)) {
+                    bower.dependencies['angular-animate'] = 'latest';
+                }
+
+                if (hasComponent('angularCookies', components)) {
+                    bower.dependencies['angular-cookies'] = 'latest';
+                }
+
+                if (hasComponent('angularLoader', components)) {
+                    bower.dependencies['angular-loader'] = 'latest';
+                }
+
+                if (hasComponent('angularResource', components)) {
+                    bower.dependencies['angular-resource'] = 'latest';
+                }
+
+                if (hasComponent('angularSanitize', components)) {
+                    bower.dependencies['angular-sanitize'] = 'latest';
+                }
+
+                if (hasComponent('angularTouch', components)) {
+                    bower.dependencies['angular-touch'] = 'latest';
+                }
+
+                if (hasComponent('uiRouter', components)) {
+                    bower.dependencies['angular-ui-router'] = 'latest';
+                }
+            }
+
             if (!this.needFastclick) {
                 delete bower.dependencies.fastclick;
             }
 
-            if (!this.addjQuery) {
+            if (!this.addjQuery || !this.addAngular) {
                 delete bower.dependencies.jquery;
             }
 

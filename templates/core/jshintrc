@@ -18,8 +18,5 @@
   "trailing": true,
   "smarttabs": true,
   "jquery": true,
-  "globals": {<% if (addModernizr) { %>
-    "Modernizr": true<% } %><% if (addjQuery) { %><% if (addModernizr) { %>,<% } %>
-    "jQuery": true<% } %>
-  }
+  "globals": <%= globals %>
 }
