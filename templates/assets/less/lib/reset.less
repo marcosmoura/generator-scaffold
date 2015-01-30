@@ -44,3 +44,15 @@ img[height] {
 button:focus {
     outline: none;
 }
+
+
+
+/*  Remove extra vertical spacing when nesting lists
+   ========================================================================== */
+
+li {
+    > ul,
+    > ol {
+        margin-bottom: 0;
+    }
+}
