@@ -26,6 +26,18 @@ iframe {
 
 
 
+/*  Remove max-width for google-maps images and for image
+    with explicitly defined attribute
+   ========================================================================== */
+
+.gm-style img,
+img[width],
+img[height] {
+    max-width: none;
+}
+
+
+
 /*  Remove outline from button
    ========================================================================== */
 
