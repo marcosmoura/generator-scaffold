@@ -13,7 +13,7 @@
             scaffold:  {
                 dev: {
                     path: 'dev',
-                    assets: 'dev/assets'<# if (isSinglePage) { #>,
+                    assets: 'dev/assets'<# if (!isSinglePage) { #>,
                     partials: 'dev/partials',
                     templates: 'dev/templates'<# } #>
                 },
