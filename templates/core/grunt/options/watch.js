@@ -36,7 +36,10 @@ module.exports = {
     },
     css: {
         files: ['<%= scaffold.dev.assets %>/css/**/*'],
-        tasks: ['autoprefixer:staging', 'recess']
+        tasks: [
+            'autoprefixer:staging',
+            'recess'
+        ]
     },
     html: {
         files: [
