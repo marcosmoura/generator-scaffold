@@ -6,6 +6,7 @@ module.exports = {
         },
         src: [
             '<%= scaffold.staging.path %>/**/*.html',
+            '!<%= scaffold.staging.path %>/{partials,includes,tpl,hbs}/**/*.html',
             '!<%= scaffold.staging.assets %>/bower/**/*.html'
         ]
     }
