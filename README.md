@@ -29,6 +29,7 @@ This generator is all-in-one and have six versions: Mobile, Web, Responsive, Sin
 * Minify HTML, XML, CSS and JS
 * Configure a new git repository (optional)
 * Increase the project version (optional)
+* Include AngularJS
 * And more...
 
 
@@ -73,6 +74,7 @@ This generator make use of various tools to improve your web development workflo
 * [grunt-imageoptim](https://github.com/JamieMason/grunt-imageoptim) for image optimizing
 * [grunt-modernizr](https://github.com/Modernizr/grunt-modernizr) for leaner Modernizr build
 * [grunt-newer](https://github.com/tschaub/grunt-newer) for faster copy all the files
+* [grunt-ng-annotate](https://github.com/mzgol/grunt-ng-annotate) for add, remove and rebuild AngularJS dependency injection annotations
 * [grunt-notify](https://github.com/dylang/grunt-notify) for notify on your desktop for errors on your code
 * [grunt-prettify](https://github.com/jonschlinkert/grunt-prettify) for prettify the stage code
 * [grunt-recess](https://github.com/sindresorhus/grunt-recess) for lint your css
