@@ -4,7 +4,8 @@ module.exports = function (grunt) {
 
     var jsFiles = [
         'Gruntfile.js',
-        'generators/**/*.js'
+        'generators/**/*.js',
+        'test/**/*.js'
     ];
 
     grunt.initConfig({
