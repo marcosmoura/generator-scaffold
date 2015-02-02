@@ -1,10 +1,13 @@
-/*global describe, beforeEach, it*/
+/*global describe, assert, it */
+
 'use strict';
+
 var assert = require('assert');
 
-describe('scaffold generator', function () {
-  it('can be imported without blowing up', function () {
-    var app = require('../app');
-    assert(app !== undefined);
-  });
+describe('scaffold generator', function() {
+    it('can be imported without blowing up', function() {
+        var app = require('../app');
+
+        assert(app !== undefined);
+    });
 });

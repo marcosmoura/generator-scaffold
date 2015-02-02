@@ -1,21 +1,22 @@
 /*global describe, beforeEach, it */
+
 'use strict';
-var path = require('path');
-var helpers = require('yeoman-generator').test;
 
-describe('scaffold generator', function () {
-  this.timeout(15000);
+var path = require('path'),
+    helpers = require('yeoman-generator').test;
 
-  beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-      if (err) {
-        return done(err);
-      }
+describe('scaffold generator', function() {
+    this.timeout(15000);
 
-      this.app = helpers.createGenerator('scaffold:app', [
-        '../../app'
-      ]);
-      done();
-    }.bind(this));
-  });
+    beforeEach(function(done) {
+        helpers.testDirectory(path.join(__dirname, 'temp'), function(error) {
+            if (error) {
+                return done(error);
+            }
+
+            this.app = helpers.createGenerator('scaffold:app', ['../../app']);
+
+            done();
+        }.bind(this));
+    });
 });
