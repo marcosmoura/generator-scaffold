@@ -10,8 +10,7 @@ module.exports = {
                 '**/*.{txt,json,xml,hbs}',
                 '.htaccess',
                 'assets/**/*',
-                '!assets/**/*.{gitignore,svn,DS_Store}',
-                '!assets/{coffee,resources}/**'
+                '!assets/**/*.{gitignore,svn,DS_Store}'
             ]
         }]
     },
@@ -45,7 +44,7 @@ module.exports = {
                 '.htaccess',
                 'assets/**/*',
                 '!assets/**/*.{gitignore,svn,DS_Store}',
-                '!assets/{less,coffee,resources,js}/**',
+                '!assets/{less,js}/**',
                 '**/*.hbs'
             ]
         }, {
