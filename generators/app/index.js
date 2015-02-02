@@ -323,6 +323,10 @@
                 if (hasComponent('uiRouter', components)) {
                     bower.dependencies['angular-ui-router'] = 'latest';
                 }
+            } else {
+                this.fs.delete(
+                    this.destinationPath('options/ngAnnotate.js')
+                );
             }
 
             if (!this.needFastclick) {
