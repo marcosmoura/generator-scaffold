@@ -11,7 +11,8 @@ module.exports = function (grunt) {
         'modernizr',<% } %>
         'wiredep:build',
         'useminPrepare',
-        'concat',
+        'concat',<% if (addAngular) { %>
+        'ngAnnotate',<% } %>
         'uglify',
         'csso',
         'copy:build',
