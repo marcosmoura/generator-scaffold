@@ -438,36 +438,37 @@
             setupGit: function() {
                 if (this.hasGit) {
                     var repository,
-                        done = this.async();
+                        yo = this,
+                        done = yo.async();
 
-                    this.log(chalk.yellow('\n \nConfiguring git repository and commiting Scaffold'));
+                    yo.(chalk.yellow('\n \nConfiguring git repository and commiting Scaffold'));
 
                     gift.init('.', function(err, repo) {
-                        this.log(chalk.green('  Init GIT repository'));
+                        yo.(chalk.green('  Init GIT repository'));
 
                         repository = repo;
 
                         repository.add('--all', function() {
-                            this.log(chalk.green('  Adding all files'));
+                            yo.(chalk.green('  Adding all files'));
 
                             repository.commit('Add Scaffold', function() {
-                                this.log(chalk.green('  Commiting'));
+                                yo.(chalk.green('  Commiting'));
 
-                                this.spawnCommand('git', ['remote', 'add', 'origin', this.gitUrl]).on('exit', function () {
-                                    this.log(chalk.green('  Add origin remote'));
-                                }.bind(this));
+                                yo.spawnCommand('git', ['remote', 'add', 'origin', yo.gitUrl]).on('exit', function () {
+                                    yo.(chalk.green('  Add origin remote'));
+                                });
 
-                                this.spawnCommand('git', ['config', 'credential.helper', 'store']).on('exit', function () {
-                                    this.log(chalk.green('  Configuring credentials'));
+                                yo.spawnCommand('git', ['config', 'credential.helper', 'store']).on('exit', function () {
+                                    yo.(chalk.green('  Configuring credentials'));
 
                                     repository.remote_push('origin', 'master', function() {
-                                        this.log(chalk.green('  Push commits'));
+                                        yo.(chalk.green('  Push commits'));
                                         done();
-                                    }.bind(this));
-                                }.bind(this));
-                            }.bind(this));
-                        }.bind(this));
-                    }.bind(this));
+                                    });
+                                });
+                            });
+                        });
+                    });
                 }
             },
 
@@ -477,13 +478,13 @@
         },
 
         end: function() {
-            var _this = this,
-                glob = this.spawnCommand('npm', ['install', 'glob']);
+            var yo = this,
+                glob = yo.spawnCommand('npm', ['install', 'glob']);
 
             glob.on('exit', function() {
-                _this.log(chalk.cyan(' \n \n \n All done and no errors! Enjoy! \n \n \n'));
+                yo.log(chalk.cyan(' \n \n \n All done and no errors! Enjoy! \n \n \n'));
 
-                _this.spawnCommand('grunt', ['default']);
+                yo.spawnCommand('grunt', ['default']);
             });
         }
 
