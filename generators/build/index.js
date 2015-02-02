@@ -22,7 +22,7 @@
         },
 
         prompting: function() {
-            var cb = this.async(),
+            var done = this.async(),
                 prompts = [{
                     type: 'confirm',
                     name: 'hasVersion',
@@ -46,7 +46,7 @@
 
                 this.log(chalk.yellow(' \n Perfect! \n \n'));
 
-                cb();
+                done();
             }.bind(this));
         },
 
