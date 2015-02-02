@@ -285,7 +285,7 @@
                 name: this._.slugify(this.projectName.toLowerCase()),
                 dependencies: {
                     'jquery': '~2.1.3',
-                    'fastclick': '~1.0.3',
+                    'fastclick': '~1.0.6',
                     'modernizr': '~2.8.3',
                     'normalize-css': '~3.0.2'
                 }
