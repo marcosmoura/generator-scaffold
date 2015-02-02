@@ -1,4 +1,4 @@
-/*global describe, assert, it */
+/*global describe, it */
 
 'use strict';
 
