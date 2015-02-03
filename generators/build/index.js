@@ -7,7 +7,7 @@
 
     module.exports = yeoman.generators.Base.extend({
 
-        constructor: function () {
+        constructor: function() {
             yeoman.generators.Base.apply(this, arguments);
 
             this.option('skip-welcome');
@@ -34,7 +34,7 @@
                     message: 'What kind of version?',
                     choices: ['Just a fix (Ex: 0.0.1)', 'Minor Version (Ex: 0.1.0)', 'Major Version (Ex: 1.0.0)', 'Pre-release (Ex: 1.0.0-1)'],
                     default: 0,
-                    when: function (answers) {
+                    when: function(answers) {
                         return answers.hasVersion;
                     }
                 }];

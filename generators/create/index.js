@@ -11,7 +11,7 @@
 
     module.exports = yeoman.generators.Base.extend({
 
-        constructor: function () {
+        constructor: function() {
             yeoman.generators.Base.apply(this, arguments);
 
             this.option('skip-welcome');
