@@ -27,11 +27,11 @@
         },
 
         end: function() {
-            var _this = this,
+            var yo = this,
                 glob = this.spawnCommand('npm', ['install', 'glob']);
 
             glob.on('exit', function() {
-                _this.log(chalk.cyan(' \n \n All done and no errors! Enjoy! \n \n'));
+                yo.log(chalk.cyan(' \n \n All done and no errors! Enjoy! \n \n'));
 
                 this.composeWith('scaffold:run', {
                     options: {
