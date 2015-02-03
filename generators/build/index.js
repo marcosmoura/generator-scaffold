@@ -25,17 +25,17 @@
             var done = this.async(),
                 prompts = [{
                     type: 'confirm',
-                    name: 'hasVersion',
+                    name: 'bumpVersion',
                     message: 'This build will increase a version of your project?',
                     default: 0
                 }, {
                     type: 'list',
-                    name: 'versionType',
+                    name: 'bumpType',
                     message: 'What kind of version?',
                     choices: ['Just a fix (Ex: 0.0.1)', 'Minor Version (Ex: 0.1.0)', 'Major Version (Ex: 1.0.0)', 'Pre-release (Ex: 1.0.0-1)'],
                     default: 0,
                     when: function(answers) {
-                        return answers.hasVersion;
+                        return answers.bumpVersion;
                     }
                 }];
 
@@ -51,15 +51,15 @@
         },
 
         writing: function() {
-            if (this.hasVersion) {
+            if (this.bumpVersion) {
                 var done = this.async(),
                     version = 'patch';
 
-                if (this.versionType === 'Minor Version (Ex: 0.1.0)') {
+                if (this.bumpType === 'Minor Version (Ex: 0.1.0)') {
                     version = 'minor';
-                } else if (this.versionType === 'Major Version (Ex: 1.0.0)') {
+                } else if (this.bumpType === 'Major Version (Ex: 1.0.0)') {
                     version = 'major';
-                } else if (this.versionType === 'Pre-release (Ex: 1.0.0-1)') {
+                } else if (this.bumpType === 'Pre-release (Ex: 1.0.0-1)') {
                     version = 'prerelease';
                 }
 
