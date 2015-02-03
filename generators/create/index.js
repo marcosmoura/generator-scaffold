@@ -20,7 +20,7 @@
             scaffold = require('../../scaffold')(this);
 
             if (!this.config.get('hasAssemble')) {
-                this.log(chalk.red('This sub generator won\'t work with a single file project. Aborting...'));
+                scaffold.log('This sub generator won\'t work with a single file project. Aborting...', 'red');
 
                 process.exit();
             }
@@ -68,7 +68,7 @@
 
                 this.pageSlug = this._.slugify(this.projectName);
 
-                this.log(chalk.yellow(' \nGood! Now I will create all files. Wait a sec. \n \n'));
+                scaffold.log(' \nGood! Now I will create all files. Wait a sec. \n \n', 'yellow');
 
                 done();
             }.bind(this));
@@ -117,7 +117,7 @@
         },
 
         end: function() {
-            this.log(chalk.yellow('\n \n All done! \n \n'));
+            scaffold.log('\n \n All done! \n \n', 'yellow');
 
             this.composeWith('scaffold:run', {
                 options: {

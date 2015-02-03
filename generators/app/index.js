@@ -204,7 +204,7 @@
                     'hasAssemble': this.hasAssemble
                 });
 
-                this.log(chalk.yellow(' \nGood! Now I will create and install everything you need. Time to take a coffee! \n \n'));
+                scaffold.log(' \nGood! Now I will create and install everything you need. Time to take a coffee! \n \n', 'yellow');
 
                 done();
             }.bind(this));
@@ -427,28 +427,29 @@
                         yo = this,
                         done = yo.async();
 
-                    yo.log(chalk.yellow('\n \nConfiguring git repository and commiting Scaffold'));
+                    scaffold.log('\n \nConfiguring git repository and commiting Scaffold', 'yellow');
 
                     gift.init('.', function(err, repo) {
-                        yo.log(chalk.green('  Init GIT repository'));
+                        scaffold.log('  Init GIT repository', 'green');
 
                         repository = repo;
 
                         repository.add('--all', function() {
-                            yo.log(chalk.green('  Adding all files'));
+                            scaffold.log('  Adding all files', 'green');
 
                             repository.commit('Add Scaffold', function() {
-                                yo.log(chalk.green('  Commiting'));
+                                scaffold.log('  Commiting', 'green');
 
                                 yo.spawnCommand('git', ['remote', 'add', 'origin', yo.gitUrl]).on('exit', function () {
-                                    yo.log(chalk.green('  Add origin remote'));
+                                    scaffold.log('  Add origin remote', 'green');
                                 });
 
                                 yo.spawnCommand('git', ['config', 'credential.helper', 'store']).on('exit', function () {
-                                    yo.log(chalk.green('  Configuring credentials'));
+                                    scaffold.log('  Configuring credentials', 'green');
 
                                     repository.remote_push('origin', 'master', function() {
-                                        yo.log(chalk.green('  Push commits'));
+                                        scaffold.log('  Push commits', 'green');
+
                                         done();
                                     });
                                 });
@@ -468,7 +469,7 @@
                 glob = yo.spawnCommand('npm', ['install', 'glob']);
 
             glob.on('exit', function() {
-                yo.log(chalk.cyan(' \n \n \n All done and no errors! Enjoy! \n \n \n'));
+                scaffold.log(' \n \n \n All done and no errors! Enjoy! \n \n \n', 'cyan');
 
                 this.composeWith('scaffold:run', {
                     options: {

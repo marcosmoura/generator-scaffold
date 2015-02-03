@@ -40,7 +40,7 @@
         },
 
         end: function() {
-            this.log(chalk.yellow('\n \n All done! Everything looks fine. Good job! \n \n'));
+            scaffold.log('\n \n All done! Everything looks fine. Good job! \n \n', 'yellow');
         }
 
     });

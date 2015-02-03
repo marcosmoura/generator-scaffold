@@ -7,12 +7,12 @@ module.exports = function(yeoman) {
     var scaffold = {};
 
     scaffold.welcomeMessage = function(title, message) {
-        yeoman.log(chalk.cyan('\t \t  ___           __  __     _    _ '));
-        yeoman.log(chalk.cyan('\t \t / __| __ __ _ / _|/ _|___| |__| |'));
-        yeoman.log(chalk.cyan('\t \t \\__ \\/ _/ _` |  _|  _/ _ \\ / _` |'));
-        yeoman.log(chalk.cyan('\t \t |___/\\__\\__,_|_| |_| \\___/_\\__,_| \n'));
-        yeoman.log(chalk.cyan('\t \t [ ' + title + ' ] \n \n'));
-        yeoman.log(chalk.green('' + message + ' \n \n'));
+        scaffold.log('\t \t  ___           __  __     _    _ ', 'cyan');
+        scaffold.log('\t \t / __| __ __ _ / _|/ _|___| |__| |', 'cyan');
+        scaffold.log('\t \t \\__ \\/ _/ _` |  _|  _/ _ \\ / _` |', 'cyan');
+        scaffold.log('\t \t |___/\\__\\__,_|_| |_| \\___/_\\__,_| \n', 'cyan');
+        scaffold.log('\t \t [ ' + title + ' ] \n \n', 'cyan');
+        scaffold.log(message + ' \n \n', 'green');
     };
 
     scaffold.validatePrompt = function(validate) {

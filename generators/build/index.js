@@ -45,7 +45,7 @@
                     this[item] = props[item];
                 }
 
-                this.log(chalk.yellow(' \n Perfect! \n \n'));
+                scaffold.log(' \n Perfect! \n \n', 'yellow');
 
                 done();
             }.bind(this));
@@ -75,7 +75,7 @@
         },
 
         end: function() {
-            this.log(chalk.yellow('\n \n All done! Everything looks fine. Good job! \n \n'));
+            scaffold.log('\n \n All done! Everything looks fine. Good job! \n \n', 'yellow');
         }
 
     });
