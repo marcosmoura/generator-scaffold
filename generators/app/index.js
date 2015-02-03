@@ -189,13 +189,11 @@
                 this.addjQuery = hasComponent('addjQuery', components);
                 this.addAngular = hasComponent('addAngular', components);
 
-                var globals = {
+                this.globals = JSON.stringify({
                     Modernizr: this.addModernizr,
                     jQuery: this.addjQuery || this.addAngular,
                     angular: this.addAngular
-                };
-
-                this.globals = JSON.stringify(globals, null, 4);
+                }, null, 4);
 
                 this.projectSlug = this._.slugify(this.projectName.toLowerCase());
 
