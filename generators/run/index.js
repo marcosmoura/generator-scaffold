@@ -15,7 +15,7 @@
         },
 
         initializing: function() {
-            scaffold.welcomeMessage('       Running project      ', 'Starting development mode. I will start a server with BrowserSync support. :)');
+            scaffold.welcomeMessage('       Running project       ', 'Starting development mode. I will start a server with BrowserSync support. :)');
         },
 
         install: function() {
