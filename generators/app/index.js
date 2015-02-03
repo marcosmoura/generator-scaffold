@@ -470,7 +470,11 @@
             glob.on('exit', function() {
                 yo.log(chalk.cyan(' \n \n \n All done and no errors! Enjoy! \n \n \n'));
 
-                yo.spawnCommand('grunt', ['default']);
+                this.composeWith('scaffold:run', {
+                    options: {
+                        'skip-welcome': true
+                    }
+                });
             });
         }
 

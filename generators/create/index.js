@@ -119,7 +119,11 @@
         end: function() {
             this.log(chalk.yellow('\n \n All done! \n \n'));
 
-            this.composeWith('scaffold:run');
+            this.composeWith('scaffold:run', {
+                options: {
+                    'skip-welcome': true
+                }
+            });
         }
 
     });

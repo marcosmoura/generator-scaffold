@@ -33,7 +33,11 @@
             glob.on('exit', function() {
                 _this.log(chalk.cyan(' \n \n All done and no errors! Enjoy! \n \n'));
 
-                _this.spawnCommand('grunt', ['default']);
+                this.composeWith('scaffold:run', {
+                    options: {
+                        'skip-welcome': true
+                    }
+                });
             });
         }
 
