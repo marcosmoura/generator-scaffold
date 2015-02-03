@@ -5,6 +5,7 @@ module.exports = function (grunt) {
     var jsFiles = [
         'Gruntfile.js',
         'generators/**/*.js',
+        'scaffold/**/*.js',
         'test/**/*.js'
     ];
 
