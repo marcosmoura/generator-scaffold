@@ -27,6 +27,12 @@ module.exports = function(yeoman) {
         done(true);
     };
 
+    scaffold.log = function(log, color) {
+        var logger = chalk[color];
+
+        yeoman.log(logger(log));
+    };
+
     return scaffold;
 
 };
