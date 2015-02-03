@@ -20,11 +20,15 @@
         constructor: function () {
             yeoman.generators.Base.apply(this, arguments);
 
+            this.option('skip-welcome');
+
             scaffold = require('../../scaffold')(this);
         },
 
         initTask: function() {
-            scaffold.welcomeMessage('Welcome to Scaffold Generator', 'I will guide you to generate your best workflow. Come with me...');
+            if (!this.options['skip-welcome']) {
+                scaffold.welcomeMessage('Welcome to Scaffold Generator', 'I will guide you to generate your best workflow. Come with me...');
+            }
         },
 
         promptTask: function() {

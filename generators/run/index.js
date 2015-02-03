@@ -11,11 +11,15 @@
         constructor: function () {
             yeoman.generators.Base.apply(this, arguments);
 
+            this.option('skip-welcome');
+
             scaffold = require('../../scaffold')(this);
         },
 
         initializing: function() {
-            scaffold.welcomeMessage('       Running project       ', 'Starting development mode. I will start a server with BrowserSync support. :)');
+            if (!this.options['skip-welcome']) {
+                scaffold.welcomeMessage('       Running project       ', 'Starting development mode. I will start a server with BrowserSync support. :)');
+            }
         },
 
         install: function() {

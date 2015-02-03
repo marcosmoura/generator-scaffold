@@ -11,11 +11,15 @@
         constructor: function () {
             yeoman.generators.Base.apply(this, arguments);
 
+            this.option('skip-welcome');
+
             scaffold = require('../../scaffold')(this);
         },
 
         initializing: function() {
-            scaffold.welcomeMessage('       Generating Build      ', 'Wait until build finish. I will create a zip file with all contents of your project. \nChoose below if this build means a new version and what type.');
+            if (!this.options['skip-welcome']) {
+                scaffold.welcomeMessage('       Generating Build      ', 'Wait until build finish. I will create a zip file with all contents of your project. \nChoose below if this build means a new version and what type.');
+            }
         },
 
         prompting: function() {

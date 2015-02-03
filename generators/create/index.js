@@ -15,6 +15,8 @@
         constructor: function () {
             yeoman.generators.Base.apply(this, arguments);
 
+            this.option('skip-welcome');
+
             scaffold = require('../../scaffold')(this);
 
             if (!this.config.get('hasAssemble')) {
@@ -25,7 +27,9 @@
         },
 
         initializing: function() {
-            scaffold.welcomeMessage('        Creating Page        ', 'This is a guide to create a new page for assemble template. It also include a less file.');
+            if (!this.options['skip-welcome']) {
+                scaffold.welcomeMessage('        Creating Page        ', 'This is a guide to create a new page for assemble template. It also include a less file.');
+            }
         },
 
         promptTask: function() {

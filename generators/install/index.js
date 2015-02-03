@@ -11,11 +11,15 @@
         constructor: function () {
             yeoman.generators.Base.apply(this, arguments);
 
+            this.option('skip-welcome');
+
             scaffold = require('../../scaffold')(this);
         },
 
         initializing: function() {
-            scaffold.welcomeMessage('     Install Dependencies    ', 'I will install all NPM and Bower dependencies. This may take a while. Go grab a coffee!');
+            if (!this.options['skip-welcome']) {
+                scaffold.welcomeMessage('     Install Dependencies    ', 'I will install all NPM and Bower dependencies. This may take a while. Go grab a coffee!');
+            }
         },
 
         install: function() {
