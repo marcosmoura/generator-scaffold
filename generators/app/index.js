@@ -197,6 +197,8 @@
 
                 this.projectSlug = this._.slugify(this.projectName.toLowerCase());
 
+                this.pageSlug = 'index';
+
                 this.config.set({
                     'hasAssemble': this.hasAssemble
                 });
