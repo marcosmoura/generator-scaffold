@@ -3,22 +3,19 @@
     'use strict';
 
     var yeoman = require('yeoman-generator'),
-        chalk = require('chalk');
+        chalk = require('chalk'),
+        scaffold = {};
 
     module.exports = yeoman.generators.Base.extend({
 
         constructor: function () {
             yeoman.generators.Base.apply(this, arguments);
+
+            scaffold = require('../../scaffold')(this);
         },
 
         initializing: function() {
-            this.log(chalk.cyan('\t \t  ___           __  __     _    _ '));
-            this.log(chalk.cyan('\t \t / __| __ __ _ / _|/ _|___| |__| |'));
-            this.log(chalk.cyan('\t \t \\__ \\/ _/ _` |  _|  _/ _ \\ / _` |'));
-            this.log(chalk.cyan('\t \t |___/\\__\\__,_|_| |_| \\___/_\\__,_| \n'));
-            this.log(chalk.cyan('\t \t [        Generating Build       ] \n \n'));
-            this.log(chalk.green('Wait until build finish. I will create a zip file with all contents of your project.\n'));
-            this.log(chalk.green('Choose below if this build means a new version and what type. \n \n'));
+            scaffold.welcomeMessage('       Generating Build      ', 'Wait until build finish. I will create a zip file with all contents of your project.\n Choose below if this build means a new version and what type.');
         },
 
         prompting: function() {

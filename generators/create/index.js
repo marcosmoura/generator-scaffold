@@ -6,6 +6,7 @@
         chalk = require('chalk'),
         fs = require('fs'),
         path = require('path'),
+        scaffold = {},
         mainPath = '',
         main = '';
 
@@ -13,6 +14,8 @@
 
         constructor: function () {
             yeoman.generators.Base.apply(this, arguments);
+
+            scaffold = require('../../scaffold')(this);
 
             if (!this.config.get('hasAssemble')) {
                 this.log(chalk.red('This sub generator won\'t work with a single file project. Aborting. \n'));
@@ -23,12 +26,7 @@
 
         initializing: function() {
             if (this.config.get('hasAssemble')) {
-                this.log(chalk.cyan('\t \t  ___           __  __     _    _ '));
-                this.log(chalk.cyan('\t \t / __| __ __ _ / _|/ _|___| |__| |'));
-                this.log(chalk.cyan('\t \t \\__ \\/ _/ _` |  _|  _/ _ \\ / _` |'));
-                this.log(chalk.cyan('\t \t |___/\\__\\__,_|_| |_| \\___/_\\__,_| \n'));
-                this.log(chalk.cyan('\t \t [         Creating Page         ] \n \n'));
-                this.log(chalk.green('This is a guide to create a new page for assemble template. It also include a less file. \n \n'));
+                scaffold.welcomeMessage('        Creating Page        ', 'This is a guide to create a new page for assemble template. It also include a less file.');
             }
         },
 
