@@ -18,9 +18,9 @@
             scaffold = require('../../scaffold')(this);
 
             if (!this.config.get('hasAssemble')) {
-                this.log(chalk.red('This sub generator won\'t work with a single file project. Aborting. \n'));
+                this.log(chalk.red('This sub generator won\'t work with a single file project. Aborting...'));
 
-                return false;
+                process.exit();
             }
         },
 
