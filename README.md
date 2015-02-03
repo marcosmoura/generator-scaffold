@@ -40,7 +40,8 @@ This generator is all-in-one and have six versions: Mobile, Web, Responsive, Sin
 * Install: `npm install -g generator-scaffold`
 * To init your project: `yo scaffold` and follow all the steps on the screen.
 * To start the server and develop your app: `yo scaffold:run`
-* To generate a build: `yo scaffold:build`
+* To build your project: `yo scaffold:build`
+* To view the build in browser: `yo scaffold:run build`
 
 ![Scaffold](http://marcosmoura.com/scaffold.png)
 
