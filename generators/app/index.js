@@ -97,11 +97,11 @@
                     choices: [{
                         name: 'angular-animate',
                         value: 'angularAnimate',
-                        checked: false
+                        checked: true
                     }, {
                         name: 'angular-cookies',
                         value: 'angularCookies',
-                        checked: false
+                        checked: true
                     }, {
                         name: 'angular-loader',
                         value: 'angularLoader',
@@ -121,7 +121,7 @@
                     }, {
                         name: 'ui.router',
                         value: 'uiRouter',
-                        checked: false
+                        checked: true
                     }]
                 }, {
                     type: 'confirm',
