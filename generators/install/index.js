@@ -26,9 +26,9 @@
         },
 
         end: function() {
-            var glob = this.spawnCommand('npm', ['install', 'glob']);
+            var installGlob = this.spawnCommand('npm', ['install', 'glob']);
 
-            glob.on('exit', function() {
+            installGlob.on('exit', function() {
                 scaffold.log(' \n \n All done and no errors! Enjoy! \n \n', 'cyan');
 
                 this.composeWith('scaffold:run', {
