@@ -3,7 +3,6 @@
     'use strict';
 
     var yeoman = require('yeoman-generator'),
-        chalk = require('chalk'),
         path = require('path'),
         gift = require('gift'),
         scaffold = {},

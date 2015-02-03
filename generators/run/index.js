@@ -3,7 +3,6 @@
     'use strict';
 
     var yeoman = require('yeoman-generator'),
-        chalk = require('chalk'),
         scaffold = {};
 
     module.exports = yeoman.generators.Base.extend({
