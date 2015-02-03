@@ -34,43 +34,31 @@
                     name: 'projectName',
                     message: 'What is the name of your project?',
                     validate: function(input) {
-                        var done = this.async();
-
-                        if (input.trim() === '') {
-                            done('Hey dude! You forgot to enter the project name!');
-
-                            return;
-                        }
-
-                        done(true);
+                        scaffold.validatePrompt({
+                            done: this.async(),
+                            input: input,
+                            message: 'Hey dude! You forgot to enter the project name!'
+                        });
                     }
                 }, {
                     name: 'projectDescription',
                     message: 'What is the description?',
                     validate: function(input) {
-                        var done = this.async();
-
-                        if (input.trim() === '') {
-                            done('You forgot the description. Write here.');
-
-                            return;
-                        }
-
-                        done(true);
+                        scaffold.validatePrompt({
+                            done: this.async(),
+                            input: input,
+                            message: 'You forgot the description. Write here.'
+                        });
                     }
                 }, {
                     name: 'projectMember',
                     message: 'What are people going to work on this project? (Separated by commas)',
                     validate: function(input) {
-                        var done = this.async();
-
-                        if (input.trim() === '') {
-                            done('Hey man. Who will work with you on this? Write separating the names with commas.');
-
-                            return;
-                        }
-
-                        done(true);
+                        scaffold.validatePrompt({
+                            done: this.async(),
+                            input: input,
+                            message: 'Hey man. Who will work with you on this? Write separating the names with commas.'
+                        });
                     }
                 }, {
                     type: 'list',
@@ -143,15 +131,11 @@
                         return answers.hasGit;
                     },
                     validate: function(input) {
-                        var done = this.async();
-
-                        if (input.trim() === '') {
-                            done('Hey. Paste that URL dude!');
-
-                            return;
-                        }
-
-                        done(true);
+                        scaffold.validatePrompt({
+                            done: this.async(),
+                            input: input,
+                            message: 'Hey. Paste that URL dude!'
+                        });
                     }
                 }];
 

@@ -37,29 +37,21 @@
                         name: 'projectName',
                         message: 'Page name:',
                         validate: function(input) {
-                            var done = this.async();
-
-                            if (input.trim() === '') {
-                                done('Hey dude! You forgot to enter the page name!');
-
-                                return;
-                            }
-
-                            done(true);
+                            scaffold.validatePrompt({
+                                done: this.async(),
+                                input: input,
+                                message: 'Hey dude! You forgot to enter the page name!'
+                            });
                         }
                     }, {
                         name: 'projectDescription',
                         message: 'Page description:',
                         validate: function(input) {
-                            var done = this.async();
-
-                            if (input.trim() === '') {
-                                done('Hey dude! You forgot to enter the project Description!');
-
-                                return;
-                            }
-
-                            done(true);
+                            scaffold.validatePrompt({
+                                done: this.async(),
+                                input: input,
+                                message: 'Hey dude! You forgot to enter the project Description!'
+                            });
                         }
                     }, {
                         type: 'confirm',

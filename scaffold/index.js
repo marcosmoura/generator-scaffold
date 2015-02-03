@@ -15,6 +15,18 @@ module.exports = function(yeoman) {
         yeoman.log(chalk.green('' + message + ' \n \n'));
     };
 
+    scaffold.validatePrompt = function(validate) {
+        var done = validate.done;
+
+        if (validate.input.trim() === '') {
+            done(validate.message);
+
+            return;
+        }
+
+        done(true);
+    };
+
     return scaffold;
 
 };
