@@ -16,7 +16,7 @@
 
     module.exports = yeoman.generators.Base.extend({
 
-        constructor: function () {
+        constructor: function() {
             yeoman.generators.Base.apply(this, arguments);
 
             this.option('skip-welcome');
@@ -90,7 +90,7 @@
                     type: 'checkbox',
                     name: 'angularPackages',
                     message: 'What additional modules of Angular you want to include?',
-                    when: function (answers) {
+                    when: function(answers) {
                         return hasComponent('addAngular', answers.components);
                     },
                     choices: [{
@@ -130,7 +130,7 @@
                 }, {
                     name: 'gitUrl',
                     message: 'What is the git repository of the project? (Paste repository URL)',
-                    when: function (answers) {
+                    when: function(answers) {
                         return answers.hasGit;
                     },
                     validate: function(input) {
@@ -209,7 +209,7 @@
             }.bind(this));
         },
 
-        corePath: function () {
+        corePath: function() {
             this.sourceRoot(path.join(__dirname, '../../templates/core/'));
         },
 
@@ -349,7 +349,7 @@
             }
         },
 
-        devPath: function () {
+        devPath: function() {
             this.sourceRoot(path.join(__dirname, '../../templates/', this.projectType));
         },
 
@@ -413,11 +413,11 @@
                             repository.commit('Add Scaffold', function() {
                                 scaffold.log('  Commiting', 'green');
 
-                                yo.spawnCommand('git', ['remote', 'add', 'origin', yo.gitUrl]).on('exit', function () {
+                                yo.spawnCommand('git', ['remote', 'add', 'origin', yo.gitUrl]).on('exit', function() {
                                     scaffold.log('  Add origin remote', 'green');
                                 });
 
-                                yo.spawnCommand('git', ['config', 'credential.helper', 'store']).on('exit', function () {
+                                yo.spawnCommand('git', ['config', 'credential.helper', 'store']).on('exit', function() {
                                     scaffold.log('  Configuring credentials', 'green');
 
                                     repository.remote_push('origin', 'master', function() {
