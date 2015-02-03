@@ -441,28 +441,28 @@
                         yo = this,
                         done = yo.async();
 
-                    yo.(chalk.yellow('\n \nConfiguring git repository and commiting Scaffold'));
+                    yo.log(chalk.yellow('\n \nConfiguring git repository and commiting Scaffold'));
 
                     gift.init('.', function(err, repo) {
-                        yo.(chalk.green('  Init GIT repository'));
+                        yo.log(chalk.green('  Init GIT repository'));
 
                         repository = repo;
 
                         repository.add('--all', function() {
-                            yo.(chalk.green('  Adding all files'));
+                            yo.log(chalk.green('  Adding all files'));
 
                             repository.commit('Add Scaffold', function() {
-                                yo.(chalk.green('  Commiting'));
+                                yo.log(chalk.green('  Commiting'));
 
                                 yo.spawnCommand('git', ['remote', 'add', 'origin', yo.gitUrl]).on('exit', function () {
-                                    yo.(chalk.green('  Add origin remote'));
+                                    yo.log(chalk.green('  Add origin remote'));
                                 });
 
                                 yo.spawnCommand('git', ['config', 'credential.helper', 'store']).on('exit', function () {
-                                    yo.(chalk.green('  Configuring credentials'));
+                                    yo.log(chalk.green('  Configuring credentials'));
 
                                     repository.remote_push('origin', 'master', function() {
-                                        yo.(chalk.green('  Push commits'));
+                                        yo.log(chalk.green('  Push commits'));
                                         done();
                                     });
                                 });
