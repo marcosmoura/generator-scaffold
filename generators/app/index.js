@@ -95,31 +95,31 @@
                     },
                     choices: [{
                         name: 'angular-animate',
-                        value: 'angularAnimate',
+                        value: 'angular-animate',
                         checked: true
                     }, {
                         name: 'angular-cookies',
-                        value: 'angularCookies',
+                        value: 'angular-cookies',
                         checked: true
                     }, {
                         name: 'angular-loader',
-                        value: 'angularLoader',
+                        value: 'angular-loader',
                         checked: false
                     }, {
                         name: 'angular-resource',
-                        value: 'angularResource',
+                        value: 'angular-resource',
                         checked: false
                     }, {
                         name: 'angular-sanitize',
-                        value: 'angularSanitize',
+                        value: 'angular-sanitize',
                         checked: false
                     }, {
                         name: 'angular-touch',
-                        value: 'angularTouch',
+                        value: 'angular-touch',
                         checked: false
                     }, {
                         name: 'ui.router',
-                        value: 'uiRouter',
+                        value: 'ui.router',
                         checked: true
                     }]
                 }, {
@@ -277,36 +277,10 @@
             };
 
             if (this.addAngular) {
-                var components = this.angularPackages;
-
                 bower.dependencies.angular = '~1.3.11';
 
-                if (hasComponent('angularAnimate', components)) {
-                    bower.dependencies['angular-animate'] = 'latest';
-                }
-
-                if (hasComponent('angularCookies', components)) {
-                    bower.dependencies['angular-cookies'] = 'latest';
-                }
-
-                if (hasComponent('angularLoader', components)) {
-                    bower.dependencies['angular-loader'] = 'latest';
-                }
-
-                if (hasComponent('angularResource', components)) {
-                    bower.dependencies['angular-resource'] = 'latest';
-                }
-
-                if (hasComponent('angularSanitize', components)) {
-                    bower.dependencies['angular-sanitize'] = 'latest';
-                }
-
-                if (hasComponent('angularTouch', components)) {
-                    bower.dependencies['angular-touch'] = 'latest';
-                }
-
-                if (hasComponent('uiRouter', components)) {
-                    bower.dependencies['angular-ui-router'] = 'latest';
+                for (var item in this.angularPackages) {
+                    bower.dependencies[this.angularPackages[item]] = 'latest';
                 }
             } else {
                 this.fs.delete(
