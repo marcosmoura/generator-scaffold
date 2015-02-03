@@ -11,7 +11,7 @@
   },
   "engines": {
     "node": ">=0.10.0",
-    "npm": ">=1.2.10"
+    "npm": ">=2.0.0"
   },
   "scripts": {
     "test": "grunt test --verbose"
