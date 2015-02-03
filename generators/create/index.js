@@ -96,7 +96,7 @@
         main: function() {
             fs.unlinkSync(mainPath);
 
-            main += '@import \'pages/' + this.pageSlug +'\'\n';
+            main += '@import \'pages/' + this.pageSlug +'\';\n';
 
             this.fs.write(mainPath, main);
         },
