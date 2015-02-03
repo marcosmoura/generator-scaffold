@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         'newer:copy:stagingHtml',<% } %>
         'prettify',
         'wiredep:staging',
-        'browserSync',
+        'browserSync:staging',
         'watch'
     ]);
 };

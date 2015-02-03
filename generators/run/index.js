@@ -13,6 +13,11 @@
 
             this.option('skip-welcome');
 
+            this.argument('runType', {
+                type: String,
+                required: false
+            });
+
             scaffold = require('../../scaffold')(this);
         },
 
@@ -24,6 +29,12 @@
 
         install: function() {
             var done = this.async();
+
+            if (this.runType.toLowerCase() === 'build') {
+                this.spawnCommand('grunt', ['serve']).on('exit', done);
+
+                return false;
+            }
 
             this.spawnCommand('grunt', ['default']).on('exit', done);
         },
