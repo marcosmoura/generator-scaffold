@@ -23,7 +23,7 @@
                 prompts = [{
                     type: 'confirm',
                     name: 'hasVersion',
-                    message: 'This will increase a version of your project?',
+                    message: 'This build will increase a version of your project?',
                     default: 0
                 }, {
                     type: 'list',
