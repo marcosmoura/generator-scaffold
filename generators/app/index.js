@@ -138,7 +138,7 @@
                         scaffold.validatePrompt({
                             done: this.async(),
                             input: input,
-                            message: 'Hey. Paste that URL dude!'
+                            message: 'Hey. Paste that URL!'
                         });
                     }
                 }];
