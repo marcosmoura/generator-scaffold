@@ -29,7 +29,7 @@
         install: function() {
             var done = this.async();
 
-            if (typeof this.runType !== undefined && this.runType.toLowerCase() === 'build') {
+            if (this.runType.toLowerCase() === 'build') {
                 this.spawnCommand('grunt', ['serve']).on('exit', done);
 
                 return false;
