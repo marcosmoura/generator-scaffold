@@ -439,12 +439,12 @@
 
         end: function() {
             var yo = this,
-                glob = yo.spawnCommand('npm', ['install', 'glob']);
+                installGlob = yo.spawnCommand('npm', ['install', 'glob']);
 
-            glob.on('exit', function() {
+            installGlob.on('exit', function() {
                 scaffold.log(' \n \n \n All done and no errors! Enjoy! \n \n \n', 'cyan');
 
-                this.composeWith('scaffold:run', {
+                yo.composeWith('scaffold:run', {
                     options: {
                         'skip-welcome': true
                     }
