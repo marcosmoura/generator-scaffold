@@ -118,8 +118,8 @@
                         value: 'angular-touch',
                         checked: false
                     }, {
-                        name: 'ui.router',
-                        value: 'ui.router',
+                        name: 'ui-router',
+                        value: 'ui-router',
                         checked: true
                     }]
                 }, {
