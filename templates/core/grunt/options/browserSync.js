@@ -1,4 +1,25 @@
 module.exports = {
+    options: {
+            notify: false,
+            logLevel: 'silent',
+            port: 9000,
+            ghostMode: {
+                clicks: true,
+                scroll: true,
+                links: true,
+                forms: true
+            },
+            ui: {
+                port: 9001,
+                weinre: {
+                    port: 9002
+                }
+            },
+            watchTask: true,
+            watchOptions: {
+                debounceDelay: 500
+            }
+    },
     staging: {
         bsFiles: {
             src: [
@@ -7,23 +28,8 @@ module.exports = {
             ]
         },
         options: {
-            scrollProportionally: true,
-            notify: false,
-            logLevel: 'silent',
             server: {
                 baseDir: '<%= scaffold.staging.path %>'
-            },
-            ghostMode: {
-                clicks: true,
-                scroll: true,
-                links: true,
-                forms: true
-            },
-            reloadDelay: 1000,
-            port: 9000,
-            watchTask: true,
-            watchOptions: {
-                debounceDelay: 500
             }
         }
     },
@@ -35,23 +41,8 @@ module.exports = {
             ]
         },
         options: {
-            scrollProportionally: true,
-            notify: false,
-            logLevel: 'silent',
             server: {
                 baseDir: '<%= scaffold.build.path %>'
-            },
-            ghostMode: {
-                clicks: true,
-                scroll: true,
-                links: true,
-                forms: true
-            },
-            reloadDelay: 1000,
-            port: 9000,
-            watchTask: true,
-            watchOptions: {
-                debounceDelay: 500
             }
         }
     }
