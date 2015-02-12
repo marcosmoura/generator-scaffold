@@ -41,6 +41,8 @@
         },
 
         end: function() {
+            scaffold.log('Running...\n', 'yellow');
+
             if (this.isBuild) {
                 this.spawnCommand('grunt', ['serve']);
 
