@@ -35,6 +35,12 @@
         },
 
         install: function() {
+            scaffold.log('Installing Bower dependencies...', 'yellow');
+
+            this.bowerInstall('', this.async);
+        },
+
+        end: function() {
             if (this.isBuild) {
                 this.spawnCommand('grunt', ['serve']);
 
