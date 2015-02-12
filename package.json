@@ -24,10 +24,13 @@
     "scaffold",
     "node",
     "front-end",
+    "frontend",
     "h5bp",
     "bower",
     "modernizr",
     "jquery",
+    "single-page",
+    "angular",
     "grunt"
   ],
   "dependencies": {
