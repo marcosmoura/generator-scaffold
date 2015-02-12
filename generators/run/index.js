@@ -35,7 +35,7 @@
         },
 
         install: function() {
-            scaffold.log('Installing Bower dependencies...', 'yellow');
+            scaffold.log('Installing Bower dependencies...\n', 'yellow');
 
             this.bowerInstall('', this.async);
         },
