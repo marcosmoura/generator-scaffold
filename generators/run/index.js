@@ -18,6 +18,8 @@
             });
 
             scaffold = require('../../scaffold')(this);
+
+            this.isBuild = typeof this.runType !== 'undefined' && this.runType.toLowerCase() === 'build';
         },
 
         initializing: function() {
@@ -27,7 +29,7 @@
         },
 
         install: function() {
-            if (typeof this.runType !== 'undefined' && this.runType.toLowerCase() === 'build') {
+            if (this.isBuild) {
                 this.spawnCommand('grunt', ['serve']);
 
                 return false;
