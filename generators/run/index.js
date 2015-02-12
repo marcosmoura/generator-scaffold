@@ -44,12 +44,16 @@
             scaffold.log('Running...\n', 'yellow');
 
             if (this.isBuild) {
-                this.spawnCommand('grunt', ['serve']);
+                this.spawnCommand('grunt', ['serve'], {
+                    stdio: 'inherit'
+                });
 
                 return false;
             }
 
-            this.spawnCommand('grunt', ['default']);
+            this.spawnCommand('grunt', ['default'], {
+                stdio: 'inherit'
+            });
         }
 
     });
