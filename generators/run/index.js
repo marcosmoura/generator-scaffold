@@ -27,15 +27,13 @@
         },
 
         install: function() {
-            var done = this.async();
-
             if (typeof this.runType !== 'undefined' && this.runType.toLowerCase() === 'build') {
-                this.spawnCommand('grunt', ['serve']).on('exit', done);
+                this.spawnCommand('grunt', ['serve']);
 
                 return false;
             }
 
-            this.spawnCommand('grunt', ['default']).on('exit', done);
+            this.spawnCommand('grunt', ['default']);
         }
 
     });
