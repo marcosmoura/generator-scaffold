@@ -23,8 +23,14 @@
         },
 
         initializing: function() {
+            var message = 'Starting development mode. I will start a server with BrowserSync support. :)';
+
+            if (this.isBuild) {
+                message = 'Starting build view. I will start a server with BrowserSync support. :)';
+            }
+
             if (!this.options['skip-welcome']) {
-                scaffold.welcomeMessage('       Running project       ', 'Starting development mode. I will start a server with BrowserSync support. :)');
+                scaffold.welcomeMessage('       Running project       ', message);
             }
         },
 
