@@ -36,10 +36,6 @@
             }
 
             this.spawnCommand('grunt', ['default']).on('exit', done);
-        },
-
-        end: function() {
-            scaffold.log('\n \n All done! Everything looks fine. Good job! \n \n', 'yellow');
         }
 
     });
