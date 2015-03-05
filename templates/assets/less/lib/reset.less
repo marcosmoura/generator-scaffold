@@ -1,3 +1,19 @@
+/*  Apply the border-box box model to HTML and inheriting
+    to all children elements
+   ========================================================================== */
+
+html {
+    box-sizing: border-box;
+
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
+}
+
+
+
 /*  Always hide an element when it has the `hidden` HTML attribute.
    ========================================================================== */
 
