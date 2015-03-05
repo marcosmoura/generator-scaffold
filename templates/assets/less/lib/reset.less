@@ -42,6 +42,20 @@ iframe {
 
 
 
+/*  Remove figure extra margin introduced by Normalize
+   ========================================================================== */
+
+figure {
+    margin-right: auto;
+    margin-left: auto;
+
+    > img {
+        display: block;
+    }
+}
+
+
+
 /*  Remove max-width for google-maps images and for image with
     explicitly defined attribute
    ========================================================================== */
