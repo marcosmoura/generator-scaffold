@@ -277,7 +277,7 @@
             };
 
             if (this.addAngular) {
-                bower.dependencies.angular = '~1.3.11';
+                bower.dependencies.angular = '~1.3.14';
 
                 for (var item in this.angularPackages) {
                     bower.dependencies[this.angularPackages[item]] = 'latest';
