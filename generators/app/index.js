@@ -32,7 +32,14 @@
 
         promptTask: function() {
             var done = this.async(),
-                choices = ['Mobile Only', 'Web Only', 'Responsive', 'Single Page', 'Single Page Mobile', 'Single Page Responsive'],
+                choices = [
+                    'Mobile Only',
+                    'Web Only',
+                    'Responsive',
+                    'Single Page',
+                    'Single Page Mobile',
+                    'Single Page Responsive'
+                ],
                 prompts = [{
                     name: 'projectName',
                     message: 'What is the name of your project?',
