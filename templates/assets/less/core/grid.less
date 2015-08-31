@@ -44,7 +44,7 @@
 @{column-class} {
     float: left;
 
-    + & {
+    + @{column-class} {
         margin-left: @total-width*(@gutter-width/@gridsystem-width);
     }
 }
