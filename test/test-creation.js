@@ -1,22 +1,22 @@
 /*global describe, beforeEach */
 
-'use strict';
+import path from 'path';
+import { test as helpers } from 'yeoman-generator';
 
-var path = require('path'),
-    helpers = require('yeoman-generator').test;
+describe('scaffold generator', () => {
+    let self = this;
 
-describe('scaffold generator', function() {
     this.timeout(15000);
 
-    beforeEach(function(done) {
-        helpers.testDirectory(path.join(__dirname, 'temp'), function(error) {
+    beforeEach((done) => {
+        helpers.testDirectory(path.join(__dirname, 'temp'), (error) => {
             if (error) {
                 return done(error);
             }
 
-            this.app = helpers.createGenerator('scaffold:app', ['../../app']);
+            self.app = helpers.createGenerator('scaffold:app', ['../../app']);
 
             done();
-        }.bind(this));
+        });
     });
 });

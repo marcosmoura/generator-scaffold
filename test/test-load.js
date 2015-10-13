@@ -1,12 +1,10 @@
 /*global describe, it */
 
-'use strict';
+import assert from 'assert';
 
-var assert = require('assert');
-
-describe('scaffold generator', function() {
-    it('can be imported without blowing up', function() {
-        var app = require('../app');
+describe('scaffold generator', () => {
+    it('can be imported without blowing up', () => {
+        let app = require('../app');
 
         assert(app !== undefined);
     });
