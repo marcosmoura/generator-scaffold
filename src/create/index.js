@@ -13,7 +13,7 @@ export default class thisGenerator extends Core {
         this.option('skip-welcome');
 
         if (!this.config.get('hasAssemble')) {
-            this.log('This sub generator won\'t work with a single file project. Aborting...', 'red');
+            this.logger('This sub generator won\'t work with a single file project. Aborting...', 'red');
 
             process.exit();
         }
@@ -62,7 +62,7 @@ export default class thisGenerator extends Core {
 
             self.pageSlug = slug(self.projectName);
 
-            self.log(' \nGood! Now I will create all files. Wait a sec. \n \n', 'yellow');
+            self.logger(' \nGood! Now I will create all files. Wait a sec. \n \n', 'yellow');
 
             done();
         });
@@ -111,7 +111,7 @@ export default class thisGenerator extends Core {
     }
 
     end() {
-        this.log('\n \n All done! \n \n', 'yellow');
+        this.logger('\n \n All done! \n \n', 'yellow');
 
         this.composeWith('scaffold:run', {
             options: {

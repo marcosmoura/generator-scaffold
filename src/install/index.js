@@ -23,7 +23,7 @@ export default class thisGenerator extends Core {
         let installGlob = this.spawnCommand('npm', ['install', 'glob']);
 
         installGlob.on('exit', () => {
-            self.log(' \n \n All done and no errors! Enjoy! \n \n', 'cyan');
+            self.logger(' \n \n All done and no errors! Enjoy! \n \n', 'cyan');
 
             self.composeWith('scaffold:run', {
                 options: {

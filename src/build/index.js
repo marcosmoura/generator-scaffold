@@ -38,7 +38,7 @@ export default class thisGenerator extends Core {
                 self[item] = props[item];
             }
 
-            self.log(' \n Perfect! \n \n', 'yellow');
+            self.logger(' \n Perfect! \n \n', 'yellow');
 
             done();
         });
@@ -68,7 +68,7 @@ export default class thisGenerator extends Core {
     }
 
     end() {
-        this.log('\n \n All done! Everything looks fine. Good job! \n \n', 'yellow');
+        this.logger('\n \n All done! Everything looks fine. Good job! \n \n', 'yellow');
     }
 
 }
