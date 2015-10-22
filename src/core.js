@@ -32,7 +32,7 @@ export default class ScaffoldCore extends Base {
             return;
         }
 
-        validate.done(true);
+        validate.done();
     }
 
     hasComponent(component, components) {

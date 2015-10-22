@@ -21,125 +21,83 @@ export default class ScaffoldGenerator extends Core {
     promptTask() {
         let self = this;
         let done = this.async();
-        let choices = [
-            'Mobile Only',
-            'Web Only',
-            'Responsive',
-            'Single Page',
-            'Single Page Mobile',
-            'Single Page Responsive'
-        ];
-        let prompts = [{
-            name: 'projectName',
-            message: 'What is the name of your project?',
-            validate: (input) => {
-                self.validatePrompt({
-                    done: this.async(),
-                    input: input,
-                    message: 'Hey dude! You forgot to enter the project name!'
-                });
-            }
-        }, {
-            name: 'projectDescription',
-            message: 'What is the description?',
-            validate: (input) => {
-                self.validatePrompt({
-                    done: this.async(),
-                    input: input,
-                    message: 'You forgot the description. Write here.'
-                });
-            }
-        }, {
-            name: 'projectMember',
-            message: 'What are people going to work on this project? (Separated by commas)',
-            validate: (input) => {
-                self.validatePrompt({
-                    done: this.async(),
-                    input: input,
-                    message: 'Hey man. Who will work with you on this? Write separating the names with commas.'
-                });
-            }
-        }, {
-            type: 'list',
-            name: 'projectType',
-            message: 'What kind of project?',
-            choices: choices,
-            default: 0
-        }, {
-            type: 'checkbox',
-            name: 'components',
-            message: 'What components do you like to include?',
-            choices: [{
-                name: 'Modernizr',
-                value: 'addModernizr',
-                checked: true
-            }, {
-                name: 'jQuery',
-                value: 'addjQuery',
-                checked: false
-            }, {
-                name: 'Angular',
-                value: 'addAngular',
-                checked: false
-            }]
-        }, {
-            type: 'checkbox',
-            name: 'angularPackages',
-            message: 'What additional modules of Angular you want to include?',
-            when: (answers) => {
-                return self.hasComponent('addAngular', answers.components);
-            },
-            choices: [{
-                name: 'angular-animate',
-                value: 'angular-animate',
-                checked: true
-            }, {
-                name: 'angular-cookies',
-                value: 'angular-cookies',
-                checked: true
-            }, {
-                name: 'angular-loader',
-                value: 'angular-loader',
-                checked: false
-            }, {
-                name: 'angular-resource',
-                value: 'angular-resource',
-                checked: false
-            }, {
-                name: 'angular-sanitize',
-                value: 'angular-sanitize',
-                checked: false
-            }, {
-                name: 'angular-touch',
-                value: 'angular-touch',
-                checked: false
-            }, {
-                name: 'ui-router',
-                value: 'ui-router',
-                checked: true
-            }]
-        }, {
-            type: 'confirm',
-            name: 'hasGit',
-            message: 'Do you like to configure and init a git repository?',
-            default: 0
-        }, {
-            name: 'gitUrl',
-            message: 'What is the git repository of the project? (Paste repository URL)',
-            when: (answers) => {
-                return answers.hasGit;
-            },
-            validate: (input) => {
-                self.validatePrompt({
-                    done: this.async(),
-                    input: input,
-                    message: 'Hey. Paste that URL!'
-                });
-            }
-        }];
+        let questions = [
+            {
+                name: 'projectName',
+                message: 'What is the name of your project?',
+                validate: (input) => {
+                    if (input.trim() === '') {
 
-        this.prompt(prompts, (answers) => {
-            let components = answers.components;
+                        return 'Hey dude! You forgot to enter the project name!';
+                    }
+
+                    return true;
+                }
+            },
+            {
+                name: 'projectDescription',
+                message: 'What is the description?',
+                validate: (input) => {
+                    if (input.trim() === '') {
+
+                        return 'You forgot the description. Write here!';
+                    }
+
+                    return true;
+                }
+            },
+            {
+                name: 'projectMember',
+                message: 'What are people going to work on this project? (Separated by commas)',
+                validate: (input) => {
+                    if (input.trim() === '') {
+
+                        return 'You forgot the description. Write here!';
+                    }
+
+                    return true;
+                }
+            },
+            {
+                type: 'confirm',
+                name: 'isSinglePage',
+                message: 'Your project will be a single page app?',
+                default: 0
+            },
+            {
+                type: 'confirm',
+                name: 'component',
+                message: 'Do you want to include Angular.js as a framework of your single page app?',
+                default: 0,
+                when: (answers) => {
+                    return answers.isSinglePage;
+                }
+            },
+            {
+                type: 'confirm',
+                name: 'hasGit',
+                message: 'Do you like to configure and init a git repository?',
+                default: 0
+            },
+            {
+                name: 'gitUrl',
+                message: 'What is the git repository of the project? (Paste repository URL)',
+                when: (answers) => {
+                    return answers.hasGit;
+                },
+                validate: (input) => {
+                    if (input.trim() === '') {
+
+                        return 'Hey. Paste that URL!';
+                    }
+
+                    return true;
+                }
+            }
+        ];
+
+        this.prompt(questions, (answers) => {
+            /*let components = answers.components;
 
             for (let answer in answers) {
                 self[answer] = answers[answer];
@@ -205,7 +163,7 @@ export default class ScaffoldGenerator extends Core {
 
             self.config.set({
                 hasAssemble: self.hasAssemble
-            });
+            });*/
 
             self.logger(' \nGood! Now I will create and install everything you need. Time to take a coffee! \n \n', 'yellow');
 
@@ -244,15 +202,6 @@ export default class ScaffoldGenerator extends Core {
         this.fs.copy(
             this.templatePath('htmlhintrc'),
             this.destinationPath('.htmlhintrc')
-        );
-        this.fs.copy(
-            this.templatePath('jsbeautifyrc'),
-            this.destinationPath('.jsbeautifyrc')
-        );
-        this.fs.copyTpl(
-            this.templatePath('jshintrc'),
-            this.destinationPath('.jshintrc'),
-            this
         );
         this.fs.copyTpl(
             this.templatePath('GruntFile.js'),

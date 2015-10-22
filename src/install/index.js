@@ -1,6 +1,6 @@
 import Core from '../core';
 
-export default class thisGenerator extends Core {
+export default class ScaffoldInstallGenerator extends Core {
 
     constructor(...args) {
         super(...args);

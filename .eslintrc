@@ -83,7 +83,7 @@
       }
     ],
     "linebreak-style": [
-      2,
+      1,
       "unix"
     ],
     "max-nested-callbacks": [
