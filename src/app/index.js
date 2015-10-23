@@ -18,7 +18,7 @@ export default class ScaffoldGenerator extends Core {
         this.userOptions = {};
 
         if (!this.options['skip-welcome'] && !this.options['sw']) {
-            this.welcomeMessage('Welcome to Scaffold Generator', 'I will guide you to generate your best workflow. Come with me...');
+            this.welcomeMessage('Welcome to Scaffold Generator', 'I will guide you to generate your best scaffold. Come with me...');
         }
     }
 
@@ -28,7 +28,7 @@ export default class ScaffoldGenerator extends Core {
         this.prompt(questions, (answers) => {
             Object.assign(this.userOptions, answers);
 
-            this.logger(' \nGood! Now I will create and install everything you need. Time to take a coffee! \n \n', 'yellow');
+            this.logger(' \nGood! Now I will create all files and install all dependencies. Time to take a coffee! \n \n', 'yellow');
 
             done();
         });
